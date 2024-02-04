@@ -40,9 +40,7 @@ class DependencyServiceProvider extends ServiceProvider implements DeferrablePro
 
     protected function manualBind(string $abstract, string|callable $concrete, bool $singleton = true): void
     {
-        $method = $singleton ? 'singleton' : 'bind';
-
-        $this->app->{$method}($abstract, $concrete);
+        $this->app->bind($abstract, $concrete, $singleton);
         $this->manualBindings[$abstract] = $concrete;
     }
 }
