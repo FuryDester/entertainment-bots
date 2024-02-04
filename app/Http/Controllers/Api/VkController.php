@@ -2,21 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class VkController extends BaseApiController
 {
-    public function callback(Request $request): JsonResponse
+    public function callback(): Response
     {
-        $data = $request->all();
-        $secret = config('integrations.vk.secret');
-        $confirmation = config('integrations.vk.confirmation');
-
-        if ($data['type'] === 'confirmation' && $data['secret'] === $secret) {
-            return response()->json($confirmation);
-        }
-
-        return response()->json('ok');
+        return response('ok', Response::HTTP_OK);
     }
 }
