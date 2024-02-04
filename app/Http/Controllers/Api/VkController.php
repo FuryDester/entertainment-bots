@@ -29,7 +29,10 @@ class VkController extends BaseApiController
             return $response;
         }
 
-        $actions = ClassFinder::getClassesInNamespace('App\Domain\VK\Services\Actions');
+        $actions = array_filter(
+            ClassFinder::getClassesInNamespace('App\Domain\VK\Services\Actions'),
+            fn($class) => is_subclass_of($class, Actionable::class),
+        );
         foreach ($actions as $action) {
             $class = app($action);
             if (!($class instanceof Actionable)) {
