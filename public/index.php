@@ -33,6 +33,8 @@ if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php'))
 
 require __DIR__.'/../vendor/autoload.php';
 
+HaydenPierce\ClassFinder\ClassFinder::disablePSR4Vendors();
+
 /*
 |--------------------------------------------------------------------------
 | Run The Application
