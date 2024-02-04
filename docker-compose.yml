@@ -5,12 +5,13 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: php:8.3
+        image: php:8.3-fpm
         restart: unless-stopped
         tty: true
         working_dir: /var/www
         volumes:
-            - .:/var/www
+            - ./:/var/www
+            - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - app-network
 
@@ -19,13 +20,13 @@ services:
         restart: unless-stopped
         tty: true
         ports:
-            - "8080:80"
+            - '8080:80'
+            - '8443:443'
         volumes:
-            - .:/var/www
-            - ./docker/nginx/conf.d:/etc/nginx/conf.d
+            - ./:/var/www
+            - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         networks:
             - app-network
-        command: ["nginx-debug", "-g", "daemon off;"]
 
     pgsql:
         image: postgres:16
@@ -37,11 +38,11 @@ services:
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
         volumes:
-            - ./storage/app/postgresql:/var/lib/postgresql/data
+            - db-data:/var/lib/postgresql/data
         networks:
             - app-network
         healthcheck:
-            test: [ "CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}" ]
+            test: [ 'CMD', 'pg_isready', '-q', '-d', '${DB_DATABASE}', '-U', '${DB_USERNAME}' ]
             retries: 3
             timeout: 5s
 
@@ -50,14 +51,20 @@ services:
         ports:
             - '6379:6379'
         volumes:
-            - ./storage/app/redis:/data
+            - cache-data:/data
         networks:
             - app-network
         healthcheck:
-            test: [ "CMD", "redis-cli", "ping" ]
+            test: [ 'CMD', 'redis-cli', 'ping' ]
             retries: 3
             timeout: 5s
 
 networks:
     app-network:
         driver: bridge
+
+volumes:
+    db-data:
+        driver: local
+    cache-data:
+        driver: local
