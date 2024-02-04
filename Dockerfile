@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     vim \
     unzip \
     git \
+    libonig-dev \
     curl
 
 # Clear cache
