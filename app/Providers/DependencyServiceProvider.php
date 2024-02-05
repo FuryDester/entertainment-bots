@@ -2,18 +2,22 @@
 
 namespace App\Providers;
 
+use App\Domain\VK\Factories\Common\MessageParts\PhotoDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
+use App\Infrastructure\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactory;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
+// TODO: Restart provider so all binds won't be in the same place
 class DependencyServiceProvider extends ServiceProvider implements DeferrableProvider
 {
-    public array $singletons = [];
+    public array $singletons = [
+        PhotoDTOFactoryContract::class => PhotoDTOFactory::class,
+    ];
 
     public array $bindings = [];
 
     protected array $manualBindings = [];
-
 
     /**
      * Register services.
