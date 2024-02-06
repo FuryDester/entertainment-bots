@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\VK\Factories\Common\MessageParts;
+namespace App\Domain\VK\Factories\Common\MessageParts\ActionParts;
 
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionParts\PhotoDTO;
 

@@ -2,9 +2,17 @@
 
 namespace App\Providers;
 
-use App\Domain\VK\Factories\Common\MessageParts\PhotoDTOFactoryContract;
+use App\Domain\VK\Factories\Common\GeoParts\CoordinatesDTOFactoryContract;
+use App\Domain\VK\Factories\Common\GeoParts\PlaceDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageParts\ActionDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageParts\ClientInfoDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
+use App\Infrastructure\VK\Factories\Common\GeoParts\CoordinatesDTOFactory;
+use App\Infrastructure\VK\Factories\Common\GeoParts\PlaceDTOFactory;
+use App\Infrastructure\VK\Factories\Common\MessageParts\ActionDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactory;
+use App\Infrastructure\VK\Factories\Common\MessageParts\ClientInfoDTOFactory;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,6 +21,10 @@ class DependencyServiceProvider extends ServiceProvider implements DeferrablePro
 {
     public array $singletons = [
         PhotoDTOFactoryContract::class => PhotoDTOFactory::class,
+        CoordinatesDTOFactoryContract::class => CoordinatesDTOFactory::class,
+        PlaceDTOFactoryContract::class => PlaceDTOFactory::class,
+        ActionDTOFactoryContract::class => ActionDTOFactory::class,
+        ClientInfoDTOFactoryContract::class => ClientInfoDTOFactory::class,
     ];
 
     public array $bindings = [];
