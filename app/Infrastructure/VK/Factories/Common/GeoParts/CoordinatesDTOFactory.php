@@ -13,4 +13,12 @@ final class CoordinatesDTOFactory implements CoordinatesDTOFactoryContract
             ->setLatitude($latitude)
             ->setLongitude($longitude);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function createFromApiData(array $data): CoordinatesDTO
+    {
+        return self::createFromParams($data['latitude'], $data['longitude']);
+    }
 }

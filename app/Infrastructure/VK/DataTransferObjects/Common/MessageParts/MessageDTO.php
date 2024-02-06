@@ -3,6 +3,7 @@
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts;
 
 use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\VK\DataTransferObjects\Common\GeoDTO;
 
 final class MessageDTO extends BaseDTO
 {
@@ -35,9 +36,9 @@ final class MessageDTO extends BaseDTO
 
     protected ?string $payload;
 
-    protected ?MessageDTO $replyMessage;
+    protected ?ForwardMessageDTO $replyMessage;
 
-    /** @var MessageDTO[]|null */
+    /** @var ForwardMessageDTO[]|null */
     protected ?array $fwdMessages;
 
     protected ?ActionDTO $action;
@@ -55,6 +56,8 @@ final class MessageDTO extends BaseDTO
     protected ?string $messageTag;
 
     protected ?bool $isExpired;
+
+    protected ?GeoDTO $geo;
 
     public function getId(): int
     {
@@ -216,19 +219,19 @@ final class MessageDTO extends BaseDTO
         return $this;
     }
 
-    public function getReplyMessage(): ?MessageDTO
+    public function getReplyMessage(): ?ForwardMessageDTO
     {
         return $this->replyMessage;
     }
 
-    public function setReplyMessage(?MessageDTO $replyMessage): MessageDTO
+    public function setReplyMessage(?ForwardMessageDTO $replyMessage): MessageDTO
     {
         $this->replyMessage = $replyMessage;
         return $this;
     }
 
     /**
-     * @return MessageDTO[]|null
+     * @return ForwardMessageDTO[]|null
      */
     public function getFwdMessages(): ?array
     {
@@ -236,7 +239,7 @@ final class MessageDTO extends BaseDTO
     }
 
     /**
-     * @param MessageDTO[]|null $fwdMessages
+     * @param ForwardMessageDTO[]|null $fwdMessages
      */
     public function setFwdMessages(?array $fwdMessages): MessageDTO
     {
@@ -329,6 +332,17 @@ final class MessageDTO extends BaseDTO
     public function setIsExpired(?bool $isExpired): MessageDTO
     {
         $this->isExpired = $isExpired;
+        return $this;
+    }
+
+    public function getGeo(): ?GeoDTO
+    {
+        return $this->geo;
+    }
+
+    public function setGeo(?GeoDTO $geo): MessageDTO
+    {
+        $this->geo = $geo;
         return $this;
     }
 }

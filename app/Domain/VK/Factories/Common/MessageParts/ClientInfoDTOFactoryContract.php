@@ -17,4 +17,15 @@ interface ClientInfoDTOFactoryContract
         bool $carousel,
         int $langId,
     ): ClientInfoDTO;
+
+    /**
+     * @param array{
+     *     button_actions: string[],
+     *     keyboard: bool,
+     *     inline_keyboard: bool,
+     *     carousel: bool,
+     *     lang_id: int,
+     * } $data
+     */
+    public static function createFromApiData(array $data): ClientInfoDTO;
 }

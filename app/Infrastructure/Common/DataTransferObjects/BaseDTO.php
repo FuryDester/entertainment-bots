@@ -51,7 +51,7 @@ abstract class BaseDTO implements Arrayable
         $reflection = new ReflectionClass(get_called_class());
         $properties = $reflection->getProperties($mode);
 
-        return array_map(fn ($item) => [
+        return array_map(fn($item) => [
             'name' => $item->getName(),
             'type' => $item->getType()?->getName() ?? 'mixed',
             'default' => $item->getDefaultValue(),
@@ -63,7 +63,7 @@ abstract class BaseDTO implements Arrayable
      */
     final public function hasNullKeys(): bool
     {
-        $properties = Arr::mapWithKeys(static::getProperties(), fn ($item) => [$item['name'] => $this->{$item['name']}]);
+        $properties = Arr::mapWithKeys(static::getProperties(), fn($item) => [$item['name'] => $this->{$item['name']}]);
 
         $nullValues = Arr::where($properties, static function ($item) {
             return $item === null;

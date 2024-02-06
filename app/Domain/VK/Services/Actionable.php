@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\VK\Services\Actions;
+namespace App\Domain\VK\Services;
 
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use App\Infrastructure\VK\Enums\ActionEnum;

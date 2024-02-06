@@ -15,4 +15,15 @@ interface ActionDTOFactoryContract
         ?string $email,
         ?PhotoDTO $photo,
     ): ActionDTO;
+
+    /**
+     * @param array{
+     *     type: string,
+     *     member_id: int|null,
+     *     text: string|null,
+     *     email: string|null,
+     *     photo: array|null,
+     * } $data
+     */
+    public static function createFromApiData(array $data): ActionDTO;
 }

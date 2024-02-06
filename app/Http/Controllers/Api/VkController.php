@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Domain\VK\Services\Actions\Actionable;
+use App\Domain\VK\Services\Actionable;
 use App\Http\Requests\Api\VK\CallbackRequest;
 use App\Infrastructure\VK\Enums\ActionEnum;
 use HaydenPierce\ClassFinder\ClassFinder;
@@ -36,7 +36,7 @@ class VkController extends BaseApiController
         foreach ($actions as $action) {
             $class = app($action);
             if (!($class instanceof Actionable)) {
-                Log::error('Action is not instance of Actionable! Action: ' . $action);
+                Log::error('Actions is not instance of Actionable! Actions: ' . $action);
                 continue;
             }
 

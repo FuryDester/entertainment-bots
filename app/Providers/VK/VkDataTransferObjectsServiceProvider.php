@@ -9,6 +9,7 @@ use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ActionDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ClientInfoDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageParts\ForwardMessageDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\MessageDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use App\Infrastructure\VK\Factories\Common\GeoDTOFactory;
@@ -18,6 +19,7 @@ use App\Infrastructure\VK\Factories\Common\MessageContextDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ActionDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ClientInfoDTOFactory;
+use App\Infrastructure\VK\Factories\Common\MessageParts\ForwardMessageDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\MessageDTOFactory;
 use App\Providers\AbstractDependencyServiceProvider;
 
@@ -32,6 +34,7 @@ final class VkDataTransferObjectsServiceProvider extends AbstractDependencyServi
         MessageDTOFactoryContract::class => MessageDTOFactory::class,
         GeoDTOFactoryContract::class => GeoDTOFactory::class,
         MessageContextDTOFactoryContract::class => MessageContextDTOFactory::class,
+        ForwardMessageDTOFactoryContract::class => ForwardMessageDTOFactory::class,
     ];
 
     /**

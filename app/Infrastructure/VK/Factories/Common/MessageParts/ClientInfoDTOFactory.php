@@ -4,9 +4,14 @@ namespace App\Infrastructure\VK\Factories\Common\MessageParts;
 
 use App\Domain\VK\Factories\Common\MessageParts\ClientInfoDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ClientInfoDTO;
+use App\Infrastructure\VK\Enums\ButtonActionEnum;
+use Illuminate\Support\Arr;
 
 final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
 {
+    /**
+     * {@inheritDoc}
+     */
     public static function createFromParams(
         array $buttonActions,
         bool $keyboard,
@@ -20,5 +25,18 @@ final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
             ->setInlineKeyboard($inlineKeyboard)
             ->setCarousel($carousel)
             ->setLangId($langId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function createFromApiData(array $data): ClientInfoDTO
+    {
+        return (new ClientInfoDTO())
+            ->setButtonActions(Arr::map($data['button_actions'], fn($item) => ButtonActionEnum::tryFrom($item)))
+            ->setKeyboard($data['keyboard'])
+            ->setInlineKeyboard($data['inline_keyboard'])
+            ->setCarousel($data['carousel'])
+            ->setLangId($data['lang_id']);
     }
 }

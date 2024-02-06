@@ -14,4 +14,12 @@ final class PhotoDTOFactory implements PhotoDTOFactoryContract
             ->setPhoto100($photo100)
             ->setPhoto200($photo200);
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public static function createFromApiData(array $data): PhotoDTO
+    {
+        return self::createFromParams($data['photo_50'], $data['photo_100'], $data['photo_200']);
+    }
 }
