@@ -168,7 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\DependencyServiceProvider::class,
+        \App\Providers\VK\VkDataTransferObjectsServiceProvider::class,
     ])->toArray(),
 
     /*

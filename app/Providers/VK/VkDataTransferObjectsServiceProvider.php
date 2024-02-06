@@ -1,23 +1,27 @@
 <?php
 
-namespace App\Providers;
+namespace App\Providers\VK;
 
+use App\Domain\VK\Factories\Common\GeoDTOFactoryContract;
 use App\Domain\VK\Factories\Common\GeoParts\CoordinatesDTOFactoryContract;
 use App\Domain\VK\Factories\Common\GeoParts\PlaceDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ActionDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactoryContract;
 use App\Domain\VK\Factories\Common\MessageParts\ClientInfoDTOFactoryContract;
+use App\Domain\VK\Factories\Common\MessageParts\MessageDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
+use App\Infrastructure\VK\Factories\Common\GeoDTOFactory;
 use App\Infrastructure\VK\Factories\Common\GeoParts\CoordinatesDTOFactory;
 use App\Infrastructure\VK\Factories\Common\GeoParts\PlaceDTOFactory;
+use App\Infrastructure\VK\Factories\Common\MessageContextDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ActionDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactory;
 use App\Infrastructure\VK\Factories\Common\MessageParts\ClientInfoDTOFactory;
-use Illuminate\Contracts\Support\DeferrableProvider;
-use Illuminate\Support\ServiceProvider;
+use App\Infrastructure\VK\Factories\Common\MessageParts\MessageDTOFactory;
+use App\Providers\AbstractDependencyServiceProvider;
 
-// TODO: Restart provider so all binds won't be in the same place
-class DependencyServiceProvider extends ServiceProvider implements DeferrableProvider
+final class VkDataTransferObjectsServiceProvider extends AbstractDependencyServiceProvider
 {
     public array $singletons = [
         PhotoDTOFactoryContract::class => PhotoDTOFactory::class,
@@ -25,11 +29,10 @@ class DependencyServiceProvider extends ServiceProvider implements DeferrablePro
         PlaceDTOFactoryContract::class => PlaceDTOFactory::class,
         ActionDTOFactoryContract::class => ActionDTOFactory::class,
         ClientInfoDTOFactoryContract::class => ClientInfoDTOFactory::class,
+        MessageDTOFactoryContract::class => MessageDTOFactory::class,
+        GeoDTOFactoryContract::class => GeoDTOFactory::class,
+        MessageContextDTOFactoryContract::class => MessageContextDTOFactory::class,
     ];
-
-    public array $bindings = [];
-
-    protected array $manualBindings = [];
 
     /**
      * Register services.
@@ -40,23 +43,5 @@ class DependencyServiceProvider extends ServiceProvider implements DeferrablePro
             AccessTokenDTO::class,
             fn() => AccessTokenDTO::getInstance()->setAccessToken(config('integrations.vk.access_token')),
         );
-    }
-
-    /**
-     * @return array
-     */
-    public function provides(): array
-    {
-        return [
-            ...array_keys($this->singletons),
-            ...array_keys($this->bindings),
-            ...array_keys($this->manualBindings),
-        ];
-    }
-
-    protected function manualBind(string $abstract, string|callable $concrete, bool $singleton = true): void
-    {
-        $this->app->bind($abstract, $concrete, $singleton);
-        $this->manualBindings[$abstract] = $concrete;
     }
 }
