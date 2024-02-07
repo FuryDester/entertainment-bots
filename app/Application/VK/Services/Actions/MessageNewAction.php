@@ -40,7 +40,7 @@ final class MessageNewAction implements Actionable
             $client = new VKApiClient();
             $client->messages()->send($accessToken->getAccessToken(), [
                 'peer_id' => $message->getPeerId(),
-                'message' => 'Попка попугай повторяет: ' . $message->getText(),
+                'message' => 'Попка-дурак повторяет: ' . $message->getText(),
                 'random_id' => mt_rand(0, 1000000),
             ]);
         }
