@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev \
     libpng-dev \
     libpq-dev \
+    libcurl4-openssl-dev \
     libxml2-dev \
     libcap2-bin \
     libonig-dev \
@@ -40,10 +41,16 @@ RUN docker-php-ext-install -j$(nproc) \
     xml \
     soap \
     zip \
-    opcache
+    opcache \
+    curl
 
 # Install redis
-RUN pecl install redis && docker-php-ext-enable redis
+RUN pecl install redis
+
+# Enable redis and curl
+RUN docker-php-ext-enable \
+    redis \
+    curl
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
