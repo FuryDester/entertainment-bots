@@ -60,7 +60,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Add user for laravel application
 RUN groupadd --force -g 1000 www
-RUN useradd -u 1000 --no-user-group -ms /bin/bash -g www www
+RUN useradd -u 1000 --no-user-group --force -ms /bin/bash -g www www
 
 # Copy existing application directory contents
 COPY . /var/www
