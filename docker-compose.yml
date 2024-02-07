@@ -5,7 +5,7 @@ services:
         build:
             context: .
             dockerfile: Dockerfile
-        image: php:8.3-fpm
+        image: furydester/entertainment-app:latest
         restart: unless-stopped
         tty: true
         working_dir: /var/www

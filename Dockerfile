@@ -1,8 +1,5 @@
 FROM php:8.3-fpm
 
-# When rebuilding the image, default user will be www, so we need to change it to root
-USER root
-
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 
@@ -60,7 +57,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Add user for laravel application
 RUN groupadd --force -g 1000 www
-RUN useradd -u 1000 --no-user-group --force -ms /bin/bash -g www www
+RUN useradd -u 1000 --no-user-group -ms /bin/bash -g www www
 
 # Copy existing application directory contents
 COPY . /var/www
