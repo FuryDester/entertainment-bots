@@ -32,7 +32,7 @@ final class MessageNewAction implements Actionable
         ));
 
         // TODO: Remove after testing
-        if (mt_rand(0, 5) === 0 && $message->getText()) {
+        if (mt_rand(0, 10) === 0 && $message->getText()) {
             Log::info('MessageNewAction: random success');
             /** @var AccessTokenDTO $accessToken */
             $accessToken = app(AccessTokenDTO::class);
