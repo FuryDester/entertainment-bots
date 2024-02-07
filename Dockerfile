@@ -1,5 +1,8 @@
 FROM php:8.3-fpm
 
+# When rebuilding the image, default user will be www, so we need to change it to root
+USER root
+
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
 
