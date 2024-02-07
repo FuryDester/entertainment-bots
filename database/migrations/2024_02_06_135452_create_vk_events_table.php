@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type', 32);
             $table->string('version', 16);
             $table->unsignedInteger('group_id');
-            $table->text('payload');
+            $table->text('object');
             $table->boolean('is_processed')->default(false);
             $table->unsignedSmallInteger('attempts')->default(1);
 
