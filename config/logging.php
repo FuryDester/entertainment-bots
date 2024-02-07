@@ -134,7 +134,11 @@ return [
             'handler' => FilterHandler::class,
             'level' => env('LOG_LEVEL', 'warning'),
             'with' => [
-                'handler' => new TelegramBotHandler(env('TELEGRAM_API_KEY', ''), env('TELEGRAM_CHANNEL', 'nothing')),
+                'handler' => new TelegramBotHandler(
+                    env('TELEGRAM_API_KEY', ''),
+                    env('TELEGRAM_CHANNEL', 'nothing'),
+                    env('LOG_LEVEL', 'warning'),
+                ),
             ],
         ]
     ],
