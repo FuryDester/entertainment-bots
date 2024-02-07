@@ -6,6 +6,7 @@ use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Services\Actionable;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use App\Infrastructure\VK\Enums\ActionEnum;
+use Illuminate\Support\Facades\Log;
 
 final class MessageNewAction implements Actionable
 {
@@ -14,11 +15,20 @@ final class MessageNewAction implements Actionable
         return ActionEnum::MessageNew;
     }
 
-    public static function perform(CallbackRequestDTO $data): void
+    public static function perform(CallbackRequestDTO $data): bool
     {
-        /** @var MessageContextDTOFactoryContract $messageFactory */
+        /** @var MessageContextDTOFactoryContract $messageContextFactory */
         $messageContextFactory = app(MessageContextDTOFactoryContract::class);
 
-        dd($messageContextFactory::createFromApiData($data->getObject()));
+        $messageContext = $messageContextFactory::createFromApiData($data->getObject());
+        $message = $messageContext->getMessage();
+        Log::info(sprintf(
+            'MessageNewAction from id: %d, peerId: %d, text: %s',
+            $message->getFromId(),
+            $message->getPeerId(),
+            $message->getText() ?: 'empty message text'
+        ));
+
+        return true;
     }
 }

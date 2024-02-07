@@ -7,7 +7,7 @@ use Illuminate\Support\Carbon;
 
 final class VkEventDTO extends BaseDTO
 {
-    protected int $id;
+    protected ?int $id;
 
     protected string $eventId;
 
@@ -21,16 +21,18 @@ final class VkEventDTO extends BaseDTO
 
     protected bool $isProcessed = false;
 
-    protected Carbon $createdAt;
+    protected int $attempts = 1;
 
-    protected Carbon $updatedAt;
+    protected ?Carbon $createdAt;
 
-    public function getId(): int
+    protected ?Carbon $updatedAt;
+
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): VkEventDTO
+    public function setId(?int $id): VkEventDTO
     {
         $this->id = $id;
         return $this;
@@ -102,25 +104,36 @@ final class VkEventDTO extends BaseDTO
         return $this;
     }
 
-    public function getCreatedAt(): Carbon
+    public function getCreatedAt(): ?Carbon
     {
         return $this->createdAt;
     }
 
-    public function setCreatedAt(Carbon $createdAt): VkEventDTO
+    public function setCreatedAt(?Carbon $createdAt): VkEventDTO
     {
         $this->createdAt = $createdAt;
         return $this;
     }
 
-    public function getUpdatedAt(): Carbon
+    public function getUpdatedAt(): ?Carbon
     {
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(Carbon $updatedAt): VkEventDTO
+    public function setUpdatedAt(?Carbon $updatedAt): VkEventDTO
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    public function getAttempts(): int
+    {
+        return $this->attempts;
+    }
+
+    public function setAttempts(int $attempts): VkEventDTO
+    {
+        $this->attempts = $attempts;
         return $this;
     }
 }

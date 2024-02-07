@@ -9,5 +9,5 @@ interface Actionable
 {
     public static function getActionName(): ActionEnum;
 
-    public static function perform(CallbackRequestDTO $data): void;
+    public static function perform(CallbackRequestDTO $data): bool;
 }

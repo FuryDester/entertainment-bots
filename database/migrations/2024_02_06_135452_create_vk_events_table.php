@@ -14,12 +14,13 @@ return new class extends Migration
         Schema::create('vk_events', static function (Blueprint $table) {
             $table->id();
 
-            $table->string('event_id', 40)->unique();
+            $table->string('event_id', 40)->unique()->index();
             $table->string('type', 32);
             $table->string('version', 16);
             $table->unsignedInteger('group_id');
             $table->text('payload');
             $table->boolean('is_processed')->default(false);
+            $table->unsignedSmallInteger('attempts')->default(1);
 
             $table->timestamps();
         });
