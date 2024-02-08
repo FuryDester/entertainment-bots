@@ -3,14 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Domain\VK\Factories\Models\VkEventDTOFactoryContract;
-use App\Domain\VK\Services\Actionable;
+use App\Domain\VK\Services\Actions\ActionServiceContract;
 use App\Domain\VK\Services\Models\VkEventServiceContract;
 use App\Http\Requests\Api\VK\CallbackRequest;
-use App\Infrastructure\VK\Enums\ActionEnum;
-use HaydenPierce\ClassFinder\ClassFinder;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
-use Exception;
 
 class VkController extends BaseApiController
 {
@@ -32,36 +30,24 @@ class VkController extends BaseApiController
             return $response;
         }
 
-        $type = $dto->getType();
-        $actionValue = ActionEnum::tryFrom($type);
-        if ($actionValue === null) {
+        /** @var VkEventDTOFactoryContract $vkEventFactory */
+        $vkEventFactory = app(VkEventDTOFactoryContract::class);
+        $vkEvent = $vkEventFactory::createFromCallback($dto);
+
+        /** @var ActionServiceContract $actionService */
+        $actionService = app(ActionServiceContract::class);
+        $action = $actionService->getActionByDto($vkEvent);
+        if (!$action) {
             return $response;
         }
 
-        $actions = array_filter(
-            ClassFinder::getClassesInNamespace('App\Application\VK\Services\Actions'),
-            fn($class) => is_subclass_of($class, Actionable::class),
-        );
-        foreach ($actions as $action) {
-            $class = app($action);
-            if (!($class instanceof Actionable)) {
-                Log::error('Action is not instance of Actionable! Action: ' . $action);
-                continue;
-            }
+        Log::info("Processing event: {$vkEvent->getEventId()} with type: {$vkEvent->getType()}");
+        $result = $action::perform($dto);
+        $vkEvent->setIsProcessed($result);
+        $service->save($vkEvent);
 
-            if ($class::getActionName() !== $actionValue) {
-                continue;
-            }
-
-            $result = $class::perform($dto);
-
-            /** @var VkEventDTOFactoryContract $vkEventFactory */
-            $vkEventFactory = app(VkEventDTOFactoryContract::class);
-            $eventDto = $vkEventFactory->createFromCallback($dto)->setIsProcessed($result);
-            $service->save($eventDto);
-
-            break;
-        }
+        $eventProcessingStatus = $result ? 'processed' : 'processing failed';
+        Log::{$result ? 'info' : 'warning'}("Event $eventProcessingStatus: {$vkEvent->getEventId()} with type: {$vkEvent->getType()}");
 
         return $response;
     }

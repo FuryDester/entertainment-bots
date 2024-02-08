@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Api\VK;
 
 use App\Domain\Common\Requests\ShouldFormDTO;
+use App\Domain\VK\Factories\Requests\CallbackRequestDTOFactoryContract;
 use App\Infrastructure\Common\Traits\Requests\AlwaysAuthorizeRequest;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use Illuminate\Foundation\Http\FormRequest;
@@ -30,14 +31,8 @@ final class CallbackRequest extends FormRequest implements ShouldFormDTO
 
     public function formDto(): CallbackRequestDTO
     {
-        $data = $this->safe()->collect();
-
-        return (new CallbackRequestDTO())
-            ->setType($data->get('type'))
-            ->setEventId($data->get('event_id'))
-            ->setVersion($data->get('v'))
-            ->setObject($data->get('object'))
-            ->setGroupId((int) $data->get('group_id'))
-            ->setSecret($data->get('secret'));
+        /** @var CallbackRequestDTOFactoryContract $factory */
+        $factory = app(CallbackRequestDTOFactoryContract::class);
+        return $factory::createFromRequest($this->safe()->toArray());
     }
 }

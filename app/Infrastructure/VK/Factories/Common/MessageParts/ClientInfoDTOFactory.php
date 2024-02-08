@@ -33,7 +33,7 @@ final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
     public static function createFromApiData(array $data): ClientInfoDTO
     {
         return (new ClientInfoDTO())
-            ->setButtonActions(Arr::map($data['button_actions'], fn($item) => ButtonActionEnum::tryFrom($item)))
+            ->setButtonActions(Arr::map($data['button_actions'], static fn($item) => ButtonActionEnum::tryFrom($item)))
             ->setKeyboard($data['keyboard'])
             ->setInlineKeyboard($data['inline_keyboard'])
             ->setCarousel($data['carousel'])

@@ -168,8 +168,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        // VK providers
         App\Providers\VK\VkDataTransferObjectsServiceProvider::class,
         App\Providers\VK\VkEventModelServiceProvider::class,
+        App\Providers\VK\VkActionServiceProvider::class,
+        App\Providers\VK\VkRequestsDataTransferObjectsServiceProvider::class,
     ])->toArray(),
 
     /*
