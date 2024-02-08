@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\VK\VkEvent;
 use Illuminate\Database\Seeder;
 
 class VkEventSeeder extends Seeder
@@ -12,6 +12,6 @@ class VkEventSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        VkEvent::factory(mt_rand(50, 150))->create();
     }
 }

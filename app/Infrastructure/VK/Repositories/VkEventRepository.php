@@ -10,7 +10,7 @@ use App\Infrastructure\Common\Traits\ArrayKeysToSneakCase;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
 use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 use App\Infrastructure\VK\Enums\Cache\VkCacheEnum;
-use App\Models\VkEvent;
+use App\Models\VK\VkEvent;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
