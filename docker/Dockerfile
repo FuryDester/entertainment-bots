@@ -1,4 +1,4 @@
-FROM php:8.3-fpm
+FROM php:8.3-fpm AS base_app
 
 # Copy composer.lock and composer.json
 COPY composer.lock composer.json /var/www/
@@ -71,3 +71,19 @@ USER www
 # Expose port 9000 and start php-fpm server
 EXPOSE 9000
 CMD ["php-fpm"]
+
+FROM base_app AS supervisor_app
+
+# Change to root user to install supervisor
+USER root
+
+# Install supervisor
+RUN apt-get update && apt-get install -y supervisor
+
+RUN mkdir -p "/var/log/supervisor"
+
+# Copy the supervisord configuration file
+COPY ./docker/supervisor/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
+

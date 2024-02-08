@@ -1,10 +1,11 @@
-version: '3'
+version: '3.9'
 
 services:
     app:
         build:
             context: .
-            dockerfile: Dockerfile
+            dockerfile: docker/Dockerfile
+            target: base_app
         image: furydester/entertainment-app:latest
         restart: unless-stopped
         tty: true
@@ -37,6 +38,7 @@ services:
             POSTGRES_DB: '${DB_DATABASE}'
             POSTGRES_USER: '${DB_USERNAME}'
             POSTGRES_PASSWORD: '${DB_PASSWORD:-secret}'
+        restart: unless-stopped
         volumes:
             - db-data:/var/lib/postgresql/data
         networks:
@@ -48,8 +50,7 @@ services:
 
     redis:
         image: redis:alpine
-#        ports:
-#            - '6379:6379'
+        restart: unless-stopped
         volumes:
             - cache-data:/data
         networks:
@@ -58,6 +59,20 @@ services:
             test: [ 'CMD', 'redis-cli', 'ping' ]
             retries: 3
             timeout: 5s
+
+    supervisor:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+            target: supervisor_app
+        image: furydester/entertainment-app:supervisor
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - ./:/var/www
+            - ./docker/supervisor/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
+        networks:
+            - app-network
 
 networks:
     app-network:
