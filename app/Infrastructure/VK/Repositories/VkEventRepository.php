@@ -94,7 +94,7 @@ final class VkEventRepository implements VkEventRepositoryContract
     {
         $result = VkEvent::query()
             ->where('created_at', '<', now()->subDays($days))
-            ->where('processed', $processed)
+            ->where('is_processed', $processed)
             ->delete();
 
         if ($result) {
@@ -114,7 +114,7 @@ final class VkEventRepository implements VkEventRepositoryContract
             CacheTimeEnum::HOUR->value,
             static function () use ($maxAttempts) {
                 return VkEvent::query()
-                    ->where('processed', false)
+                    ->where('is_processed', false)
                     ->where('attempts', '<', $maxAttempts)
                     ->get();
             },
