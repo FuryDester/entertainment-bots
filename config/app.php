@@ -174,6 +174,9 @@ return [
         App\Providers\VK\VkEventModelServiceProvider::class,
         App\Providers\VK\VkActionServiceProvider::class,
         App\Providers\VK\VkRequestsDataTransferObjectsServiceProvider::class,
+
+        // Commands
+        App\Providers\Commands\Timer\TimerCommandServiceProvider::class,
     ])->toArray(),
 
     /*
