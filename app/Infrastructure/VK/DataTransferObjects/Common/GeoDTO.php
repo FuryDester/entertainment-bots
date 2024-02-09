@@ -2,11 +2,11 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\GeoParts\CoordinatesDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\GeoParts\PlaceDTO;
 
-final class GeoDTO extends BaseDTO
+final class GeoDTO extends AbstractDTO
 {
     protected int $type;
 

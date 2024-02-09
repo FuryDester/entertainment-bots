@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\GeoDTO;
 
-final class MessageDTO extends BaseDTO
+final class MessageDTO extends AbstractDTO
 {
     protected int $id;
 

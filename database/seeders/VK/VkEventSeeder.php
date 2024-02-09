@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\VK;
 
 use App\Models\VK\VkEvent;
 use Illuminate\Database\Seeder;

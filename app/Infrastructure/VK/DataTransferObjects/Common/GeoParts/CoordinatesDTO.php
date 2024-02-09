@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\GeoParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-final class CoordinatesDTO extends BaseDTO
+final class CoordinatesDTO extends AbstractDTO
 {
     protected float $latitude;
 

@@ -5,7 +5,7 @@ namespace App\Models\VK;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class VkEvent extends Model
+final class VkEvent extends Model
 {
     use HasFactory;
 

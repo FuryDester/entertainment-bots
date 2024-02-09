@@ -6,7 +6,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Support\Arr;
 use ReflectionClass;
 
-abstract class BaseDTO implements Arrayable
+abstract class AbstractDTO implements Arrayable
 {
     /**
      * @param iterable $values массив значений переменных

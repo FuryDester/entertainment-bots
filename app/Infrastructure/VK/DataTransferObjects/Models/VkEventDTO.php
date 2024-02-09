@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Models;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 use Illuminate\Support\Carbon;
 
-final class VkEventDTO extends BaseDTO
+final class VkEventDTO extends AbstractDTO
 {
     protected ?int $id;
 

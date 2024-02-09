@@ -2,10 +2,10 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 use App\Infrastructure\VK\Enums\ButtonActionEnum;
 
-final class ClientInfoDTO extends BaseDTO
+final class ClientInfoDTO extends AbstractDTO
 {
     /** @var ButtonActionEnum[] */
     protected array $buttonActions;

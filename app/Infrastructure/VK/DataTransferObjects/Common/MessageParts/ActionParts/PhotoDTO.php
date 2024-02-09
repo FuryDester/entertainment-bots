@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-final class PhotoDTO extends BaseDTO
+final class PhotoDTO extends AbstractDTO
 {
     protected string $photo50;
 

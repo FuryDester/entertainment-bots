@@ -2,11 +2,11 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionParts\PhotoDTO;
 use App\Infrastructure\VK\Enums\MessageEventTypeEnum;
 
-final class ActionDTO extends BaseDTO
+final class ActionDTO extends AbstractDTO
 {
     protected MessageEventTypeEnum $type;
 

@@ -2,14 +2,14 @@
 
 namespace App\Domain\Common\Requests;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
 interface ShouldFormDTO
 {
     /**
      * Метод для формирования ДТО по запросу с реквеста
      *
-     * @return BaseDTO
+     * @return AbstractDTO
      */
-    public function formDto(): BaseDTO;
+    public function formDto(): AbstractDTO;
 }

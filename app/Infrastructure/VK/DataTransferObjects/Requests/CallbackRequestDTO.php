@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Requests;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-final class CallbackRequestDTO extends BaseDTO
+final class CallbackRequestDTO extends AbstractDTO
 {
     protected string $type;
 

@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\MessageParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-final class ForwardMessageDTO extends BaseDTO
+final class ForwardMessageDTO extends AbstractDTO
 {
     protected int $date;
 

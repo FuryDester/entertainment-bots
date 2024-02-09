@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\VK\DataTransferObjects\Common\GeoParts;
 
-use App\Infrastructure\Common\DataTransferObjects\BaseDTO;
+use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-final class PlaceDTO extends BaseDTO
+final class PlaceDTO extends AbstractDTO
 {
     protected int $id;
 
