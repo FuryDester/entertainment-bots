@@ -96,6 +96,8 @@ abstract class AbstractCommandExecutor
         foreach ($parts as $partNumber => $part) {
             if (count($arguments) - 1 <= $partNumber) {
                 $lastArgumentValue[] = $part;
+
+                continue;
             }
 
             $arguments[$partNumber]->setValue($part);
