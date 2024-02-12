@@ -5,12 +5,15 @@ namespace App\Application\Commands;
 use App\Domain\Commands\Factories\Common\CommandArgumentDTOFactoryContract;
 use App\Domain\Commands\Factories\Timer\TimerJobPayloadDTOFactoryContract;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
+use App\Infrastructure\Common\Traits\WordDeclension;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Jobs\Commands\Timer\ProcessTimerCommand;
 use Illuminate\Support\Facades\Log;
 
 final class TimerCommandExecutor extends AbstractCommandExecutor
 {
+    use WordDeclension;
+
     /**
      * {@inheritDoc}
      */
@@ -83,8 +86,9 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
 
         try {
             $outputMessage = sprintf(
-                'Таймер на %d минут установлен.%s',
+                'Таймер на %d %s установлен.%s',
                 $time,
+                $this->declension($time, ['минуту', 'минуты', 'минут']),
                 $messageText ? (' Текст: ' . $messageText) : '',
             );
 

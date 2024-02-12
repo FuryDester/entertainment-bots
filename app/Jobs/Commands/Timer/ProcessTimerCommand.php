@@ -3,6 +3,7 @@
 namespace App\Jobs\Commands\Timer;
 
 use App\Infrastructure\Commands\DataTransferObjects\Timer\TimerJobPayloadDTO;
+use App\Infrastructure\Common\Traits\WordDeclension;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use App\Infrastructure\VK\Traits\Common\MentionUser;
 use Illuminate\Bus\Queueable;
@@ -17,6 +18,7 @@ final class ProcessTimerCommand implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     use MentionUser;
+    use WordDeclension;
 
     /**
      * Create a new job instance.
@@ -42,9 +44,10 @@ final class ProcessTimerCommand implements ShouldQueue
         }
 
         $text = sprintf(
-            '%s, таймер на %d минут завершен.%s',
+            '%s, таймер на %d %s завершен.%s',
             $mention,
             $this->payload->getMinutes(),
+            $this->declension($this->payload->getMinutes(), ['минута', 'минуты', 'минут']),
             $this->payload->getMessage() ? (' Текст: ' . $this->payload->getMessage()) : '',
         );
         try {
