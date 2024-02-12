@@ -55,6 +55,18 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
     protected function execute(MessageDTO $message, array $arguments): bool
     {
         $time = (int) $arguments[0]->getValue();
+        if ($time <= 0) {
+            try {
+                $this->sendMessage($message->getPeerId(), 'Время должно быть больше 0.');
+            } catch(\Throwable) {
+                Log::warning('Failed to send timer message to user', [
+                    'message' => $message->toArray(),
+                ]);
+            }
+
+            return true;
+        }
+
         $messageText = $arguments[1]->getValue();
 
         /** @var TimerJobPayloadDTOFactoryContract $timerJobFactory */
