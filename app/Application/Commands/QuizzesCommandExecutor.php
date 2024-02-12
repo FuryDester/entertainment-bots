@@ -58,19 +58,20 @@ final class QuizzesCommandExecutor extends AbstractCommandExecutor
             return true;
         }
 
-        /** @var FactoryInterface $keyboardFactory */
-        $keyboardFactory = app(FactoryInterface::class);
-        $keyboardData = [];
-        foreach ($quizzes as $quiz) {
-            $keyboardData[] = [
-                $keyboardFactory->text($quiz->getTitle(), [
-                    'type' => 'quiz',
-                    'id' => $quiz->getId(),
-                ], Text::COLOR_RED),
-            ];
-        }
+        $keyboard = Facade::createInlineKeyboard(static function (FactoryInterface $factory) use ($quizzes) {
+            $keyboardData = [];
+            foreach ($quizzes as $quiz) {
+                $keyboardData[] = [
+                    $factory->text($quiz->getTitle(), [
+                        'type' => 'quiz',
+                        'id' => $quiz->getId(),
+                    ], Text::COLOR_RED),
+                ];
+            }
+            return $keyboardData;
+        });
 
-        $this->sendMessage($message->getPeerId(), 'Доступные викторины', Facade::createInlineKeyboard($keyboardData));
+        $this->sendMessage($message->getPeerId(), 'Доступные викторины', ['keyboard' => $keyboard]);
         return true;
     }
 

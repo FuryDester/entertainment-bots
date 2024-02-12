@@ -116,7 +116,7 @@ abstract class AbstractCommandExecutor
     /**
      * Отправка сообщения ВК
      */
-    protected function sendMessage(int $peerId, string $message, bool $disableMentions = false): void
+    protected function sendMessage(int $peerId, string $message, array $options = []): void
     {
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
@@ -127,7 +127,7 @@ abstract class AbstractCommandExecutor
                 'message' => $message,
                 'peer_id' => $peerId,
                 'random_id' => rand(0, 10000000),
-                'disable_mentions' => (int) $disableMentions,
+                ...$options,
             ]);
         } catch (\Throwable $exception) {
             Log::warning('Failed to send message', [
