@@ -47,7 +47,7 @@ final class ProcessTimerCommand implements ShouldQueue
             '%s, таймер на %d %s завершен.%s',
             $mention,
             $this->payload->getMinutes(),
-            $this->declension($this->payload->getMinutes(), ['минута', 'минуты', 'минут']),
+            $this->declension($this->payload->getMinutes(), ['минуту', 'минуты', 'минут']),
             $this->payload->getMessage() ? (' Текст: ' . $this->payload->getMessage()) : '',
         );
         try {
