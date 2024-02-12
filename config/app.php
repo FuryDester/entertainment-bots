@@ -178,6 +178,9 @@ return [
         // Commands
         App\Providers\Commands\Timer\TimerCommandServiceProvider::class,
         App\Providers\Commands\Common\CommandBaseServiceProvider::class,
+
+        // Quiz
+        App\Providers\Quiz\QuizFactoriesServiceProvider::class,
     ])->toArray(),
 
     /*
