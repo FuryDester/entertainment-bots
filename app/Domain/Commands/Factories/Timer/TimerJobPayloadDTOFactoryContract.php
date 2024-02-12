@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Domain\Commands\Timer\Factories;
+namespace App\Domain\Commands\Factories\Timer;
 
-use App\Infrastructure\Commands\Timer\DataTransferObjects\TimerJobPayloadDTO;
+use App\Infrastructure\Commands\DataTransferObjects\Timer\TimerJobPayloadDTO;
 
 interface TimerJobPayloadDTOFactoryContract
 {
-    public function createFromParams(
+    public static function createFromParams(
         int $vkUserId,
         int $vkPeerId,
         int $minutes,

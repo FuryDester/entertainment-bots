@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Commands\Timer\Factories;
+namespace App\Infrastructure\Commands\Factories\Timer;
 
-use App\Domain\Commands\Timer\Factories\TimerJobPayloadDTOFactoryContract;
-use App\Infrastructure\Commands\Timer\DataTransferObjects\TimerJobPayloadDTO;
+use App\Domain\Commands\Factories\Timer\TimerJobPayloadDTOFactoryContract;
+use App\Infrastructure\Commands\DataTransferObjects\Timer\TimerJobPayloadDTO;
 
 final class TimerJobPayloadDTOFactory implements TimerJobPayloadDTOFactoryContract
 {

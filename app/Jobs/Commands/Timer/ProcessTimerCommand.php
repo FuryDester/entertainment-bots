@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Commands\Timer;
 
-use App\Infrastructure\Commands\Timer\DataTransferObjects\TimerJobPayloadDTO;
+use App\Infrastructure\Commands\DataTransferObjects\Timer\TimerJobPayloadDTO;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use App\Infrastructure\VK\Traits\Common\MentionUser;
 use Illuminate\Bus\Queueable;

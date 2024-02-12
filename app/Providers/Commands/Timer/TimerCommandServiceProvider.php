@@ -2,8 +2,8 @@
 
 namespace App\Providers\Commands\Timer;
 
-use App\Domain\Commands\Timer\Factories\TimerJobPayloadDTOFactoryContract;
-use App\Infrastructure\Commands\Timer\Factories\TimerJobPayloadDTOFactory;
+use App\Domain\Commands\Factories\Timer\TimerJobPayloadDTOFactoryContract;
+use App\Infrastructure\Commands\Factories\Timer\TimerJobPayloadDTOFactory;
 use App\Providers\AbstractDependencyServiceProvider;
 
 final class TimerCommandServiceProvider extends AbstractDependencyServiceProvider

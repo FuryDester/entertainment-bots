@@ -4,9 +4,13 @@ namespace App\Application\VK\Services\Actions\Processors;
 
 use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Services\Actions\Processors\Actionable;
+use App\Infrastructure\Commands\AbstractCommandExecutor;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
+use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use App\Infrastructure\VK\Enums\ActionEnum;
+use Exception;
+use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Facades\Log;
 use VK\Client\VKApiClient;
 use VK\Exceptions\Api\VKApiMessagesCantFwdException;
@@ -64,6 +68,7 @@ final class MessageNewAction implements Actionable
      * @throws VKApiMessagesChatDisabledException
      * @throws VKApiMessagesTooLongForwardsException
      * @throws VKApiMessagesContactNotFoundException
+     * @throws Exception
      */
     public static function perform(CallbackRequestDTO $data): bool
     {
@@ -72,27 +77,58 @@ final class MessageNewAction implements Actionable
 
         $messageContext = $messageContextFactory::createFromApiData($data->getObject());
         $message = $messageContext->getMessage();
-        Log::info(sprintf(
-            'MessageNewAction from id: %d, peerId: %d, text: %s',
-            $message->getFromId(),
-            $message->getPeerId(),
-            $message->getText() ?: 'empty message text'
-        ));
+        Log::info('MessageNewAction', [
+            'message' => $message->toArray(),
+        ]);
 
-        // TODO: Remove after testing
-        if (mt_rand(0, 20) === 0 && $message->getText()) {
-            Log::info('MessageNewAction: random success');
-            /** @var AccessTokenDTO $accessToken */
-            $accessToken = app(AccessTokenDTO::class);
-
-            $client = new VKApiClient();
-            $client->messages()->send($accessToken->getAccessToken(), [
-                'peer_id' => $message->getPeerId(),
-                'message' => 'Попка-дурак повторяет: ' . $message->getText(),
-                'random_id' => mt_rand(0, 1000000),
+        // Process commands
+        $commandResult = self::processCommands($message);
+        if ($commandResult !== null) {
+            Log::info('Command executed, got result', [
+                'result' => $commandResult,
             ]);
+
+            return true;
         }
 
         return true;
+    }
+
+    /**
+     * @throws Exception
+     */
+    protected static function processCommands(MessageDTO $message): bool|null
+    {
+        $commandPrefix = config('vk.command_prefix');
+        if (!str_starts_with($message->getText(), $commandPrefix)) {
+            return null;
+        }
+
+        $command = substr($message->getText(), strlen($commandPrefix));
+        Log::info('Command line detected', [
+            'command' => $command,
+        ]);
+
+        $commandInput = mb_strtolower(explode(' ', $command)[0]);
+        $executors = ClassFinder::getClassesInNamespace('App\Application\Commands');
+        $executors = array_filter($executors, static fn ($executor) => is_subclass_of($executor, AbstractCommandExecutor::class));
+
+        foreach ($executors as $executor) {
+            /** @var AbstractCommandExecutor $executor */
+            $executor = app($executor);
+            if (!in_array($commandInput, $executor->getAliases())) {
+                continue;
+            }
+
+            Log::info('Command found', [
+                'command' => $commandInput,
+                'executor' => $executor->getName(),
+                'text' => $message->getText(),
+            ]);
+
+            return $executor->run($message);
+        }
+
+        return null;
     }
 }

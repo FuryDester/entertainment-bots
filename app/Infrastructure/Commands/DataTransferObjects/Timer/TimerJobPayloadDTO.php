@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Commands\Timer\DataTransferObjects;
+namespace App\Infrastructure\Commands\DataTransferObjects\Timer;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 

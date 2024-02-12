@@ -8,5 +8,7 @@ return [
         'access_token' => env('VK_TOKEN'),
 
         'retry' => env('VK_RETRY_COUNT', 3),
+
+        'command_prefix' => env('COMMAND_PREFIX', '!'),
     ],
 ];
