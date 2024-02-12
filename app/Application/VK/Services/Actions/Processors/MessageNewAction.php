@@ -99,7 +99,7 @@ final class MessageNewAction implements Actionable
      */
     protected static function processCommands(MessageDTO $message): bool|null
     {
-        $commandPrefix = config('vk.command_prefix');
+        $commandPrefix = config('integrations.vk.command_prefix');
         if (!str_starts_with($message->getText(), $commandPrefix)) {
             return null;
         }

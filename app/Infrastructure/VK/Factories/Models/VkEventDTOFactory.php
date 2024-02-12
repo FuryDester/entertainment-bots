@@ -5,6 +5,7 @@ namespace App\Infrastructure\VK\Factories\Models;
 use App\Domain\VK\Factories\Models\VkEventDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
+use Illuminate\Support\Carbon;
 
 final class VkEventDTOFactory implements VkEventDTOFactoryContract
 {
@@ -22,8 +23,8 @@ final class VkEventDTOFactory implements VkEventDTOFactoryContract
             ->setObject($data['object'])
             ->setIsProcessed($data['is_processed'] ?? false)
             ->setAttempts($data['attempts'] ?? 1)
-            ->setCreatedAt($data['created_at'] ?? null)
-            ->setUpdatedAt($data['updated_at'] ?? null);
+            ->setCreatedAt(($data['created_at'] ?? null) ? new Carbon($data['created_at']) : null)
+            ->setUpdatedAt(($data['updated_at'] ?? null) ? new Carbon($data['updated_at']) : null);
     }
 
     /**

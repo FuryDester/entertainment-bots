@@ -57,6 +57,8 @@ abstract class AbstractCommandExecutor
 
     /**
      * Выполнение команды
+     *
+     * @param CommandArgumentDTO[] $arguments
      */
     abstract protected function execute(MessageDTO $message, array $arguments): bool;
 

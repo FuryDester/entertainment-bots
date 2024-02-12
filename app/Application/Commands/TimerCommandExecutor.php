@@ -54,8 +54,8 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
      */
     protected function execute(MessageDTO $message, array $arguments): bool
     {
-        $time = (int) $arguments[0];
-        $messageText = $arguments[1];
+        $time = (int) $arguments[0]->getValue();
+        $messageText = $arguments[1]->getValue();
 
         /** @var TimerJobPayloadDTOFactoryContract $timerJobFactory */
         $timerJobFactory = app(TimerJobPayloadDTOFactoryContract::class);
