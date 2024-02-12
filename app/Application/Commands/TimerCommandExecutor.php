@@ -66,7 +66,7 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
             $messageText,
         );
 
-        (new ProcessTimerCommand($timerJobPayload))->delay(now()->addMinutes($time))->dispatch();
+        ProcessTimerCommand::dispatch($timerJobPayload)->delay(now()->addMinutes($time));
         Log::info('Timer job dispatched', ['payload' => $timerJobPayload->toArray()]);
 
         try {
