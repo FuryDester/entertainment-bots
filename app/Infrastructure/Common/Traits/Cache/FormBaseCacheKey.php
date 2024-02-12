@@ -14,9 +14,9 @@ trait FormBaseCacheKey
      */
     protected function formBaseCacheKey(mixed ...$args): string
     {
-        list(, $caller) = debug_backtrace(0);
+        list(, $caller) = debug_backtrace();
 
-        $baseName = $caller['function'];
+        $baseName = sprintf('%s::%s', $caller['class'], $caller['function']);
 
         foreach ($args as $arg) {
             // Можно ли преобразовать в строку без танцев с бубном

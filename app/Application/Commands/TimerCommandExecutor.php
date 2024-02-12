@@ -38,6 +38,11 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
         return ['таймер', 'timer', 'время', 'уведомление', 'уведомить', 'напомнить', 'напоминание', 'напомни'];
     }
 
+    public function onlyForPersonalMessages(): bool
+    {
+        return false;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -59,14 +64,7 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
     {
         $time = (int) $arguments[0]->getValue();
         if ($time <= 0) {
-            try {
-                $this->sendMessage($message->getPeerId(), 'Время должно быть больше 0.');
-            } catch(\Throwable) {
-                Log::warning('Failed to send timer message to user', [
-                    'message' => $message->toArray(),
-                ]);
-            }
-
+            $this->sendMessage($message->getPeerId(), 'Время должно быть больше 0.');
             return true;
         }
 
@@ -84,20 +82,13 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
         ProcessTimerCommand::dispatch($timerJobPayload)->delay(now()->addMinutes($time));
         Log::info('Timer job dispatched', ['payload' => $timerJobPayload->toArray()]);
 
-        try {
-            $outputMessage = sprintf(
-                'Таймер на %d %s установлен.%s',
-                $time,
-                $this->declension($time, ['минуту', 'минуты', 'минут']),
-                $messageText ? (' Текст: ' . $messageText) : '',
-            );
-
-            $this->sendMessage($message->getPeerId(), $outputMessage);
-        } catch(\Throwable) {
-            Log::warning('Failed to send timer message to user', [
-                'payload' => $timerJobPayload->toArray(),
-            ]);
-        }
+        $outputMessage = sprintf(
+            'Таймер на %d %s установлен.%s',
+            $time,
+            $this->declension($time, ['минуту', 'минуты', 'минут']),
+            $messageText ? (' Текст: ' . $messageText) : '',
+        );
+        $this->sendMessage($message->getPeerId(), $outputMessage);
 
         return true;
     }

@@ -112,12 +112,22 @@ final class MessageNewAction implements Actionable
         $commandInput = mb_strtolower(explode(' ', $command)[0]);
         $executors = ClassFinder::getClassesInNamespace('App\Application\Commands');
         $executors = array_filter($executors, static fn ($executor) => is_subclass_of($executor, AbstractCommandExecutor::class));
+        $isPersonal = config('integrations.vk.peer_id_delta') < $message->getPeerId();
 
         foreach ($executors as $executor) {
             /** @var AbstractCommandExecutor $executor */
             $executor = app($executor);
             if (!in_array($commandInput, $executor->getAliases())) {
                 continue;
+            }
+
+            if ($isPersonal && !$executor->onlyForPersonalMessages()) {
+                Log::warning('Command is personal, but executor is not', [
+                    'command' => $commandInput,
+                    'executor' => $executor->getName(),
+                ]);
+
+                return null;
             }
 
             Log::info('Command found', [

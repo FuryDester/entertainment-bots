@@ -181,6 +181,7 @@ return [
 
         // Quiz
         App\Providers\Quiz\QuizFactoriesServiceProvider::class,
+        App\Providers\Quiz\QuizDependenciesServiceProvider::class,
     ])->toArray(),
 
     /*

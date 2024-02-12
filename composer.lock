@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb4bd77e77990de709b0f5192b15ee3d",
+    "content-hash": "ddd912c3b0984c9f812a3c23ea890716",
     "packages": [
         {
             "name": "brick/math",
@@ -3225,6 +3225,46 @@
                 }
             ],
             "time": "2023-11-08T05:53:05+00:00"
+        },
+        {
+            "name": "sally/vk-keyboard",
+            "version": "1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sally-Framework/vk-keyboard.git",
+                "reference": "f5f8c4bf1ee02aaee23a664ebf928ffc8cde7a08"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sally-Framework/vk-keyboard/zipball/f5f8c4bf1ee02aaee23a664ebf928ffc8cde7a08",
+                "reference": "f5f8c4bf1ee02aaee23a664ebf928ffc8cde7a08",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sally\\VkKeyboard\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "n0tm",
+                    "email": "38406016+n0tm@users.noreply.github.com"
+                }
+            ],
+            "description": "package for converting vk api keyboard objects",
+            "support": {
+                "issues": "https://github.com/Sally-Framework/vk-keyboard/issues",
+                "source": "https://github.com/Sally-Framework/vk-keyboard/tree/1.0"
+            },
+            "time": "2020-04-16T14:51:10+00:00"
         },
         {
             "name": "symfony/console",

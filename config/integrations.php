@@ -10,5 +10,7 @@ return [
         'retry' => env('VK_RETRY_COUNT', 3),
 
         'command_prefix' => env('COMMAND_PREFIX', '!'),
+
+        'peer_id_delta' => 2000000000,
     ],
 ];
