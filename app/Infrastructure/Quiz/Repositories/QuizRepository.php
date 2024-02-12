@@ -39,8 +39,8 @@ final class QuizRepository implements QuizRepositoryContract
                 CacheTimeEnum::HOUR->value * 6,
                 static function () use ($now) {
                     return Quiz::query()
-                        ->where(fn ($query) => $query->where('start_at', '<=', $now)->orWhereNull('start_at'))
-                        ->orWhere(fn ($query) => $query->where('end_at', '>=', $now)->orWhereNull('end_at'))
+                        ->where(fn ($query) => $query->where('starts_at', '<=', $now)->orWhereNull('starts_at'))
+                        ->orWhere(fn ($query) => $query->where('ends_at', '>=', $now)->orWhereNull('ends_at'))
                         ->get();
                 }
             );
