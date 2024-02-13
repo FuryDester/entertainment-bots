@@ -7,6 +7,9 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    /**
+     * @test
+     */
     public function healthcheck_ok(): void
     {
         $response = $this->get('/api/v1/healthcheck');
