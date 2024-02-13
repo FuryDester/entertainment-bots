@@ -121,7 +121,7 @@ final class MessageNewAction implements Actionable
                 continue;
             }
 
-            if ($isPersonal && !$executor->onlyForPersonalMessages()) {
+            if ($isPersonal && $executor->onlyForPersonalMessages()) {
                 Log::warning('Command is personal, but executor is not', [
                     'command' => $commandInput,
                     'executor' => $executor->getName(),
