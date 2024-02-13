@@ -15,6 +15,9 @@ services:
             - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
         networks:
             - app-network
+        depends_on:
+            - pgsql
+            - redis
 
     webserver:
         image: nginx:alpine
@@ -73,6 +76,9 @@ services:
             - ./docker/supervisor/supervisord.conf:/etc/supervisor/conf.d/supervisord.conf
         networks:
             - app-network
+        depends_on:
+            - pgsql
+            - redis
 
 networks:
     app-network:
