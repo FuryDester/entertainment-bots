@@ -77,8 +77,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Run composer install
-        run: composer install --no-interaction --no-dev --prefer-dist
       - name: Run docker compose
         run: docker compose up -d
       - name: Run composer install
