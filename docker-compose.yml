@@ -18,6 +18,7 @@ services:
         depends_on:
             - pgsql
             - redis
+            - webserver
 
     webserver:
         image: nginx:alpine
@@ -31,6 +32,9 @@ services:
             - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
         networks:
             - app-network
+        depends_on:
+            - pgsql
+            - redis
 
     pgsql:
         image: postgres:16
