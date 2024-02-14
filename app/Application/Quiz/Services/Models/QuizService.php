@@ -18,7 +18,7 @@ final class QuizService implements QuizServiceContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getAvailableQuizzes(): array
     {

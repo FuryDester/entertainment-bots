@@ -5,37 +5,12 @@ namespace App\Application\VK\Services\Actions\Processors;
 use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Services\Actions\Processors\Actionable;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
-use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use App\Infrastructure\VK\Enums\ActionEnum;
 use Exception;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Facades\Log;
-use VK\Client\VKApiClient;
-use VK\Exceptions\Api\VKApiMessagesCantFwdException;
-use VK\Exceptions\Api\VKApiMessagesChatBotFeatureException;
-use VK\Exceptions\Api\VKApiMessagesChatDisabledException;
-use VK\Exceptions\Api\VKApiMessagesChatNotAdminException;
-use VK\Exceptions\Api\VKApiMessagesChatUnsupportedException;
-use VK\Exceptions\Api\VKApiMessagesChatUserLeftException;
-use VK\Exceptions\Api\VKApiMessagesChatUserNoAccessException;
-use VK\Exceptions\Api\VKApiMessagesContactNotFoundException;
-use VK\Exceptions\Api\VKApiMessagesDenySendException;
-use VK\Exceptions\Api\VKApiMessagesIntentCantUseException;
-use VK\Exceptions\Api\VKApiMessagesIntentLimitOverflowException;
-use VK\Exceptions\Api\VKApiMessagesKeyboardInvalidException;
-use VK\Exceptions\Api\VKApiMessagesMessageCannotBeForwardedException;
-use VK\Exceptions\Api\VKApiMessagesPeerBlockedReasonByTimeException;
-use VK\Exceptions\Api\VKApiMessagesPrivacyException;
-use VK\Exceptions\Api\VKApiMessagesTooLongForwardsException;
-use VK\Exceptions\Api\VKApiMessagesTooLongMessageException;
-use VK\Exceptions\Api\VKApiMessagesTooManyPostsException;
-use VK\Exceptions\Api\VKApiMessagesUserBlockedException;
-use VK\Exceptions\Api\VKApiMessagesUserNotDonException;
-use VK\Exceptions\Api\VKApiNotFoundException;
-use VK\Exceptions\VKApiException;
-use VK\Exceptions\VKClientException;
 
 final class MessageNewAction implements Actionable
 {
@@ -45,29 +20,6 @@ final class MessageNewAction implements Actionable
     }
 
     /**
-     * @throws VKApiMessagesChatNotAdminException
-     * @throws VKApiMessagesDenySendException
-     * @throws VKApiMessagesPrivacyException
-     * @throws VKApiMessagesIntentLimitOverflowException
-     * @throws VKApiMessagesTooLongMessageException
-     * @throws VKApiMessagesUserNotDonException
-     * @throws VKApiMessagesChatUserLeftException
-     * @throws VKApiMessagesMessageCannotBeForwardedException
-     * @throws VKApiMessagesChatUserNoAccessException
-     * @throws VKApiMessagesChatUnsupportedException
-     * @throws VKApiMessagesTooManyPostsException
-     * @throws VKApiMessagesChatBotFeatureException
-     * @throws VKClientException
-     * @throws VKApiMessagesIntentCantUseException
-     * @throws VKApiMessagesCantFwdException
-     * @throws VKApiMessagesUserBlockedException
-     * @throws VKApiMessagesPeerBlockedReasonByTimeException
-     * @throws VKApiException
-     * @throws VKApiMessagesKeyboardInvalidException
-     * @throws VKApiNotFoundException
-     * @throws VKApiMessagesChatDisabledException
-     * @throws VKApiMessagesTooLongForwardsException
-     * @throws VKApiMessagesContactNotFoundException
      * @throws Exception
      */
     public static function perform(CallbackRequestDTO $data): bool
@@ -85,7 +37,19 @@ final class MessageNewAction implements Actionable
         $commandResult = self::processCommands($message);
         if ($commandResult !== null) {
             Log::info('Command executed, got result', [
+                'message' => $message->toArray(),
                 'result' => $commandResult,
+            ]);
+
+            return true;
+        }
+
+        // Process messages with special payload
+        $payloadResult = self::processPayloadMessages($message);
+        if ($payloadResult !== null) {
+            Log::info('Payload message executed, got result', [
+                'message' => $message->toArray(),
+                'result' => $payloadResult,
             ]);
 
             return true;
@@ -111,7 +75,21 @@ final class MessageNewAction implements Actionable
 
         $commandInput = mb_strtolower(explode(' ', $command)[0]);
         $executors = ClassFinder::getClassesInNamespace('App\Application\Commands');
-        $executors = array_filter($executors, static fn ($executor) => is_subclass_of($executor, AbstractCommandExecutor::class));
+        $executors = array_filter(
+            $executors,
+            static fn ($executor) => is_subclass_of($executor, AbstractCommandExecutor::class)
+        );
+
+        return self::tryRunExecutor($commandInput, $message, $executors);
+    }
+
+    protected static function processPayloadMessages(MessageDTO $message): bool|null
+    {
+        return null;
+    }
+
+    private static function tryRunExecutor(string $commandInput, MessageDTO $message, array $executors): bool|null
+    {
         $isPersonal = config('integrations.vk.peer_id_delta') < $message->getPeerId();
 
         foreach ($executors as $executor) {
@@ -125,6 +103,7 @@ final class MessageNewAction implements Actionable
                 Log::warning('Command is personal, but executor is not', [
                     'command' => $commandInput,
                     'executor' => $executor->getName(),
+                    'message' => $message->toArray(),
                 ]);
 
                 return null;

@@ -15,6 +15,12 @@ final class UserDTO extends AbstractDTO
 
     protected bool $isAdmin;
 
+    protected string $state;
+
+    protected ?array $data;
+
+    protected ?Carbon $lastActivityAt;
+
     protected ?Carbon $createdAt;
 
     protected ?Carbon $updatedAt;
@@ -82,6 +88,39 @@ final class UserDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): UserDTO
     {
         $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    public function getState(): string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): UserDTO
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    public function getData(): ?array
+    {
+        return $this->data;
+    }
+
+    public function setData(?array $data): UserDTO
+    {
+        $this->data = $data;
+        return $this;
+    }
+
+    public function getLastActivityAt(): ?Carbon
+    {
+        return $this->lastActivityAt;
+    }
+
+    public function setLastActivityAt(?Carbon $lastActivityAt): UserDTO
+    {
+        $this->lastActivityAt = $lastActivityAt;
         return $this;
     }
 }

@@ -15,6 +15,9 @@ final class User extends Model
         'vk_user_id',
         'vk_peer_id',
         'is_admin',
+        'state',
+        'data',
+        'last_activity_at',
     ];
 
     public function userAnswers(): BelongsTo

@@ -18,6 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('vk_peer_id');
             $table->boolean('is_admin')->default(false);
 
+            $table->string('state')->default('');
+            $table->json('data')->nullable();
+            $table->timestamp('last_activity_at')->nullable();
+
             $table->timestamps();
 
             $table->unique(['vk_user_id', 'vk_peer_id']);

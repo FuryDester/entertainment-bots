@@ -182,6 +182,12 @@ return [
         // Quiz
         App\Providers\Quiz\QuizFactoriesServiceProvider::class,
         App\Providers\Quiz\QuizDependenciesServiceProvider::class,
+
+        // Common
+        App\Providers\Common\UserDependencyServiceProvider::class,
+
+        // Payload actions
+        App\Providers\PayloadActions\PayloadDataTransferObjectsServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -199,4 +205,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    // Payload workers, which will react on special payload messages
+    'payload_workers' => [
+        // 'quiz' => \App\Domain\VK\Services\Actions\Processors\PayloadWorkers\QuizPayloadWorker::class,
+    ],
 ];
