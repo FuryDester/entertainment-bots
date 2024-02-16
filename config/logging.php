@@ -3,7 +3,7 @@
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\FilterHandler;
-use Monolog\Handler\TelegramBotHandler;
+use App\Infrastructure\Common\Logger\StatedTelegramBotHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
 
@@ -134,7 +134,7 @@ return [
             'handler' => FilterHandler::class,
             'level' => env('LOG_LEVEL', 'warning'),
             'with' => [
-                'handler' => new TelegramBotHandler(
+                'handler' => new StatedTelegramBotHandler(
                     env('TELEGRAM_API_KEY', ''),
                     env('TELEGRAM_CHANNEL', 'nothing'),
                     env('LOG_LEVEL', 'warning'),
