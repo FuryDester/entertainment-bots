@@ -3,6 +3,7 @@
 namespace App\Infrastructure\Common\DataTransferObjects\Models;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
+use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use Illuminate\Support\Carbon;
 
 final class UserDTO extends AbstractDTO
@@ -15,7 +16,7 @@ final class UserDTO extends AbstractDTO
 
     protected bool $isAdmin;
 
-    protected string $state;
+    protected ActionStageEnum $state;
 
     protected ?array $data;
 
@@ -91,12 +92,12 @@ final class UserDTO extends AbstractDTO
         return $this;
     }
 
-    public function getState(): string
+    public function getState(): ActionStageEnum
     {
         return $this->state;
     }
 
-    public function setState(string $state): UserDTO
+    public function setState(ActionStageEnum $state): UserDTO
     {
         $this->state = $state;
         return $this;

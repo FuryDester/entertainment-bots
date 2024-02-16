@@ -8,61 +8,29 @@ use App\Events\Vk\VkEventUpdated;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
 use App\Infrastructure\Common\Traits\ArrayKeysToSneakCase;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
+use App\Infrastructure\Common\Traits\Repositories\SaveDto;
 use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 use App\Infrastructure\VK\Enums\Cache\VkCacheEnum;
 use App\Models\VK\VkEvent;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Cache;
 
 final class VkEventRepository implements VkEventRepositoryContract
 {
     use ArrayKeysToSneakCase;
     use FormBaseCacheKey;
+    use SaveDto;
 
     /**
      * {@inheritDoc}
      */
     public function save(VkEventDTO $event): bool
     {
-        $data = Arr::except($this->arrayKeysToSneakCase($event->toArray()), [
-            'id',
-            'created_at',
-            'updated_at',
-        ]);
-
-        $now = now();
-        if ($event->getId()) {
-            $result = (bool) VkEvent::query()
-                ->firstWhere('id', $event->getId())
-                ->update([
-                    ...$data,
-                    'updated_at' => $now,
-                ]);
-
-            if ($result) {
-                $event->setUpdatedAt($now);
-                VkEventUpdated::dispatch();
-            }
-
-            return $result;
+        $result = $this->saveDto((new VkEvent()), $event);
+        if ($result) {
+            VkEventUpdated::dispatch();
         }
 
-        $id = VkEvent::query()->insertGetId([
-            ...$data,
-            'created_at' => $now,
-            'updated_at' => $now,
-        ]);
-        if (!$id) {
-            return false;
-        }
-
-        $event
-            ->setId($id)
-            ->setCreatedAt($now)
-            ->setUpdatedAt($now);
-        VkEventUpdated::dispatch();
-
-        return true;
+        return $result;
     }
 
     /**

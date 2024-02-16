@@ -17,7 +17,9 @@ class QuizAnswerFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'answer' => $this->faker->text(100),
+            'is_correct' => $this->faker->boolean(),
+            'question_id' => QuizQuestionFactory::class,
         ];
     }
 }

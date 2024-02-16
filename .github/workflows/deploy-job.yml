@@ -74,3 +74,7 @@ jobs:
         run: docker compose exec app composer install
       - name: Run migrations
         run: docker compose exec app php artisan migrate
+      - name: Run optimize clear
+        run: docker compose exec app php artisan optimize:clear
+      - name: Run optimize
+        run: docker compose exec app php artisan optimize

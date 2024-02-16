@@ -174,6 +174,7 @@ return [
         App\Providers\VK\VkEventModelServiceProvider::class,
         App\Providers\VK\VkActionServiceProvider::class,
         App\Providers\VK\VkRequestsDataTransferObjectsServiceProvider::class,
+        App\Providers\VK\Api\VkUploadImageServiceDependencyProvider::class,
 
         // Commands
         App\Providers\Commands\Timer\TimerCommandServiceProvider::class,
@@ -182,6 +183,7 @@ return [
         // Quiz
         App\Providers\Quiz\QuizFactoriesServiceProvider::class,
         App\Providers\Quiz\QuizDependenciesServiceProvider::class,
+        App\Providers\Quiz\QuizUserStatusDependenciesServiceProvider::class,
 
         // Common
         App\Providers\Common\UserDependencyServiceProvider::class,
@@ -207,6 +209,7 @@ return [
 
     // Payload workers, which will react on special payload messages
     'payload_workers' => [
-        // 'quiz' => \App\Domain\VK\Services\Actions\Processors\PayloadWorkers\QuizPayloadWorker::class,
+        \App\Infrastructure\PayloadActions\Enums\ActionStageEnum::QuizInfo->value
+        => \App\Application\PayloadActions\Actions\QuizInfoAction::class,
     ],
 ];

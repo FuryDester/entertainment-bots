@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Domain\Quiz\Services\Models;
+namespace App\Domain\Quiz\Services;
 
+use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 
 interface QuizServiceContract
@@ -11,5 +12,5 @@ interface QuizServiceContract
     /**
      * @return QuizDTO[]
      */
-    public function getAvailableQuizzes(): array;
+    public function getAvailableQuizzes(?UserDTO $user = null): array;
 }

@@ -2,15 +2,25 @@
 
 namespace App\Application\VK\Services\Actions\Processors;
 
+use App\Domain\Common\Factories\Models\UserDTOFactoryContract;
+use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
+use App\Domain\PayloadActions\PayloadActionServiceContract;
 use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Services\Actions\Processors\Actionable;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
+use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
+use App\Infrastructure\PayloadActions\AbstractPayloadAction;
+use App\Infrastructure\PayloadActions\DataTransferObjects\PayloadDTO;
+use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use App\Infrastructure\VK\Enums\ActionEnum;
 use Exception;
 use HaydenPierce\ClassFinder\ClassFinder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 final class MessageNewAction implements Actionable
 {
@@ -61,7 +71,7 @@ final class MessageNewAction implements Actionable
     /**
      * @throws Exception
      */
-    protected static function processCommands(MessageDTO $message): bool|null
+    private static function processCommands(MessageDTO $message): bool|null
     {
         $commandPrefix = config('integrations.vk.command_prefix');
         if (!str_starts_with($message->getText(), $commandPrefix)) {
@@ -74,18 +84,27 @@ final class MessageNewAction implements Actionable
         ]);
 
         $commandInput = mb_strtolower(explode(' ', $command)[0]);
-        $executors = ClassFinder::getClassesInNamespace('App\Application\Commands');
         $executors = array_filter(
-            $executors,
+            ClassFinder::getClassesInNamespace('App\Application\Commands'),
             static fn ($executor) => is_subclass_of($executor, AbstractCommandExecutor::class)
         );
 
         return self::tryRunExecutor($commandInput, $message, $executors);
     }
 
-    protected static function processPayloadMessages(MessageDTO $message): bool|null
+    private static function processPayloadMessages(MessageDTO $message): bool|null
     {
-        return null;
+        $payload = $message->getPayload();
+        if (!$payload) {
+            return null;
+        }
+
+        $payloadData = json_decode($payload, true);
+        if (!$payloadData || !is_array($payloadData)) {
+            return null;
+        }
+
+        return self::processPreparedPayload($payloadData, $message);
     }
 
     private static function tryRunExecutor(string $commandInput, MessageDTO $message, array $executors): bool|null
@@ -119,5 +138,103 @@ final class MessageNewAction implements Actionable
         }
 
         return null;
+    }
+
+    private static function processPreparedPayload(array $payloadData, MessageDTO $message): bool|null
+    {
+        $payloadValidator = Validator::make($payloadData, [
+            'type' => ['required', 'string', 'in:' . implode(',', Arr::pluck(ActionStageEnum::cases(), 'value'))],
+            'id' => ['nullable', 'integer'],
+            'data' => ['nullable', 'array'],
+        ]);
+
+        if ($payloadValidator->fails()) {
+            Log::warning('Payload validation failed', [
+                'payload' => $payloadData,
+                'message' => $message->toArray(),
+                'errors' => $payloadValidator->errors()->toArray(),
+            ]);
+
+            return null;
+        }
+
+        /** @var PayloadDTOFactoryContract $payloadFactory */
+        $payloadFactory = app(PayloadDTOFactoryContract::class);
+        $payloadDTO = $payloadFactory::createFromParams(
+            ActionStageEnum::from($payloadData['type']),
+            $payloadData['id'] ?? null,
+            $payloadData['data'] ?? null,
+        );
+
+        $payloadWorkers = config('app.payload_workers');
+        foreach ($payloadWorkers as $workerClass) {
+            /** @var AbstractPayloadAction $worker */
+            $worker = app($workerClass);
+
+            if ($worker->getActionName() !== $payloadDTO->getType()) {
+                continue;
+            }
+
+            $user = self::getUserDto($message->getFromId(), $message->getPeerId());
+            return self::tryHandleWorker($message, $worker, $user, $payloadDTO);
+        }
+
+        Log::warning('Payload worker not found', [
+            'payload' => $payloadDTO->toArray(),
+            'message' => $message->toArray(),
+        ]);
+        return null;
+    }
+
+    /**
+     * Создание или получение пользователя по данным сообщения
+     */
+    private static function getUserDto(int $vkUserId, int $peerId): UserDTO
+    {
+        /** @var UserServiceContract $userService */
+        $userService = app(UserServiceContract::class);
+        $user = $userService->findByVkIdAndPeerId($vkUserId, $peerId);
+        if (!$user) {
+            /** @var UserDTOFactoryContract $userFactory */
+            $userFactory = app(UserDTOFactoryContract::class);
+
+            $user = $userFactory::createFromData([
+                'vk_user_id' => $vkUserId,
+                'vk_peer_id' => $peerId,
+                'is_admin' => false,
+                'state' => ActionStageEnum::Index->value,
+            ]);
+            $userService->save($user);
+        }
+
+        return $user;
+    }
+
+    private static function tryHandleWorker(
+        MessageDTO $message,
+        AbstractPayloadAction $worker,
+        UserDTO $user,
+        PayloadDTO $payload
+    ): bool|null {
+        /** @var PayloadActionServiceContract $payloadService */
+        $payloadService = app(PayloadActionServiceContract::class);
+        if (!$payloadService->canHandle($payload->getType()->value, $user)) {
+            Log::warning('Payload worker cannot handle', [
+                'worker' => $worker::class,
+                'payload' => $payload->toArray(),
+                'message' => $message->toArray(),
+                'user' => $user->toArray(),
+            ]);
+
+            return null;
+        }
+
+        Log::info('Payload worker found', [
+            'worker' => $worker::class,
+            'payload' => $payload->toArray(),
+            'message' => $message->toArray(),
+            'user' => $user->toArray(),
+        ]);
+        return $worker->run($message, $payload, $user);
     }
 }

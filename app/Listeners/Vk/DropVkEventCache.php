@@ -6,7 +6,7 @@ use App\Infrastructure\VK\Enums\Cache\VkCacheEnum;
 use App\Listeners\AbstractCacheFlushListener;
 use Illuminate\Support\Facades\Cache;
 
-class DropVkEventCache extends AbstractCacheFlushListener
+final class DropVkEventCache extends AbstractCacheFlushListener
 {
     /**
      * {@inheritDoc}

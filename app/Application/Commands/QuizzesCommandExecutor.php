@@ -2,8 +2,11 @@
 
 namespace App\Application\Commands;
 
-use App\Domain\Quiz\Services\Models\QuizServiceContract;
+use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
+use App\Domain\Quiz\Services\QuizServiceContract;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
+use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use Sally\VkKeyboard\Contracts\Keyboard\Button\FactoryInterface;
 use Sally\VkKeyboard\Facade;
@@ -51,21 +54,27 @@ final class QuizzesCommandExecutor extends AbstractCommandExecutor
         /** @var QuizServiceContract $quizService */
         $quizService = app(QuizServiceContract::class);
 
-        // TODO: Add check for completed quizzes
-        $quizzes = $quizService->getAvailableQuizzes();
+        /** @var UserServiceContract $userService */
+        $userService = app(UserServiceContract::class);
+        $user = $userService->findByVkIdAndPeerId($message->getFromId(), $message->getPeerId());
+        $quizzes = $quizService->getAvailableQuizzes($user);
         if (empty($quizzes)) {
-            $this->sendMessage($message->getPeerId(), 'На данный момент доступные для прохождения викторины отсутствуют.');
+            $this->sendMessage(
+                $message->getPeerId(),
+                'На данный момент доступные для прохождения викторины отсутствуют.'
+            );
             return true;
         }
 
         $keyboard = Facade::createInlineKeyboard(static function (FactoryInterface $factory) use ($quizzes) {
             $keyboardData = [];
+            /** @var PayloadDTOFactoryContract $payloadFactory */
+            $payloadFactory = app(PayloadDTOFactoryContract::class);
+
             foreach ($quizzes as $quiz) {
+                $payload = $payloadFactory::createFromParams(ActionStageEnum::QuizInfo, $quiz->getId());
                 $keyboardData[] = [
-                    $factory->text($quiz->getTitle(), [
-                        'type' => 'quiz',
-                        'id' => $quiz->getId(),
-                    ], Text::COLOR_RED),
+                    $factory->text($quiz->getTitle(), $payload->toArray(), Text::COLOR_RED),
                 ];
             }
             return $keyboardData;

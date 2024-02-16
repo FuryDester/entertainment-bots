@@ -4,6 +4,7 @@ namespace App\Infrastructure\Quiz\Repositories;
 
 use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
 use App\Domain\Quiz\Repositories\QuizRepositoryContract;
+use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
@@ -30,18 +31,37 @@ final class QuizRepository implements QuizRepositoryContract
     /**
      * {@inheritDoc}
      */
-    public function getAvailableQuizzes(): array
+    public function getAvailableQuizzes(?UserDTO $user = null): array
     {
         $now = now();
         $quizzes = Cache::tags(QuizEnum::QuizRepository->value)
             ->remember(
-                $this->formBaseCacheKey(),
+                $this->formBaseCacheKey($user?->getId()),
                 CacheTimeEnum::HOUR->value * 6,
-                static function () use ($now) {
-                    return Quiz::query()
-                        ->where(fn ($query) => $query->where('starts_at', '<=', $now)->orWhereNull('starts_at'))
-                        ->orWhere(fn ($query) => $query->where('ends_at', '>=', $now)->orWhereNull('ends_at'))
-                        ->get();
+                static function () use ($now, $user) {
+                    $query = Quiz::query()
+                        ->where(
+                            fn ($query) => $query
+                                ->where(fn ($subQuery) => $subQuery
+                                    ->where('starts_at', '<=', $now)
+                                    ->orWhereNull('starts_at')
+                                )
+                                ->orWhere(fn ($subQuery) => $subQuery
+                                    ->where('ends_at', '>=', $now)
+                                    ->orWhereNull('ends_at')
+                                )
+                        );
+
+                    if ($user) {
+                        $query->where(
+                            fn ($query) => $query->doesntHave('userStatuses')->orWhereHas(
+                                'userStatuses',
+                                fn ($query) => $query->where('user_id', $user->getId())->where('is_done', false)
+                            )
+                        );
+                    }
+
+                    return $query->get();
                 }
             );
 
@@ -55,5 +75,13 @@ final class QuizRepository implements QuizRepositoryContract
                     && ($quiz->getEndsAt() >= $now || $quiz->getEndsAt() === null);
             })
             ->all();
+    }
+
+    public function hasUserCompletedQuiz(QuizDTO $quizId, UserDTO $user): bool
+    {
+        return Quiz::query()
+            ->where('id', $quizId)
+            ->whereHas('userStatuses', fn ($query) => $query->where('user_id', $user->getId())->where('is_done', true))
+            ->exists();
     }
 }

@@ -8,6 +8,7 @@ use Database\Seeders\Quiz\QuizAnswerSeeder;
 use Database\Seeders\Quiz\QuizQuestionSeeder;
 use Database\Seeders\Quiz\QuizSeeder;
 use Database\Seeders\Quiz\QuizUserAnswerSeeder;
+use Database\Seeders\Quiz\QuizUserStatusSeeder;
 use Database\Seeders\VK\VkEventSeeder;
 use Illuminate\Database\Seeder;
 
@@ -26,6 +27,7 @@ class DatabaseSeeder extends Seeder
             QuizQuestionSeeder::class,
             QuizAnswerSeeder::class,
             QuizUserAnswerSeeder::class,
+            QuizUserStatusSeeder::class,
         ]);
     }
 }

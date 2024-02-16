@@ -63,7 +63,10 @@ abstract class AbstractDTO implements Arrayable
      */
     final public function hasNullKeys(): bool
     {
-        $properties = Arr::mapWithKeys(static::getProperties(), static fn ($item) => [$item['name'] => $this->{$item['name']}]);
+        $properties = Arr::mapWithKeys(
+            static::getProperties(),
+            static fn ($item) => [$item['name'] => $this->{$item['name']}]
+        );
 
         $nullValues = Arr::where($properties, static function ($item) {
             return $item === null;
@@ -80,7 +83,9 @@ abstract class AbstractDTO implements Arrayable
         return Arr::mapWithKeys(static::getProperties(), function ($item) {
             $itemValue = $this->{$item['name']} ?? null;
 
-            if ($itemValue instanceof Arrayable) {
+            if ($itemValue instanceof \UnitEnum) {
+                $itemValue = $itemValue->value;
+            } elseif ($itemValue instanceof Arrayable) {
                 $itemValue = $itemValue->toArray();
             } elseif (is_array($itemValue)) {
                 $itemValue = Arr::map($itemValue, static function ($arrayValue) {

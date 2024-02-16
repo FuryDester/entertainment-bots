@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\Quiz\Services\Models;
 
 use App\Domain\Quiz\Repositories\QuizRepositoryContract;
-use App\Domain\Quiz\Services\Models\QuizServiceContract;
+use App\Domain\Quiz\Services\QuizServiceContract;
+use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 
 final class QuizService implements QuizServiceContract
@@ -20,8 +20,8 @@ final class QuizService implements QuizServiceContract
     /**
      * {@inheritDoc}
      */
-    public function getAvailableQuizzes(): array
+    public function getAvailableQuizzes(?UserDTO $user = null): array
     {
-        return $this->repository->getAvailableQuizzes();
+        return $this->repository->getAvailableQuizzes($user);
     }
 }

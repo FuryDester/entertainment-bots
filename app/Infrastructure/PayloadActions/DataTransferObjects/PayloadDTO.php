@@ -3,21 +3,22 @@
 namespace App\Infrastructure\PayloadActions\DataTransferObjects;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
+use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 
 final class PayloadDTO extends AbstractDTO
 {
-    protected string $type;
+    protected ActionStageEnum $type;
 
     protected ?int $id;
 
     protected ?array $data;
 
-    public function getType(): string
+    public function getType(): ActionStageEnum
     {
         return $this->type;
     }
 
-    public function setType(string $type): PayloadDTO
+    public function setType(ActionStageEnum $type): PayloadDTO
     {
         $this->type = $type;
         return $this;

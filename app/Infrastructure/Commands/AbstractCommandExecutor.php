@@ -3,13 +3,14 @@
 namespace App\Infrastructure\Commands;
 
 use App\Infrastructure\Commands\DataTransferObjects\Common\CommandArgumentDTO;
-use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
+use App\Infrastructure\VK\Traits\Messages\SendMessage;
 use Illuminate\Support\Facades\Log;
-use VK\Client\VKApiClient;
 
 abstract class AbstractCommandExecutor
 {
+    use SendMessage;
+
     /**
      * Описание команды (что она делает)
      */
@@ -113,29 +114,4 @@ abstract class AbstractCommandExecutor
         );
     }
 
-    /**
-     * Отправка сообщения ВК
-     */
-    protected function sendMessage(int $peerId, string $message, array $options = []): void
-    {
-        /** @var AccessTokenDTO $accessToken */
-        $accessToken = app(AccessTokenDTO::class);
-
-        $vkClient = new VKApiClient();
-        try {
-            $vkClient->messages()->send($accessToken->getAccessToken(), [
-                'message' => $message,
-                'peer_id' => $peerId,
-                'random_id' => rand(0, 10000000),
-                ...$options,
-            ]);
-        } catch (\Throwable $exception) {
-            Log::warning('Failed to send message', [
-                'peer_id' => $peerId,
-                'message' => $message,
-                'exception' => $exception->getMessage(),
-                'trace' => $exception->getTraceAsString(),
-            ]);
-        }
-    }
 }

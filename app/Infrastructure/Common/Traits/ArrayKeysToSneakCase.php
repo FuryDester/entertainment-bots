@@ -4,6 +4,9 @@ namespace App\Infrastructure\Common\Traits;
 
 trait ArrayKeysToSneakCase
 {
+    /**
+     * Переводит ключи массива в sneak_case
+     */
     private function arrayKeysToSneakCase(array $array): array
     {
         $result = [];
