@@ -9,6 +9,7 @@ use App\Http\Requests\Api\VK\CallbackRequest;
 use Exception;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
+use Throwable;
 
 class VkController extends BaseApiController
 {
@@ -42,7 +43,15 @@ class VkController extends BaseApiController
         }
 
         Log::info("Processing event: {$vkEvent->getEventId()} with type: {$vkEvent->getType()}");
-        $result = $action::perform($dto);
+        try {
+            $result = $action::perform($dto);
+        } catch (Throwable $exception) {
+            Log::error('Exception occurred during event processing', [
+                'exception' => $exception,
+                'event' => $vkEvent->toArray(),
+            ]);
+            $result = false;
+        }
         $vkEvent->setIsProcessed($result);
         $service->save($vkEvent);
 
