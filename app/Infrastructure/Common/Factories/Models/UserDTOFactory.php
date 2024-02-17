@@ -36,8 +36,8 @@ final readonly class UserDTOFactory implements UserDTOFactoryContract
             ->setIsAdmin($model->is_admin)
             ->setState(ActionStageEnum::tryFrom($model->state) ?: ActionStageEnum::Index)
             ->setData($model->data ? json_decode($model->data, true) : null)
-            ->setLastActivityAt($model->last_activity_at)
-            ->setCreatedAt($model->created_at)
-            ->setUpdatedAt($model->updated_at);
+            ->setLastActivityAt($model->last_activity_at ? new Carbon($model->last_activity_at) : null)
+            ->setCreatedAt($model->created_at ? new Carbon($model->created_at) : null)
+            ->setUpdatedAt($model->updated_at ? new Carbon($model->updated_at) : null);
     }
 }
