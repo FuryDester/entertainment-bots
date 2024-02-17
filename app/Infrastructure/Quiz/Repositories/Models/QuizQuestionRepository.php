@@ -22,7 +22,7 @@ final readonly class QuizQuestionRepository implements QuizQuestionRepositoryCon
      */
     public function getQuestionsByQuiz(QuizDTO $quiz, ?UserDTO $user = null): array
     {
-        return Cache::tags(QuizEnum::QuizQuestionRepository->value)
+        return Cache::tags([QuizEnum::QuizQuestionRepository->value, QuizEnum::QuizUserAnswerRepository->value])
             ->remember(
                 $this->formBaseCacheKey($quiz->getId(), $user?->getId()),
                 CacheTimeEnum::WEEK->value,
