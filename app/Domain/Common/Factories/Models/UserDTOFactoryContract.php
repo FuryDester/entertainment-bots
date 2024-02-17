@@ -3,6 +3,7 @@
 namespace App\Domain\Common\Factories\Models;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
+use App\Models\Common\User;
 use Illuminate\Support\Carbon;
 
 interface UserDTOFactoryContract
@@ -21,4 +22,6 @@ interface UserDTOFactoryContract
      * } $data
      */
     public static function createFromData(array $data): UserDTO;
+
+    public static function createFromModel(User $model): UserDTO;
 }

@@ -38,7 +38,7 @@ final readonly class UserRepository implements UserRepositoryContract
                     /** @var UserDTOFactoryContract $userFactory */
                     $userFactory = app(UserDTOFactoryContract::class);
 
-                    return $userFactory::createFromData($model->toArray());
+                    return $userFactory::createFromModel($model);
                 },
             );
     }
