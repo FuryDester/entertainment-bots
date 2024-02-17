@@ -136,9 +136,7 @@ final class QuizInfoAction extends AbstractPayloadAction
             $payloadFactory = app(PayloadDTOFactoryContract::class);
             $payloadData = $payloadFactory::createFromParams(ActionStageEnum::QuizStart, $quiz->getId())->toArray();
 
-            return [
-                $factory->text('Начать тест', $payloadData),
-            ];
+            return [[$factory->text('Начать тест', $payloadData)]];
         });
     }
 }
