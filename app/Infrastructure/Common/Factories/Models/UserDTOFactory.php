@@ -7,7 +7,7 @@ use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use Illuminate\Support\Carbon;
 
-final class UserDTOFactory implements UserDTOFactoryContract
+final readonly class UserDTOFactory implements UserDTOFactoryContract
 {
     /**
      * {@inheritDoc}

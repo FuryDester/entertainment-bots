@@ -7,10 +7,10 @@ use App\Domain\Quiz\Services\QuizServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 
-final class QuizService implements QuizServiceContract
+final readonly class QuizService implements QuizServiceContract
 {
     public function __construct(
-        protected QuizRepositoryContract $repository,
+        protected readonly QuizRepositoryContract $repository,
     ) {
     }
 

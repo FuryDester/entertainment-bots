@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Log;
 use Throwable;
 use VK\Client\VKApiClient;
 
-final class UploadImageService implements UploadImageServiceContract
+final readonly class UploadImageService implements UploadImageServiceContract
 {
     /**
      * {@inheritDoc}

@@ -17,7 +17,6 @@ final class QuizFactoriesServiceProvider extends AbstractDependencyServiceProvid
     public array $singletons = [
         QuizActionDTOFactoryContract::class => QuizActionDTOFactory::class,
         QuizAnswerDTOFactoryContract::class => QuizAnswerDTOFactory::class,
-        QuizQuestionDTOFactoryContract::class => QuizQuestionDTOFactory::class,
         QuizUserAnswerDTOFactoryContract::class => QuizUserAnswerDTOFactory::class,
     ];
 }

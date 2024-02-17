@@ -5,7 +5,7 @@ namespace App\Infrastructure\VK\Factories\Common\GeoParts;
 use App\Domain\VK\Factories\Common\GeoParts\PlaceDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\Common\GeoParts\PlaceDTO;
 
-final class PlaceDTOFactory implements PlaceDTOFactoryContract
+final readonly class PlaceDTOFactory implements PlaceDTOFactoryContract
 {
     /**
      * {@inheritDoc}

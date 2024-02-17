@@ -3,6 +3,7 @@
 namespace App\Application\PayloadActions\Actions;
 
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
+use App\Domain\Quiz\Services\QuizQuestionServiceContract;
 use App\Domain\Quiz\Services\QuizServiceContract;
 use App\Domain\VK\Services\Api\UploadImageServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
@@ -18,7 +19,7 @@ use Illuminate\Support\Facades\Log;
 use Sally\VkKeyboard\Contracts\Keyboard\Button\FactoryInterface;
 use Sally\VkKeyboard\Facade;
 
-final class QuizInfoAction extends AbstractPayloadAction
+final readonly class QuizInfoAction extends AbstractPayloadAction
 {
     use QuizAvailability;
     use SecondsToHms;
@@ -114,12 +115,16 @@ final class QuizInfoAction extends AbstractPayloadAction
      */
     private function formQuizDescription(QuizDTO $quiz): string
     {
+        /** @var QuizQuestionServiceContract $quizQuestionService */
+        $quizQuestionService = app(QuizQuestionServiceContract::class);
+
         return sprintf(
-            "Название: %s\nОписание: %s\nВремя начала: %s\nВремя окончания: %s%s",
+            "Название: %s\nОписание: %s\nВремя начала: %s\nВремя окончания: %s\nКоличество вопросов: %d%s",
             $quiz->getTitle(),
             $quiz->getDescription() ?: 'Отсутствует',
             $quiz->getStartsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
             $quiz->getEndsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
+            $quizQuestionService->getQuestionsCount($quiz),
             $quiz->getQuestionCooldown()
                 ? "\nИнтервал между вопросами: {$this->secondsToHms($quiz->getQuestionCooldown())}"
                 : '',

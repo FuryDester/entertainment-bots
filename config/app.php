@@ -185,6 +185,7 @@ return [
         App\Providers\Quiz\QuizFactoriesServiceProvider::class,
         App\Providers\Quiz\QuizDependenciesServiceProvider::class,
         App\Providers\Quiz\QuizUserStatusDependenciesServiceProvider::class,
+        App\Providers\Quiz\QuizQuestionDependenciesServiceProvider::class,
 
         // Common
         App\Providers\Common\UserDependencyServiceProvider::class,

@@ -7,7 +7,7 @@ use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 use Illuminate\Support\Carbon;
 
-final class VkEventDTOFactory implements VkEventDTOFactoryContract
+final readonly class VkEventDTOFactory implements VkEventDTOFactoryContract
 {
     /**
      * {@inheritDoc}

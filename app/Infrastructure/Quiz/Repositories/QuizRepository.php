@@ -12,7 +12,7 @@ use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
 use App\Models\Quiz\Quiz;
 use Illuminate\Support\Facades\Cache;
 
-final class QuizRepository implements QuizRepositoryContract
+final readonly class QuizRepository implements QuizRepositoryContract
 {
     use FormBaseCacheKey;
 
@@ -42,7 +42,7 @@ final class QuizRepository implements QuizRepositoryContract
     public function getAvailableQuizzes(?UserDTO $user = null): array
     {
         $now = now();
-        $quizzes = Cache::tags(QuizEnum::QuizRepository->value)
+        $quizzes = Cache::tags([QuizEnum::QuizRepository->value, QuizEnum::QuizUserStatusRepository->value])
             ->remember(
                 $this->formBaseCacheKey($user?->getId()),
                 CacheTimeEnum::HOUR->value * 6,

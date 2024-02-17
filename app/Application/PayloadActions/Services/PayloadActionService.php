@@ -8,7 +8,7 @@ use App\Infrastructure\PayloadActions\AbstractPayloadAction;
 use App\Infrastructure\PayloadActions\DataTransferObjects\PayloadDTO;
 use Illuminate\Support\Facades\Log;
 
-final class PayloadActionService implements PayloadActionServiceContract
+final readonly class PayloadActionService implements PayloadActionServiceContract
 {
     public function canHandle(string $actionName, UserDTO $user): bool
     {

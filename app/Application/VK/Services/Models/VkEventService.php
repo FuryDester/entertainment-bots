@@ -6,7 +6,7 @@ use App\Domain\VK\Repositories\VkEventRepositoryContract;
 use App\Domain\VK\Services\Models\VkEventServiceContract;
 use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 
-final class VkEventService implements VkEventServiceContract
+final readonly class VkEventService implements VkEventServiceContract
 {
     public function __construct(protected VkEventRepositoryContract $repository)
     {

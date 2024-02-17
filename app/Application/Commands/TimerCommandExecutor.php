@@ -10,7 +10,7 @@ use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Jobs\Commands\Timer\ProcessTimerCommand;
 use Illuminate\Support\Facades\Log;
 
-final class TimerCommandExecutor extends AbstractCommandExecutor
+final readonly class TimerCommandExecutor extends AbstractCommandExecutor
 {
     use WordDeclension;
 

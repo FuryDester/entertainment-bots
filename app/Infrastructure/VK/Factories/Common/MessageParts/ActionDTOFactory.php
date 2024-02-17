@@ -8,7 +8,7 @@ use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionParts\PhotoDTO;
 use App\Infrastructure\VK\Enums\MessageEventTypeEnum;
 
-final class ActionDTOFactory implements ActionDTOFactoryContract
+final readonly class ActionDTOFactory implements ActionDTOFactoryContract
 {
     public static function createFromParams(
         MessageEventTypeEnum $type,

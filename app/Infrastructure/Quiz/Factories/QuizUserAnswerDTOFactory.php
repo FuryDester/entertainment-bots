@@ -6,7 +6,7 @@ use App\Domain\Quiz\Factories\QuizUserAnswerDTOFactoryContract;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizUserAnswerDTO;
 use Illuminate\Support\Carbon;
 
-final class QuizUserAnswerDTOFactory implements QuizUserAnswerDTOFactoryContract
+final readonly class QuizUserAnswerDTOFactory implements QuizUserAnswerDTOFactoryContract
 {
     public static function createFromParams(
         ?int $id,

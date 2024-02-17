@@ -5,7 +5,7 @@ namespace App\Infrastructure\VK\Factories\Common\MessageParts\ActionParts;
 use App\Domain\VK\Factories\Common\MessageParts\ActionParts\PhotoDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ActionParts\PhotoDTO;
 
-final class PhotoDTOFactory implements PhotoDTOFactoryContract
+final readonly class PhotoDTOFactory implements PhotoDTOFactoryContract
 {
     public static function createFromParams(string $photo50, string $photo100, string $photo200): PhotoDTO
     {

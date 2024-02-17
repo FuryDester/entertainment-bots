@@ -8,7 +8,7 @@ use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizUserStatusDTO;
 
-final class QuizUserStatusesService implements QuizUserStatusesServiceContract
+final readonly class QuizUserStatusesService implements QuizUserStatusesServiceContract
 {
     public function __construct(
         protected QuizUserStatusesRepositoryContract $repository,

@@ -12,7 +12,7 @@ use Sally\VkKeyboard\Contracts\Keyboard\Button\FactoryInterface;
 use Sally\VkKeyboard\Facade;
 use Sally\VkKeyboard\Object\Keyboard\Button\Text;
 
-final class QuizzesCommandExecutor extends AbstractCommandExecutor
+final readonly class QuizzesCommandExecutor extends AbstractCommandExecutor
 {
     /**
      * {@inheritDoc}

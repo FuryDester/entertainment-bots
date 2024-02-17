@@ -22,7 +22,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
 
-final class MessageNewAction implements Actionable
+final readonly class MessageNewAction implements Actionable
 {
     public static function getActionName(): ActionEnum
     {

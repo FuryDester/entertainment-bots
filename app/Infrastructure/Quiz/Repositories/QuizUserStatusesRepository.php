@@ -15,7 +15,7 @@ use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Support\Facades\Cache;
 
-final class QuizUserStatusesRepository implements QuizUserStatusesRepositoryContract
+final readonly class QuizUserStatusesRepository implements QuizUserStatusesRepositoryContract
 {
     use FormBaseCacheKey;
     use SaveDto;

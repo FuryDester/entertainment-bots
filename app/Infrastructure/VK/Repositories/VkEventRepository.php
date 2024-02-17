@@ -14,7 +14,7 @@ use App\Infrastructure\VK\Enums\Cache\VkCacheEnum;
 use App\Models\VK\VkEvent;
 use Illuminate\Support\Facades\Cache;
 
-final class VkEventRepository implements VkEventRepositoryContract
+final readonly class VkEventRepository implements VkEventRepositoryContract
 {
     use ArrayKeysToSneakCase;
     use FormBaseCacheKey;
