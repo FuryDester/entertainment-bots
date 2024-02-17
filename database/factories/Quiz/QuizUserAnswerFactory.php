@@ -22,7 +22,7 @@ class QuizUserAnswerFactory extends Factory
         return [
             'question_id' => QuizQuestionFactory::class,
             'answer_id' => $isText ? null : QuizAnswerFactory::class,
-            'answer' => $isText ? $this->faker->sentence() : null,
+            'answer_text' => $isText ? $this->faker->sentence() : null,
             'user_id' => UserFactory::class,
             'answered_at' => $this->faker->dateTimeThisYear()->format('Y-m-d H:i:s'),
         ];

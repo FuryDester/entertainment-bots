@@ -19,7 +19,7 @@ class QuizFactory extends Factory
         return [
             'title' => $this->faker->sentence(mt_rand(3, 6)),
             'description' => $this->faker->text(),
-            'image' => $this->faker->image(storage_path('public'), 600, 300, 'quiz'),
+            'image' => $this->faker->image(storage_path('app/public/images/quiz'), 600, 300, 'quiz'),
             'starts_at' => $this->faker->dateTimeBetween('-1 month', '+1 month'),
             'ends_at' => $this->faker->dateTimeBetween('+1 month', '+2 month'),
             'action_id' => $this->faker->boolean() ? QuizActionFactory::class : null,

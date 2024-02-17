@@ -3,6 +3,8 @@
 namespace Database\Seeders\Quiz;
 
 use App\Models\Quiz\Quiz;
+use App\Models\Quiz\QuizAction;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class QuizSeeder extends Seeder
@@ -12,6 +14,15 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
-        Quiz::factory()->count(mt_rand(5, 10))->create();
+        $actions = QuizAction::get();
+
+        Quiz::factory()
+            ->count(mt_rand(5, 10))
+            ->state(new Sequence(
+                static fn () => [
+                    'action_id' => $actions->random(),
+                ]
+            ))
+            ->create();
     }
 }
