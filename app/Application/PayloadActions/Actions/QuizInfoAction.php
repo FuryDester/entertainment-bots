@@ -115,13 +115,13 @@ final class QuizInfoAction extends AbstractPayloadAction
     private function formQuizDescription(QuizDTO $quiz): string
     {
         return sprintf(
-            "Тест: %s\nОписание: %s\nВремя начала: %s\nВремя окончания: %s%s",
+            "Название: %s\nОписание: %s\nВремя начала: %s\nВремя окончания: %s%s",
             $quiz->getTitle(),
-            $quiz->getDescription(),
+            $quiz->getDescription() ?: 'Отсутствует',
             $quiz->getStartsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
             $quiz->getEndsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
             $quiz->getQuestionCooldown() ?
-                "\nИнтервал между вопросами: {$this->secondsToHms($quiz->getQuestionCooldown())} сек."
+                "\nИнтервал между вопросами: {$this->secondsToHms($quiz->getQuestionCooldown())}"
                 : '',
         );
     }
