@@ -38,7 +38,7 @@ final readonly class QuizUserAnswerDTOFactory implements QuizUserAnswerDTOFactor
             $model->answer_id,
             $model->answer_text,
             $model->user_id,
-            $model->answered_at,
+            new Carbon($model->answered_at),
             $model->created_at ? new Carbon($model->created_at) : null,
             $model->updated_at ? new Carbon($model->updated_at) : null,
         );
