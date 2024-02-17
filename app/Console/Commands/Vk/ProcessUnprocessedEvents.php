@@ -7,6 +7,7 @@ use App\Domain\VK\Services\Actions\ActionServiceContract;
 use App\Domain\VK\Services\Models\VkEventServiceContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use Throwable;
 
 final class ProcessUnprocessedEvents extends Command
 {
@@ -28,7 +29,7 @@ final class ProcessUnprocessedEvents extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
         /** @var VkEventServiceContract $service */
         $service = app(VkEventServiceContract::class);
@@ -62,7 +63,15 @@ final class ProcessUnprocessedEvents extends Command
             Log::info("Processing event: {$event->getEventId()} with type: {$event->getType()}");
             /** @var CallbackRequestDTOFactoryContract $callbackRequestFactory */
             $callbackRequestFactory = app(CallbackRequestDTOFactoryContract::class);
-            $result = $action::perform($callbackRequestFactory::createFromVkEvent($event));
+            try {
+                $result = $action::perform($callbackRequestFactory::createFromVkEvent($event));
+            } catch (\Throwable $exception) {
+                Log::error('Exception occurred during event processing', [
+                    'exception' => $exception,
+                    'event' => $event->toArray(),
+                ]);
+                $result = false;
+            }
             $event->setIsProcessed($result)->setAttempts($event->getAttempts() + 1);
             $service->save($event);
 
