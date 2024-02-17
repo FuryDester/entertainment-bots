@@ -9,6 +9,7 @@ interface QuizAnswerServiceContract
 {
     /**
      * Получение ответов на вопрос теста.
+     *
      * @return QuizAnswerDTO[]
      */
     public function getQuizAnswersByQuestion(QuizQuestionDTO $question): array;
@@ -17,7 +18,8 @@ interface QuizAnswerServiceContract
 
     /**
      * Получение ответов по идентификаторам
-     * @param int[] $ids
+     *
+     * @param  int[]  $ids
      * @return QuizAnswerDTO[]
      */
     public function getByIds(array $ids): array;

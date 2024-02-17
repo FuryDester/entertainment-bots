@@ -28,6 +28,7 @@ final readonly class QuizAnswerRepository implements QuizAnswerRepositoryContrac
                 static function () use ($question) {
                     /** @var QuizAnswerDTOFactoryContract $factory */
                     $factory = app(QuizAnswerDTOFactoryContract::class);
+
                     return QuizAnswer::query()
                         ->where('question_id', $question->getId())
                         ->get()
@@ -48,6 +49,7 @@ final readonly class QuizAnswerRepository implements QuizAnswerRepositoryContrac
                     $factory = app(QuizAnswerDTOFactoryContract::class);
 
                     $data = QuizAnswer::find($id);
+
                     return $data ? $factory::createFromModel($data) : null;
                 }
             );

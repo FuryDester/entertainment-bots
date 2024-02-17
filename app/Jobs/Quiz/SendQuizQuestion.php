@@ -4,7 +4,6 @@ namespace App\Jobs\Quiz;
 
 use App\Domain\Common\Services\UserServiceContract;
 use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
-use App\Events\Quiz\QuizCompleted;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
@@ -24,8 +23,8 @@ final class SendQuizQuestion implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
     use FormQuestionOutput;
     use QuizAvailability;
-    use SendMessage;
     use QuizEnd;
+    use SendMessage;
 
     /**
      * Create a new job instance.

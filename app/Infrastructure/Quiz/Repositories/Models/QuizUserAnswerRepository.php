@@ -48,6 +48,7 @@ final readonly class QuizUserAnswerRepository implements QuizUserAnswerRepositor
 
                     /** @var QuizUserAnswerDTOFactoryContract $factory */
                     $factory = app(QuizUserAnswerDTOFactoryContract::class);
+
                     return $data ? $factory::createFromModel($data) : null;
                 }
             );
@@ -64,6 +65,7 @@ final readonly class QuizUserAnswerRepository implements QuizUserAnswerRepositor
 
                     /** @var QuizUserAnswerDTOFactoryContract $factory */
                     $factory = app(QuizUserAnswerDTOFactoryContract::class);
+
                     return QuizUserAnswer::where('user_id', $user->getId())
                         ->whereIn('question_id', $questions)
                         ->get()

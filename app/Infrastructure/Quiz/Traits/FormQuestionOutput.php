@@ -15,6 +15,7 @@ trait FormQuestionOutput
     /**
      * Формирование вопроса для отправки пользователю.
      * TODO: Добавить поддержку разных типов вопросов.
+     *
      * @return array{
      *     keyboard: array,
      *     message: string,

@@ -19,7 +19,7 @@ final readonly class QuizQuestionService implements QuizQuestionServiceContract
     /**
      * {@inheritDoc}
      */
-    public function getQuestionsCount(QuizDTO $quiz, UserDTO $user = null): int
+    public function getQuestionsCount(QuizDTO $quiz, ?UserDTO $user = null): int
     {
         return count($this->repository->getQuestionsByQuiz($quiz, $user));
     }

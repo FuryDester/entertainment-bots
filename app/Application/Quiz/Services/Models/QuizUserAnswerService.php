@@ -11,7 +11,7 @@ use App\Infrastructure\Quiz\DataTransferObjects\QuizUserAnswerDTO;
 final readonly class QuizUserAnswerService implements QuizUserAnswerServiceContract
 {
     public function __construct(
-       protected QuizUserAnswerRepositoryContract $repository,
+        protected QuizUserAnswerRepositoryContract $repository,
     ) {
     }
 

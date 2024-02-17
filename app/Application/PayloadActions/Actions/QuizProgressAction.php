@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Log;
 
 final readonly class QuizProgressAction extends AbstractPayloadAction
 {
+    use QuizEnd;
     use SecondsToHms;
     use SendMessage;
-    use QuizEnd;
 
     public function getActionName(): ActionStageEnum
     {
@@ -132,6 +132,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
                 'question_id' => $questionId,
                 'answer_id' => $answerId,
             ]);
+
             return false;
         }
 
@@ -146,7 +147,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
             ]);
         }
 
-        return !$userAnswer;
+        return ! $userAnswer;
     }
 
     /**
@@ -155,7 +156,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
      */
     private function isValidStructure(?int $quizId, ?int $questionId, ?QuizAnswerDTO $answer): bool
     {
-        if (!$quizId || !$questionId || !$answer) {
+        if (! $quizId || ! $questionId || ! $answer) {
             return false;
         }
 
@@ -181,7 +182,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
 
         $questionService = app(QuizQuestionServiceContract::class);
         $question = $questionService->getRandomQuestion($quiz, $user);
-        if (!$question) {
+        if (! $question) {
             $this->quizEnd($user, $quiz);
 
             return;

@@ -12,5 +12,7 @@ final class QuizUserAnswerUpdated
     /**
      * Create a new event instance.
      */
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 }

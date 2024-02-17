@@ -18,6 +18,7 @@ interface QuizUserAnswerRepositoryContract
 
     /**
      * Получение ответов пользователя на вопросы теста.
+     *
      * @return QuizUserAnswerDTO[]
      */
     public function getAnswersByQuiz(UserDTO $user, QuizDTO $quiz): array;

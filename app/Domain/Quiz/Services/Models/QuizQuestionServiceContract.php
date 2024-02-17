@@ -12,7 +12,7 @@ interface QuizQuestionServiceContract
      * Получение количества вопросов по тесту.
      * Если передан пользователь, то возвращается количество вопросов, которые он еще не прошел.
      */
-    public function getQuestionsCount(QuizDTO $quiz, UserDTO $user = null): int;
+    public function getQuestionsCount(QuizDTO $quiz, ?UserDTO $user = null): int;
 
     /**
      * Получение случайного вопроса по тесту, который пользователь еще не проходил
