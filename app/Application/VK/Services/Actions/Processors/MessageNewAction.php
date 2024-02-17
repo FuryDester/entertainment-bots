@@ -43,6 +43,11 @@ final readonly class MessageNewAction implements Actionable
             'message' => $message->toArray(),
         ]);
 
+        $user = self::getUserDto($message->getFromId(), $message->getPeerId())->setLastActivityAt(now());
+        /** @var UserServiceContract $userService */
+        $userService = app(UserServiceContract::class);
+        $userService->save($user);
+
         // Process commands
         $commandResult = self::processCommands($message);
         if ($commandResult !== null) {
@@ -176,6 +181,7 @@ final readonly class MessageNewAction implements Actionable
             }
 
             $user = self::getUserDto($message->getFromId(), $message->getPeerId());
+
 
             return self::tryHandleWorker($message, $worker, $user, $payloadDTO);
         }
