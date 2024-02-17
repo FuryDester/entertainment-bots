@@ -29,7 +29,7 @@ final readonly class QuizStartAction extends AbstractPayloadAction
      */
     public function getPossibleActions(): array
     {
-        return [ActionStageEnum::Index, ActionStageEnum::QuizInfo];
+        return [ActionStageEnum::Index, ActionStageEnum::QuizInfo, ActionStageEnum::QuizProgress];
     }
 
     protected function execute(MessageDTO $message, PayloadDTO $payload, UserDTO $user): bool
