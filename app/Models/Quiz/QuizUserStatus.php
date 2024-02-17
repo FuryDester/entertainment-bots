@@ -5,9 +5,9 @@ namespace App\Models\Quiz;
 use App\Models\Common\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class QuizUserStatus extends Model
+final class QuizUserStatus extends Model
 {
     use HasFactory;
 
@@ -20,13 +20,13 @@ class QuizUserStatus extends Model
         'updated_at',
     ];
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function quiz(): HasOne
+    public function quiz(): BelongsTo
     {
-        return $this->hasOne(Quiz::class);
+        return $this->belongsTo(Quiz::class);
     }
 }

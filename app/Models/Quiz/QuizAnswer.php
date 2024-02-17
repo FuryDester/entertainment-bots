@@ -4,7 +4,7 @@ namespace App\Models\Quiz;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class QuizAnswer extends Model
 {
@@ -16,8 +16,8 @@ final class QuizAnswer extends Model
         'is_correct',
     ];
 
-    public function question(): HasOne
+    public function question(): BelongsTo
     {
-        return $this->hasOne(QuizQuestion::class, localKey: 'question_id');
+        return $this->belongsTo(QuizQuestion::class, 'question_id');
     }
 }

@@ -6,7 +6,7 @@ use App\Models\Quiz\QuizUserAnswer;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class User extends Model
 {
@@ -21,13 +21,13 @@ final class User extends Model
         'last_activity_at',
     ];
 
-    public function userAnswers(): BelongsTo
+    public function userAnswers(): HasMany
     {
-        return $this->belongsTo(QuizUserAnswer::class);
+        return $this->hasMany(QuizUserAnswer::class);
     }
 
-    public function quizStatuses(): BelongsTo
+    public function quizStatuses(): HasMany
     {
-        return $this->belongsTo(QuizUserStatus::class);
+        return $this->hasMany(QuizUserStatus::class);
     }
 }

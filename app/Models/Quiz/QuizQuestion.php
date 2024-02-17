@@ -5,7 +5,7 @@ namespace App\Models\Quiz;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class QuizQuestion extends Model
 {
@@ -18,18 +18,18 @@ final class QuizQuestion extends Model
         'quiz_id',
     ];
 
-    public function quiz(): HasOne
+    public function quiz(): BelongsTo
     {
-        return $this->hasOne(Quiz::class);
+        return $this->belongsTo(Quiz::class);
     }
 
-    public function answers(): BelongsTo
+    public function answers(): HasMany
     {
-        return $this->belongsTo(QuizAnswer::class, 'question_id');
+        return $this->hasMany(QuizAnswer::class, 'question_id');
     }
 
-    public function userAnswers(): BelongsTo
+    public function userAnswers(): HasMany
     {
-        return $this->belongsTo(QuizUserAnswer::class, 'question_id');
+        return $this->hasMany(QuizUserAnswer::class, 'question_id');
     }
 }

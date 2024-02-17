@@ -4,7 +4,7 @@ namespace App\Models\Quiz;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class QuizAction extends Model
 {
@@ -16,8 +16,8 @@ final class QuizAction extends Model
         'value',
     ];
 
-    public function quiz(): BelongsTo
+    public function quiz(): HasMany
     {
-        return $this->belongsTo(Quiz::class);
+        return $this->hasMany(Quiz::class, 'action_id');
     }
 }

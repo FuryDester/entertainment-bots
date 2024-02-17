@@ -5,7 +5,7 @@ namespace App\Models\Quiz;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class Quiz extends Model
 {
@@ -21,18 +21,18 @@ final class Quiz extends Model
         'question_cooldown',
     ];
 
-    public function action(): HasOne
+    public function action(): BelongsTo
     {
-        return $this->hasOne(QuizAction::class, localKey: 'action_id');
+        return $this->belongsTo(QuizAction::class, 'action_id');
     }
 
-    public function questions(): BelongsTo
+    public function questions(): HasMany
     {
-        return $this->belongsTo(QuizQuestion::class);
+        return $this->hasMany(QuizQuestion::class);
     }
 
-    public function userStatuses(): BelongsTo
+    public function userStatuses(): HasMany
     {
-        return $this->belongsTo(QuizUserStatus::class);
+        return $this->hasMany(QuizUserStatus::class);
     }
 }

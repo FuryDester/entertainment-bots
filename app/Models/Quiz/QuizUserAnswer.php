@@ -5,7 +5,7 @@ namespace App\Models\Quiz;
 use App\Models\Common\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class QuizUserAnswer extends Model
 {
@@ -19,18 +19,18 @@ final class QuizUserAnswer extends Model
         'answered_at',
     ];
 
-    public function question(): HasOne
+    public function question(): BelongsTo
     {
-        return $this->hasOne(QuizQuestion::class, localKey: 'question_id');
+        return $this->belongsTo(QuizQuestion::class, 'question_id');
     }
 
-    public function answer(): HasOne
+    public function answer(): BelongsTo
     {
-        return $this->hasOne(QuizAnswer::class, localKey: 'answer_id');
+        return $this->belongsTo(QuizAnswer::class, 'answer_id');
     }
 
-    public function user(): HasOne
+    public function user(): BelongsTo
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
 }
