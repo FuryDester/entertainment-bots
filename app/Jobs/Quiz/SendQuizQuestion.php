@@ -56,7 +56,7 @@ final class SendQuizQuestion implements ShouldQueue
         }
 
         $questionData = $this->formQuestion($question);
-        $this->sendMessage($user->getVkPeerId(), $questionData['message'], $questionData['keyboard']);
+        $this->sendMessage($user->getVkPeerId(), $questionData['message'], ['keyboard' => $questionData['keyboard']]);
 
         $user->setState(ActionStageEnum::QuizProgress);
         $user->setData([
