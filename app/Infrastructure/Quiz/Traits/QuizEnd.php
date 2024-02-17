@@ -58,6 +58,6 @@ trait QuizEnd
             )
         );
 
-        QuizCompleted::dispatch();
+        QuizCompleted::dispatch($quiz, $user);
     }
 }

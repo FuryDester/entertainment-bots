@@ -79,7 +79,11 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
         ]);
 
         $this->sendMessage($user->getVkPeerId(), 'Ответ принят.');
-        QuizQuestionAnswered::dispatch();
+
+        /** @var QuizServiceContract $quizService */
+        $quizService = app(QuizServiceContract::class);
+        $quiz = $quizService->getQuizById($quizId);
+        QuizQuestionAnswered::dispatch($quiz, $user);
 
         $this->sendOrEndQuiz($user, $quizId);
 
