@@ -190,6 +190,7 @@ return [
 
         // Payload actions
         App\Providers\PayloadActions\PayloadDataTransferObjectsServiceProvider::class,
+        App\Providers\PayloadActions\PayloadServiceProvider::class,
     ])->toArray(),
 
     /*
