@@ -23,7 +23,15 @@ final class QuizRepository implements QuizRepositoryContract
                 $this->formBaseCacheKey($id),
                 CacheTimeEnum::DAY->value,
                 static function () use ($id) {
-                    return Quiz::query()->find($id);
+                    /** @var QuizDTOFactoryContract $factory */
+                    $factory = app(QuizDTOFactoryContract::class);
+
+                    $data = Quiz::query()->find($id);
+                    if ($data === null) {
+                        return null;
+                    }
+
+                    return $factory::createFromData($data->toArray());
                 }
             );
     }
