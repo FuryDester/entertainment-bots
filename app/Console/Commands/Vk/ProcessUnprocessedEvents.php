@@ -46,7 +46,7 @@ final class ProcessUnprocessedEvents extends Command
 
         /** @var ActionServiceContract $actionService */
         $actionService = app(ActionServiceContract::class);
-        $this->withProgressBar($events, static function ($event) use ($actionService, $service) {
+        $this->withProgressBar($events, function ($event) use ($actionService, $service) {
             $action = $actionService->getActionByDto($event);
 
             if (! $action) {
