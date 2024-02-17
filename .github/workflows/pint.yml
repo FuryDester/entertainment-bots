@@ -1,9 +1,8 @@
 name: PHP Linting (Pint)
 on:
-  workflow_dispatch:
   push:
-    branches:
-      - '*'
+    branches-ignore:
+      - master
 
 jobs:
   pint-fix:
