@@ -46,7 +46,7 @@ stan:
 
 lint: pint stan
 
-test:
+composer-test:
 	docker compose exec app composer test
 
 logs:
