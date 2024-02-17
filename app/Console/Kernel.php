@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command((new RemoveOldEventsCommand)->getName())->everySixHours();
-        $schedule->command((new ProcessUnprocessedEvents)->getName())->everyMinute();
+        $schedule->command((new ProcessUnprocessedEvents)->getName())->everyTwoMinutes();
     }
 
     /**
