@@ -33,7 +33,7 @@ final readonly class QuizAnswerRepository implements QuizAnswerRepositoryContrac
                         ->where('question_id', $question->getId())
                         ->get()
                         ->map(fn (QuizAnswer $answer) => $factory::createFromModel($answer))
-                        ->toArray();
+                        ->all();
                 }
             );
     }
@@ -72,7 +72,7 @@ final readonly class QuizAnswerRepository implements QuizAnswerRepositoryContrac
                         ->whereIn('id', $ids)
                         ->get()
                         ->map(fn (QuizAnswer $answer) => $factory::createFromModel($answer))
-                        ->toArray();
+                        ->all();
                 }
             );
     }

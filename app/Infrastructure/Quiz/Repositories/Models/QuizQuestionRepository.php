@@ -42,7 +42,7 @@ final readonly class QuizQuestionRepository implements QuizQuestionRepositoryCon
                         ->map(static function (QuizQuestion $question) use ($factory) {
                             return $factory::createFromModel($question);
                         })
-                        ->toArray();
+                        ->all();
                 }
             );
     }

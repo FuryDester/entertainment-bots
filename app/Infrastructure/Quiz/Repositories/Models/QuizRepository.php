@@ -83,7 +83,7 @@ final readonly class QuizRepository implements QuizRepositoryContract
                 return ($quiz->getStartsAt() <= $now || $quiz->getStartsAt() === null)
                     && ($quiz->getEndsAt() >= $now || $quiz->getEndsAt() === null);
             })
-            ->toArray();
+            ->all();
     }
 
     public function hasUserCompletedQuiz(QuizDTO $quizId, UserDTO $user): bool

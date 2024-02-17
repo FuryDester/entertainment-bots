@@ -72,7 +72,7 @@ final readonly class QuizUserAnswerRepository implements QuizUserAnswerRepositor
                         ->map(static function (QuizUserAnswer $answer) use ($factory) {
                             return $factory::createFromModel($answer);
                         })
-                        ->toArray();
+                        ->all();
                 }
             );
     }
