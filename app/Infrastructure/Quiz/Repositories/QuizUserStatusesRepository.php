@@ -48,11 +48,7 @@ final class QuizUserStatusesRepository implements QuizUserStatusesRepositoryCont
                         ->where('quiz_id', $quiz->getId())
                         ->first();
 
-                    if ($data === null) {
-                        return null;
-                    }
-
-                    $data = $data->toArray();
+                    $data = $data ? $data->toArray() : [];
 
                     /** @var QuizUserStatusDTOFactoryContract $factory */
                     $factory = app(QuizUserStatusDTOFactoryContract::class);
