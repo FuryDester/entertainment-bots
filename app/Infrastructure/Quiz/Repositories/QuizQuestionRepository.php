@@ -17,9 +17,9 @@ final readonly class QuizQuestionRepository implements QuizQuestionRepositoryCon
     use FormBaseCacheKey;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
-    public function getQuestionsByQuiz(QuizDTO $quiz, UserDTO $user = null): array
+    public function getQuestionsByQuiz(QuizDTO $quiz, ?UserDTO $user = null): array
     {
         return Cache::tags(QuizEnum::QuizQuestionRepository->value)
             ->remember(

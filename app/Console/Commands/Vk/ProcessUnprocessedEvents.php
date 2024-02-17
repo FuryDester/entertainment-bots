@@ -7,7 +7,6 @@ use App\Domain\VK\Services\Actions\ActionServiceContract;
 use App\Domain\VK\Services\Models\VkEventServiceContract;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use Throwable;
 
 final class ProcessUnprocessedEvents extends Command
 {
