@@ -3,6 +3,7 @@
 namespace App\Domain\Quiz\Factories;
 
 use App\Infrastructure\Quiz\DataTransferObjects\QuizAnswerDTO;
+use App\Models\Quiz\QuizAnswer;
 use Illuminate\Support\Carbon;
 
 interface QuizAnswerDTOFactoryContract
@@ -15,4 +16,6 @@ interface QuizAnswerDTOFactoryContract
         ?Carbon $createdAt,
         ?Carbon $updatedAt,
     ): QuizAnswerDTO;
+
+    public static function createFromModel(QuizAnswer $model): QuizAnswerDTO;
 }

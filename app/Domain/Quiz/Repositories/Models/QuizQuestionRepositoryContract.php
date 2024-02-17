@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Quiz\Repositories;
+namespace App\Domain\Quiz\Repositories\Models;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
@@ -15,4 +15,9 @@ interface QuizQuestionRepositoryContract
      * @return QuizQuestionDTO[]
      */
     public function getQuestionsByQuiz(QuizDTO $quiz, ?UserDTO $user = null): array;
+
+    /**
+     * Получение вопроса по идентификатору
+     */
+    public function getById(int $id): ?QuizQuestionDTO;
 }

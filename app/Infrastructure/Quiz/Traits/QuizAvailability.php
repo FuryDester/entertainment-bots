@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Quiz\Traits;
 
-use App\Domain\Quiz\Services\QuizUserStatusesServiceContract;
+use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 

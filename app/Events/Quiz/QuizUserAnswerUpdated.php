@@ -5,7 +5,7 @@ namespace App\Events\Quiz;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-final class QuizUserStatusUpdated
+final class QuizUserAnswerUpdated
 {
     use Dispatchable, SerializesModels;
 

@@ -3,8 +3,8 @@
 namespace App\Application\PayloadActions\Actions;
 
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
-use App\Domain\Quiz\Services\QuizQuestionServiceContract;
-use App\Domain\Quiz\Services\QuizServiceContract;
+use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
+use App\Domain\Quiz\Services\Models\QuizServiceContract;
 use App\Domain\VK\Services\Api\UploadImageServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Traits\SecondsToHms;

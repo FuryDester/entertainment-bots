@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Quiz\Services;
+namespace App\Domain\Quiz\Services\Models;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;

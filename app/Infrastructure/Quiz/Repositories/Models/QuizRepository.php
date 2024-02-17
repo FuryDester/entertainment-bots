@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories;
+namespace App\Infrastructure\Quiz\Repositories\Models;
 
 use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
-use App\Domain\Quiz\Repositories\QuizRepositoryContract;
+use App\Domain\Quiz\Repositories\Models\QuizRepositoryContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
@@ -83,7 +83,7 @@ final readonly class QuizRepository implements QuizRepositoryContract
                 return ($quiz->getStartsAt() <= $now || $quiz->getStartsAt() === null)
                     && ($quiz->getEndsAt() >= $now || $quiz->getEndsAt() === null);
             })
-            ->all();
+            ->toArray();
     }
 
     public function hasUserCompletedQuiz(QuizDTO $quizId, UserDTO $user): bool

@@ -183,9 +183,12 @@ return [
 
         // Quiz
         App\Providers\Quiz\QuizFactoriesServiceProvider::class,
-        App\Providers\Quiz\QuizDependenciesServiceProvider::class,
-        App\Providers\Quiz\QuizUserStatusDependenciesServiceProvider::class,
-        App\Providers\Quiz\QuizQuestionDependenciesServiceProvider::class,
+        App\Providers\Quiz\Models\QuizDependenciesServiceProvider::class,
+        App\Providers\Quiz\Models\QuizUserStatusDependenciesServiceProvider::class,
+        App\Providers\Quiz\Models\QuizQuestionDependenciesServiceProvider::class,
+        App\Providers\Quiz\Models\QuizAnswerDependenciesServiceProvider::class,
+        App\Providers\Quiz\Models\QuizUserAnswerDependenciesServiceProvider::class,
+        App\Providers\Quiz\QuizStatisticsDependencyServiceProvider::class,
 
         // Common
         App\Providers\Common\UserDependencyServiceProvider::class,
@@ -212,6 +215,8 @@ return [
 
     // Payload workers, which will react on special payload messages
     'payload_workers' => [
-        ActionStageEnum::QuizInfo->value => \App\Application\PayloadActions\Actions\QuizInfoAction::class,
+        ActionStageEnum::QuizInfo->value => App\Application\PayloadActions\Actions\QuizInfoAction::class,
+        ActionStageEnum::QuizStart->value => App\Application\PayloadActions\Actions\QuizStartAction::class,
+        ActionStageEnum::QuizProgress->value => App\Application\PayloadActions\Actions\QuizProgressAction::class,
     ],
 ];

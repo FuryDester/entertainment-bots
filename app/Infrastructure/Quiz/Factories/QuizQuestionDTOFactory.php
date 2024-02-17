@@ -37,7 +37,7 @@ final readonly class QuizQuestionDTOFactory implements QuizQuestionDTOFactoryCon
             ->setType(QuestionTypeEnum::from($model->type))
             ->setPoints($model->points)
             ->setQuizId($model->quiz_id)
-            ->setCreatedAt($model->created_at ? Carbon::parse($model->created_at) : null)
-            ->setUpdatedAt($model->updated_at ? Carbon::parse($model->updated_at) : null);
+            ->setCreatedAt($model->created_at ? new Carbon($model->created_at) : null)
+            ->setUpdatedAt($model->updated_at ? new Carbon($model->updated_at) : null);
     }
 }

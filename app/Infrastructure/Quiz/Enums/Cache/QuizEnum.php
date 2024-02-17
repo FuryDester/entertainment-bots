@@ -9,4 +9,5 @@ enum QuizEnum: string
     case QuizQuestionRepository = 'quiz_question_repository';
     case QuizUserStatusRepository = 'quiz_user_status_repository';
     case QuizUserAnswerRepository = 'quiz_user_answer_repository';
+    case QuizAnswerRepository = 'quiz_answer_repository';
 }
