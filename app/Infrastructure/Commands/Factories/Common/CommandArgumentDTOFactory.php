@@ -5,7 +5,7 @@ namespace App\Infrastructure\Commands\Factories\Common;
 use App\Domain\Commands\Factories\Common\CommandArgumentDTOFactoryContract;
 use App\Infrastructure\Commands\DataTransferObjects\Common\CommandArgumentDTO;
 
-final class CommandArgumentDTOFactory implements CommandArgumentDTOFactoryContract
+final readonly class CommandArgumentDTOFactory implements CommandArgumentDTOFactoryContract
 {
     public static function createFromParams(
         string $alias,

@@ -7,7 +7,7 @@ use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\Traits\Messages\SendMessage;
 use Illuminate\Support\Facades\Log;
 
-abstract class AbstractCommandExecutor
+abstract readonly class AbstractCommandExecutor
 {
     use SendMessage;
 

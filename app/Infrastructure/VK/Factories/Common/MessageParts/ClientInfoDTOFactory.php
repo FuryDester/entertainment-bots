@@ -7,7 +7,7 @@ use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ClientInfoDTO;
 use App\Infrastructure\VK\Enums\ButtonActionEnum;
 use Illuminate\Support\Arr;
 
-final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
+final readonly class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
 {
     /**
      * {@inheritDoc}

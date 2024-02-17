@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories;
+namespace App\Infrastructure\Quiz\Repositories\Models;
 
 use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
-use App\Domain\Quiz\Repositories\QuizRepositoryContract;
+use App\Domain\Quiz\Repositories\Models\QuizRepositoryContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
@@ -12,7 +12,7 @@ use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
 use App\Models\Quiz\Quiz;
 use Illuminate\Support\Facades\Cache;
 
-final class QuizRepository implements QuizRepositoryContract
+final readonly class QuizRepository implements QuizRepositoryContract
 {
     use FormBaseCacheKey;
 
@@ -42,7 +42,7 @@ final class QuizRepository implements QuizRepositoryContract
     public function getAvailableQuizzes(?UserDTO $user = null): array
     {
         $now = now();
-        $quizzes = Cache::tags(QuizEnum::QuizRepository->value)
+        $quizzes = Cache::tags([QuizEnum::QuizRepository->value, QuizEnum::QuizUserStatusRepository->value])
             ->remember(
                 $this->formBaseCacheKey($user?->getId()),
                 CacheTimeEnum::HOUR->value * 6,
@@ -83,7 +83,7 @@ final class QuizRepository implements QuizRepositoryContract
                 return ($quiz->getStartsAt() <= $now || $quiz->getStartsAt() === null)
                     && ($quiz->getEndsAt() >= $now || $quiz->getEndsAt() === null);
             })
-            ->all();
+            ->toArray();
     }
 
     public function hasUserCompletedQuiz(QuizDTO $quizId, UserDTO $user): bool

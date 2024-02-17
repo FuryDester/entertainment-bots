@@ -4,6 +4,7 @@ namespace App\Domain\Quiz\Factories;
 
 use App\Infrastructure\Quiz\DataTransferObjects\QuizQuestionDTO;
 use App\Infrastructure\Quiz\Enums\QuestionTypeEnum;
+use App\Models\Quiz\QuizQuestion;
 use Illuminate\Support\Carbon;
 
 interface QuizQuestionDTOFactoryContract
@@ -17,4 +18,6 @@ interface QuizQuestionDTOFactoryContract
         ?Carbon $createdAt,
         ?Carbon $updatedAt,
     ): QuizQuestionDTO;
+
+    public static function createFromModel(QuizQuestion $model): QuizQuestionDTO;
 }

@@ -4,7 +4,7 @@ namespace App\Application\Commands;
 
 use App\Domain\Common\Services\UserServiceContract;
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
-use App\Domain\Quiz\Services\QuizServiceContract;
+use App\Domain\Quiz\Services\Models\QuizServiceContract;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
@@ -12,7 +12,7 @@ use Sally\VkKeyboard\Contracts\Keyboard\Button\FactoryInterface;
 use Sally\VkKeyboard\Facade;
 use Sally\VkKeyboard\Object\Keyboard\Button\Text;
 
-final class QuizzesCommandExecutor extends AbstractCommandExecutor
+final readonly class QuizzesCommandExecutor extends AbstractCommandExecutor
 {
     /**
      * {@inheritDoc}

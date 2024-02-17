@@ -10,7 +10,7 @@ use Exception;
 use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Facades\Log;
 
-final class ActionService implements ActionServiceContract
+final readonly class ActionService implements ActionServiceContract
 {
     /**
      * {@inheritDoc}

@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories;
+namespace App\Infrastructure\Quiz\Repositories\Models;
 
 use App\Domain\Quiz\Factories\QuizUserStatusDTOFactoryContract;
-use App\Domain\Quiz\Repositories\QuizUserStatusesRepositoryContract;
+use App\Domain\Quiz\Repositories\Models\QuizUserStatusesRepositoryContract;
 use App\Events\Quiz\QuizUserStatusUpdated;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
@@ -15,7 +15,7 @@ use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Support\Facades\Cache;
 
-final class QuizUserStatusesRepository implements QuizUserStatusesRepositoryContract
+final readonly class QuizUserStatusesRepository implements QuizUserStatusesRepositoryContract
 {
     use FormBaseCacheKey;
     use SaveDto;

@@ -9,7 +9,7 @@ use App\Domain\VK\Factories\Common\MessageParts\MessageDTOFactoryContract;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use Illuminate\Support\Arr;
 
-final class MessageDTOFactory implements MessageDTOFactoryContract
+final readonly class MessageDTOFactory implements MessageDTOFactoryContract
 {
     /**
      * {@inheritDoc}

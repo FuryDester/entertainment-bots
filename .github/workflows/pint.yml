@@ -1,7 +1,7 @@
 name: PHP Linting (Pint)
 on:
-  push:
-    branches-ignore:
+  pull_request:
+    branches:
       - master
 
 jobs:
@@ -14,6 +14,8 @@ jobs:
         with:
           php-version: '8.3'
       - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
@@ -21,7 +23,6 @@ jobs:
       - name: Launch Pint inspection
         run: vendor/bin/pint
       - name: Commit changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: PHP pint linting
-          skip_fetch: true

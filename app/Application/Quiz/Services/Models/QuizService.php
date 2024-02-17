@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Application\Quiz\Services;
+namespace App\Application\Quiz\Services\Models;
 
-use App\Domain\Quiz\Repositories\QuizRepositoryContract;
-use App\Domain\Quiz\Services\QuizServiceContract;
+use App\Domain\Quiz\Repositories\Models\QuizRepositoryContract;
+use App\Domain\Quiz\Services\Models\QuizServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 
-final class QuizService implements QuizServiceContract
+final readonly class QuizService implements QuizServiceContract
 {
     public function __construct(
-        protected QuizRepositoryContract $repository,
+        protected readonly QuizRepositoryContract $repository,
     ) {
     }
 

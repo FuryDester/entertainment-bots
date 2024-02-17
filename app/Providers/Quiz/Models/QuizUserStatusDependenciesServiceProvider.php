@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Providers\Quiz;
+namespace App\Providers\Quiz\Models;
 
-use App\Application\Quiz\Services\QuizUserStatusesService;
+use App\Application\Quiz\Services\Models\QuizUserStatusesService;
 use App\Domain\Quiz\Factories\QuizUserStatusDTOFactoryContract;
-use App\Domain\Quiz\Repositories\QuizUserStatusesRepositoryContract;
-use App\Domain\Quiz\Services\QuizUserStatusesServiceContract;
+use App\Domain\Quiz\Repositories\Models\QuizUserStatusesRepositoryContract;
+use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Infrastructure\Quiz\Factories\QuizUserStatusDTOFactory;
-use App\Infrastructure\Quiz\Repositories\QuizUserStatusesRepository;
+use App\Infrastructure\Quiz\Repositories\Models\QuizUserStatusesRepository;
 use App\Providers\AbstractDependencyServiceProvider;
 
 final class QuizUserStatusDependenciesServiceProvider extends AbstractDependencyServiceProvider

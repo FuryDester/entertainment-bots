@@ -6,7 +6,7 @@ use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
 use App\Infrastructure\PayloadActions\DataTransferObjects\PayloadDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 
-final class PayloadDTOFactory implements PayloadDTOFactoryContract
+final readonly class PayloadDTOFactory implements PayloadDTOFactoryContract
 {
     public static function createFromParams(ActionStageEnum $type, ?int $id = null, ?array $data = null): PayloadDTO
     {

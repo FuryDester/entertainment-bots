@@ -8,7 +8,7 @@ use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use Illuminate\Support\Facades\Log;
 
-abstract class AbstractPayloadAction
+abstract readonly class AbstractPayloadAction
 {
     abstract public function getActionName(): ActionStageEnum;
 

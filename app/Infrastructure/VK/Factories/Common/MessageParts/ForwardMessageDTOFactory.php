@@ -6,7 +6,7 @@ use App\Domain\VK\Factories\Common\MessageParts\ForwardMessageDTOFactoryContract
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ForwardMessageDTO;
 use Illuminate\Support\Arr;
 
-final class ForwardMessageDTOFactory implements ForwardMessageDTOFactoryContract
+final readonly class ForwardMessageDTOFactory implements ForwardMessageDTOFactoryContract
 {
     /**
      * {@inheritDoc}

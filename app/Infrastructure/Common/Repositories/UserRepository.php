@@ -14,7 +14,7 @@ use App\Infrastructure\Common\Traits\Repositories\SaveDto;
 use App\Models\Common\User;
 use Illuminate\Support\Facades\Cache;
 
-final class UserRepository implements UserRepositoryContract
+final readonly class UserRepository implements UserRepositoryContract
 {
     use ArrayKeysToSneakCase;
     use FormBaseCacheKey;

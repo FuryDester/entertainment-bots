@@ -8,7 +8,7 @@ use App\Infrastructure\Quiz\Enums\ActionAliasTypeEnum;
 use App\Infrastructure\Quiz\Enums\ActionTypeEnum;
 use Illuminate\Support\Carbon;
 
-final class QuizActionDTOFactory implements QuizActionDTOFactoryContract
+final readonly class QuizActionDTOFactory implements QuizActionDTOFactoryContract
 {
     public static function createFromParams(
         ?int $id,

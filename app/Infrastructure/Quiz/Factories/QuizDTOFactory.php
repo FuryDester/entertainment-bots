@@ -6,7 +6,7 @@ use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 use Carbon\Carbon;
 
-final class QuizDTOFactory implements QuizDTOFactoryContract
+final readonly class QuizDTOFactory implements QuizDTOFactoryContract
 {
     /**
      * {@inheritDoc}
