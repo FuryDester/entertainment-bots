@@ -1,5 +1,6 @@
 <?php
 
+namespace App\Application\Quiz\Services;
 
 use App\Domain\Quiz\Repositories\QuizRepositoryContract;
 use App\Domain\Quiz\Services\QuizServiceContract;
