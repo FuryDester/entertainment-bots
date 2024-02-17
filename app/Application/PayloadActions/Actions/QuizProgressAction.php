@@ -196,7 +196,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
         if ($cooldown) {
             $this->sendMessage(
                 $user->getVkPeerId(),
-                "Следующий вопрос будет отправлен через {$this->secondsToHms($cooldown)}."
+                "Следующий вопрос будет отправлен через {$this->secondsToHms($cooldown)}"
             );
         }
 
