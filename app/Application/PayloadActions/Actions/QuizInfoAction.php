@@ -100,7 +100,7 @@ final class QuizInfoAction extends AbstractPayloadAction
             return false;
         }
 
-        if ($data['by_completed']) {
+        if (! $data['by_completed']) {
             $this->sendMessage($message->getPeerId(), 'Вы уже прошли этот тест');
 
             return false;
