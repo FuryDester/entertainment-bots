@@ -13,5 +13,7 @@ interface QuizUserStatusesServiceContract
      */
     public function isQuizDone(QuizDTO $quiz, UserDTO $user): bool;
 
+    public function getByUserAndQuiz(UserDTO $user, QuizDTO $quiz): ?QuizUserStatusDTO;
+
     public function save(QuizUserStatusDTO $dto): bool;
 }

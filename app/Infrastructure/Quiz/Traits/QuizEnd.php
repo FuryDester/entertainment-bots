@@ -4,6 +4,7 @@ namespace App\Infrastructure\Quiz\Traits;
 
 use App\Domain\Common\Services\UserServiceContract;
 use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
+use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Domain\Quiz\Services\QuizStatisticsServiceContract;
 use App\Events\Quiz\QuizCompleted;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
@@ -40,6 +41,12 @@ trait QuizEnd
         /** @var QuizQuestionServiceContract $questionService */
         $questionService = app(QuizQuestionServiceContract::class);
         $questionCount = $questionService->getQuestionsCount($quiz);
+
+        /** @var QuizUserStatusesServiceContract $userStatusService */
+        $userStatusService = app(QuizUserStatusesServiceContract::class);
+        $status = $userStatusService->getByUserAndQuiz($user, $quiz);
+        $status->setIsDone(true)->setDoneAt(now());
+        $userStatusService->save($status);
 
         $this->sendMessage(
             $user->getVkPeerId(),

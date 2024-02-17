@@ -25,6 +25,11 @@ final readonly class QuizUserStatusesService implements QuizUserStatusesServiceC
         return $quiz->isDone();
     }
 
+    public function getByUserAndQuiz(UserDTO $user, QuizDTO $quiz): QuizUserStatusDTO
+    {
+        return $this->repository->getUserQuizStatus($user, $quiz);
+    }
+
     public function save(QuizUserStatusDTO $dto): bool
     {
         return $this->repository->save($dto);
