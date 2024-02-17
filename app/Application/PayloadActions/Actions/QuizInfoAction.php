@@ -120,8 +120,8 @@ final class QuizInfoAction extends AbstractPayloadAction
             $quiz->getDescription() ?: 'Отсутствует',
             $quiz->getStartsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
             $quiz->getEndsAt()?->format('Y-m-d H:i:s') ?: 'Бессрочно',
-            $quiz->getQuestionCooldown() ?
-                "\nИнтервал между вопросами: {$this->secondsToHms($quiz->getQuestionCooldown())}"
+            $quiz->getQuestionCooldown()
+                ? "\nИнтервал между вопросами: {$this->secondsToHms($quiz->getQuestionCooldown())}"
                 : '',
         );
     }
