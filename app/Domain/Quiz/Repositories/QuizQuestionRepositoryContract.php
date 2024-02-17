@@ -14,5 +14,5 @@ interface QuizQuestionRepositoryContract
      *
      * @return QuizQuestionDTO[]
      */
-    public function getQuestionsByQuiz(QuizDTO $quiz, UserDTO $user = null): array;
+    public function getQuestionsByQuiz(QuizDTO $quiz, ?UserDTO $user = null): array;
 }
