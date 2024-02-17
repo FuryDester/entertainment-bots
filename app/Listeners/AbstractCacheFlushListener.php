@@ -10,7 +10,9 @@ abstract class AbstractCacheFlushListener
     /**
      * Create the event listener.
      */
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     /**
      * Handle the event.
@@ -22,7 +24,7 @@ abstract class AbstractCacheFlushListener
             : $this->getCacheTag();
 
         Cache::tags($cacheTags)->flush();
-        Log::info('Flushed cache by tags (event updated): ' . $cacheTags);
+        Log::info('Flushed cache by tags (event updated): '.$cacheTags);
     }
 
     /**

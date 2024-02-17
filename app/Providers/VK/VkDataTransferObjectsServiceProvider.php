@@ -44,7 +44,7 @@ final class VkDataTransferObjectsServiceProvider extends AbstractDependencyServi
     {
         $this->manualBind(
             AccessTokenDTO::class,
-            static fn() => AccessTokenDTO::getInstance()->setAccessToken(config('integrations.vk.access_token')),
+            static fn () => AccessTokenDTO::getInstance()->setAccessToken(config('integrations.vk.access_token')),
         );
     }
 }

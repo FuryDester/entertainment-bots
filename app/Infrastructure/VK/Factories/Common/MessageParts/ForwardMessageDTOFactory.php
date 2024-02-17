@@ -20,7 +20,7 @@ final class ForwardMessageDTOFactory implements ForwardMessageDTOFactoryContract
         int $conversationMessageId,
         array $attachments,
     ): ForwardMessageDTO {
-        return (new ForwardMessageDTO())
+        return (new ForwardMessageDTO)
             ->setDate($date)
             ->setFromId($fromId)
             ->setId($id)
@@ -42,7 +42,7 @@ final class ForwardMessageDTOFactory implements ForwardMessageDTOFactoryContract
             $data['peer_id'],
             $data['text'] ?? null,
             $data['conversation_message_id'],
-            Arr::map($data['attachments'], static fn($attachment) => (object) $attachment),
+            Arr::map($data['attachments'], static fn ($attachment) => (object) $attachment),
         );
     }
 }

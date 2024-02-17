@@ -14,7 +14,7 @@ class VkController extends BaseApiController
 {
     /**
      * Роут для обработки callback-запросов от VK.
-     * Всегда возвращает 200 OK, за исключением случаев, когда произошла ошибка, для возможности повторной отправки запроса.
+     * Всегда возвращает 200 OK, за исключением ошибок, для возможности повторной отправки запроса.
      *
      * @throws Exception
      */
@@ -37,7 +37,7 @@ class VkController extends BaseApiController
         /** @var ActionServiceContract $actionService */
         $actionService = app(ActionServiceContract::class);
         $action = $actionService->getActionByDto($vkEvent);
-        if (!$action) {
+        if (! $action) {
             return $response;
         }
 
@@ -47,7 +47,8 @@ class VkController extends BaseApiController
         $service->save($vkEvent);
 
         $eventProcessingStatus = $result ? 'processed' : 'processing failed';
-        Log::{$result ? 'info' : 'warning'}("Event $eventProcessingStatus: {$vkEvent->getEventId()} with type: {$vkEvent->getType()}");
+        $functionName = $result ? 'info' : 'warning';
+        Log::$functionName("Event $eventProcessingStatus: {$vkEvent->getEventId()} with type: {$vkEvent->getType()}");
 
         return $response;
     }

@@ -34,6 +34,7 @@ final class UserDTO extends AbstractDTO
     public function setId(?int $id): UserDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -45,6 +46,7 @@ final class UserDTO extends AbstractDTO
     public function setVkUserId(int $vkUserId): UserDTO
     {
         $this->vkUserId = $vkUserId;
+
         return $this;
     }
 
@@ -56,6 +58,7 @@ final class UserDTO extends AbstractDTO
     public function setVkPeerId(int $vkPeerId): UserDTO
     {
         $this->vkPeerId = $vkPeerId;
+
         return $this;
     }
 
@@ -67,6 +70,7 @@ final class UserDTO extends AbstractDTO
     public function setIsAdmin(bool $isAdmin): UserDTO
     {
         $this->isAdmin = $isAdmin;
+
         return $this;
     }
 
@@ -78,6 +82,7 @@ final class UserDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): UserDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -89,6 +94,7 @@ final class UserDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): UserDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -100,6 +106,7 @@ final class UserDTO extends AbstractDTO
     public function setState(ActionStageEnum $state): UserDTO
     {
         $this->state = $state;
+
         return $this;
     }
 
@@ -111,6 +118,7 @@ final class UserDTO extends AbstractDTO
     public function setData(?array $data): UserDTO
     {
         $this->data = $data;
+
         return $this;
     }
 
@@ -122,6 +130,7 @@ final class UserDTO extends AbstractDTO
     public function setLastActivityAt(?Carbon $lastActivityAt): UserDTO
     {
         $this->lastActivityAt = $lastActivityAt;
+
         return $this;
     }
 }

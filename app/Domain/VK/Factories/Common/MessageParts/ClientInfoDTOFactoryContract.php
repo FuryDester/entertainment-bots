@@ -8,7 +8,7 @@ use App\Infrastructure\VK\Enums\ButtonActionEnum;
 interface ClientInfoDTOFactoryContract
 {
     /**
-     * @param ButtonActionEnum[] $buttonActions
+     * @param  ButtonActionEnum[]  $buttonActions
      */
     public static function createFromParams(
         array $buttonActions,

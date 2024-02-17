@@ -16,7 +16,7 @@ final class MessageDTOFactory implements MessageDTOFactoryContract
      */
     public static function createFromData(array $data): MessageDTO
     {
-        return (new MessageDTO())
+        return (new MessageDTO)
             ->setId($data['id'])
             ->setConversationMessageId($data['conversation_message_id'])
             ->setOut($data['out'])
@@ -56,7 +56,7 @@ final class MessageDTOFactory implements MessageDTOFactoryContract
         /** @var GeoDTOFactoryContract $geoFactory */
         $geoFactory = app(GeoDTOFactoryContract::class);
 
-        return (new MessageDTO())
+        return (new MessageDTO)
             ->setConversationMessageId($data['conversation_message_id'])
             ->setId($data['id'])
             ->setOut($data['out'])
@@ -71,8 +71,14 @@ final class MessageDTOFactory implements MessageDTOFactoryContract
             ->setAttachments(Arr::map($data['attachments'], static fn (array $attachment) => (object) $attachment))
             ->setImportant($data['important'])
             ->setPayload($data['payload'] ?? null)
-            ->setReplyMessage(($data['reply_message'] ?? null) ? $forwardMessageFactory::createFromApiData($data['reply_message']) : null)
-            ->setFwdMessages(Arr::map($data['fwd_messages'] ?? [], static fn (array $fwdMessage) => $forwardMessageFactory::createFromApiData($fwdMessage)))
+            ->setReplyMessage(($data['reply_message'] ?? null)
+                ? $forwardMessageFactory::createFromApiData($data['reply_message'])
+                : null
+            )
+            ->setFwdMessages(Arr::map(
+                $data['fwd_messages'] ?? [],
+                static fn (array $fwdMessage) => $forwardMessageFactory::createFromApiData($fwdMessage))
+            )
             ->setAction(($data['action'] ?? null) ? $actionFactory::createFromApiData($data['action']) : null)
             ->setAdminAuthorId($data['admin_author_id'] ?? null)
             ->setIsCropped($data['is_cropped'] ?? null)

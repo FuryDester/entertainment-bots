@@ -10,7 +10,7 @@ final class PayloadDTOFactory implements PayloadDTOFactoryContract
 {
     public static function createFromParams(ActionStageEnum $type, ?int $id = null, ?array $data = null): PayloadDTO
     {
-        return (new PayloadDTO())
+        return (new PayloadDTO)
             ->setType($type)
             ->setId($id)
             ->setData($data);

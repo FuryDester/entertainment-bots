@@ -65,6 +65,7 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
         $time = (int) $arguments[0]->getValue();
         if ($time <= 0) {
             $this->sendMessage($message->getPeerId(), 'Время должно быть больше 0.');
+
             return true;
         }
 
@@ -86,7 +87,7 @@ final class TimerCommandExecutor extends AbstractCommandExecutor
             'Таймер на %d %s установлен.%s',
             $time,
             $this->declension($time, ['минуту', 'минуты', 'минут']),
-            $messageText ? (' Текст: ' . $messageText) : '',
+            $messageText ? (' Текст: '.$messageText) : '',
         );
         $this->sendMessage($message->getPeerId(), $outputMessage);
 

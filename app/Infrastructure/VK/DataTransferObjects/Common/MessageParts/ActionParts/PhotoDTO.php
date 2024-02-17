@@ -20,6 +20,7 @@ final class PhotoDTO extends AbstractDTO
     public function setPhoto50(string $photo50): PhotoDTO
     {
         $this->photo50 = $photo50;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ final class PhotoDTO extends AbstractDTO
     public function setPhoto100(string $photo100): PhotoDTO
     {
         $this->photo100 = $photo100;
+
         return $this;
     }
 
@@ -42,6 +44,7 @@ final class PhotoDTO extends AbstractDTO
     public function setPhoto200(string $photo200): PhotoDTO
     {
         $this->photo200 = $photo200;
+
         return $this;
     }
 }

@@ -19,7 +19,7 @@ class QuizQuestionFactory extends Factory
     public function definition(): array
     {
         return [
-            'question' => $this->faker->sentence(5) . '?',
+            'question' => $this->faker->sentence(5).'?',
             'type' => Arr::random(Arr::pluck(QuestionTypeEnum::cases(), 'value')),
             'points' => $this->faker->numberBetween(1, 10),
             'quiz_id' => QuizFactory::class,

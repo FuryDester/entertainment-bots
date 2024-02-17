@@ -6,7 +6,8 @@ interface UploadImageServiceContract
 {
     /**
      * Загружает изображение на сервер ВК
-     * @param string $path Путь к изображению
+     *
+     * @param  string  $path  Путь к изображению
      */
     public function uploadImage(string $path): string;
 }

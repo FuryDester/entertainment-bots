@@ -35,6 +35,7 @@ final class VkEventDTO extends AbstractDTO
     public function setId(?int $id): VkEventDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -46,6 +47,7 @@ final class VkEventDTO extends AbstractDTO
     public function setEventId(string $eventId): VkEventDTO
     {
         $this->eventId = $eventId;
+
         return $this;
     }
 
@@ -57,6 +59,7 @@ final class VkEventDTO extends AbstractDTO
     public function setType(string $type): VkEventDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -68,6 +71,7 @@ final class VkEventDTO extends AbstractDTO
     public function setVersion(string $version): VkEventDTO
     {
         $this->version = $version;
+
         return $this;
     }
 
@@ -79,6 +83,7 @@ final class VkEventDTO extends AbstractDTO
     public function setGroupId(int $groupId): VkEventDTO
     {
         $this->groupId = $groupId;
+
         return $this;
     }
 
@@ -90,6 +95,7 @@ final class VkEventDTO extends AbstractDTO
     public function setObject(string $object): VkEventDTO
     {
         $this->object = $object;
+
         return $this;
     }
 
@@ -101,6 +107,7 @@ final class VkEventDTO extends AbstractDTO
     public function setIsProcessed(bool $isProcessed): VkEventDTO
     {
         $this->isProcessed = $isProcessed;
+
         return $this;
     }
 
@@ -112,6 +119,7 @@ final class VkEventDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): VkEventDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -123,6 +131,7 @@ final class VkEventDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): VkEventDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -134,6 +143,7 @@ final class VkEventDTO extends AbstractDTO
     public function setAttempts(int $attempts): VkEventDTO
     {
         $this->attempts = $attempts;
+
         return $this;
     }
 }

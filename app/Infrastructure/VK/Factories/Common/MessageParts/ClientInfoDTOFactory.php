@@ -19,7 +19,7 @@ final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
         bool $carousel,
         int $langId,
     ): ClientInfoDTO {
-        return (new ClientInfoDTO())
+        return (new ClientInfoDTO)
             ->setButtonActions($buttonActions)
             ->setKeyboard($keyboard)
             ->setInlineKeyboard($inlineKeyboard)
@@ -32,8 +32,8 @@ final class ClientInfoDTOFactory implements ClientInfoDTOFactoryContract
      */
     public static function createFromApiData(array $data): ClientInfoDTO
     {
-        return (new ClientInfoDTO())
-            ->setButtonActions(Arr::map($data['button_actions'], static fn($item) => ButtonActionEnum::tryFrom($item)))
+        return (new ClientInfoDTO)
+            ->setButtonActions(Arr::map($data['button_actions'], static fn ($item) => ButtonActionEnum::tryFrom($item)))
             ->setKeyboard($data['keyboard'])
             ->setInlineKeyboard($data['inline_keyboard'])
             ->setCarousel($data['carousel'])

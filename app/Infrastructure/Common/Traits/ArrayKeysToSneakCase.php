@@ -13,6 +13,7 @@ trait ArrayKeysToSneakCase
         foreach ($array as $key => $value) {
             $result[mb_strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $key))] = $value;
         }
+
         return $result;
     }
 }

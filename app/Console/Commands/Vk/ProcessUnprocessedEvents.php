@@ -22,7 +22,8 @@ final class ProcessUnprocessedEvents extends Command
      *
      * @var string
      */
-    protected $description = 'Повторно обрабатывает необработанные события из таблицы vk_events, если количество попыток обработки меньше указанного в настройках приложения.';
+    protected $description = 'Повторно обрабатывает необработанные события из таблицы vk_events,'
+        .' если количество попыток обработки меньше указанного в настройках приложения.';
 
     /**
      * Execute the console command.
@@ -36,20 +37,24 @@ final class ProcessUnprocessedEvents extends Command
         $events = $service->getUnprocessedWithAttempts(config('integrations.vk.retry'));
         if (empty($events)) {
             $this->info('No unprocessed events found.');
+
             return;
         }
 
-        $this->info('Found ' . count($events) . ' unprocessed events.');
+        $this->info('Found '.count($events).' unprocessed events.');
 
         /** @var ActionServiceContract $actionService */
         $actionService = app(ActionServiceContract::class);
         $this->withProgressBar(count($events), static function ($event) use ($actionService, $service) {
             $action = $actionService->getActionByDto($event);
 
-            if (!$action) {
+            if (! $action) {
                 $this->fullWarnLog("Action not found for event: {$event->getEventId()} with type {$event->getType()}");
                 $service->delete($event->getId());
-                $this->fullWarnLog("Event deleted (action not found): {$event->getEventId()} with type {$event->getType()}. Full json: " . json_encode($event->toArray()));
+                $this->fullWarnLog(
+                    "Event deleted (action not found): {$event->getEventId()} with type {$event->getType()}. Json: "
+                    .json_encode($event->toArray())
+                );
 
                 return;
             }
@@ -62,8 +67,14 @@ final class ProcessUnprocessedEvents extends Command
             $service->save($event);
 
             $eventProcessingStatus = $result ? 'processed' : 'processing failed';
-            $text = "Event $eventProcessingStatus: {$event->getEventId()} with type: {$event->getType()}. Attempts: {$event->getAttempts()}";
-            if (!$result) {
+            $text = sprintf(
+                'Event %s: %s with type: %s. Attempts: %s',
+                $eventProcessingStatus,
+                $event->getEventId(),
+                $event->getType(),
+                $event->getAttempts()
+            );
+            if (! $result) {
                 $this->warn($text);
             }
             Log::{$result ? 'info' : 'warning'}($text);

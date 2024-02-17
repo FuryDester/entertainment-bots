@@ -20,6 +20,7 @@ final class MessageContextDTO extends AbstractDTO
     public function setMessage(MessageDTO $message): MessageContextDTO
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ final class MessageContextDTO extends AbstractDTO
     public function setClientInfo(ClientInfoDTO $clientInfo): MessageContextDTO
     {
         $this->clientInfo = $clientInfo;
+
         return $this;
     }
 }

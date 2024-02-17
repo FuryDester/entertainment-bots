@@ -26,6 +26,7 @@ final class ActionDTO extends AbstractDTO
     public function setType(MessageEventTypeEnum $type): ActionDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ final class ActionDTO extends AbstractDTO
     public function setMemberId(?int $memberId): ActionDTO
     {
         $this->memberId = $memberId;
+
         return $this;
     }
 
@@ -48,6 +50,7 @@ final class ActionDTO extends AbstractDTO
     public function setText(?string $text): ActionDTO
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -59,6 +62,7 @@ final class ActionDTO extends AbstractDTO
     public function setEmail(?string $email): ActionDTO
     {
         $this->email = $email;
+
         return $this;
     }
 
@@ -70,6 +74,7 @@ final class ActionDTO extends AbstractDTO
     public function setPhoto(?PhotoDTO $photo): ActionDTO
     {
         $this->photo = $photo;
+
         return $this;
     }
 }

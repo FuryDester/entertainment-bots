@@ -14,6 +14,7 @@ final class ActionService implements ActionServiceContract
 {
     /**
      * {@inheritDoc}
+     *
      * @throws Exception
      */
     public function getActionByDto(VkEventDTO $dto): ?Actionable
@@ -31,8 +32,9 @@ final class ActionService implements ActionServiceContract
 
         foreach ($actions as $action) {
             $class = app($action);
-            if (!($class instanceof Actionable)) {
-                Log::error('Action is not instance of Actionable! Action: ' . $action);
+            if (! ($class instanceof Actionable)) {
+                Log::error('Action is not instance of Actionable! Action: '.$action);
+
                 continue;
             }
 

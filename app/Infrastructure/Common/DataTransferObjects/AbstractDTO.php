@@ -9,7 +9,7 @@ use ReflectionClass;
 abstract class AbstractDTO implements Arrayable
 {
     /**
-     * @param iterable $values массив значений переменных
+     * @param  iterable  $values  массив значений переменных
      */
     final public function __construct(iterable $values = [])
     {
@@ -23,7 +23,7 @@ abstract class AbstractDTO implements Arrayable
     }
 
     /**
-     * @param iterable $values массив значений класса
+     * @param  iterable  $values  массив значений класса
      * @return self инстанс класса
      */
     public static function getInstance(iterable $values = []): self
@@ -32,7 +32,7 @@ abstract class AbstractDTO implements Arrayable
     }
 
     /**
-     * @param array $values массив значений переменных класса
+     * @param  array  $values  массив значений переменных класса
      * @return self инстанс класса
      */
     final public static function __set_state(array $values): self
@@ -43,7 +43,7 @@ abstract class AbstractDTO implements Arrayable
     /**
      * Функция получения аттрибутов объекта
      *
-     * @param int $mode режим вывода переменных (по умолчанию - защищённые (имеющие сеттеры и геттеры))
+     * @param  int  $mode  режим вывода переменных (по умолчанию - защищённые (имеющие сеттеры и геттеры))
      * @return array<int, array{name: string, type: string, default: mixed}> список переменных класса
      */
     final public static function getProperties(int $mode = \ReflectionProperty::IS_PROTECTED): array

@@ -36,7 +36,7 @@ abstract class AbstractCommandExecutor
     /**
      * Выполнение команды
      *
-     * @param CommandArgumentDTO[] $arguments
+     * @param  CommandArgumentDTO[]  $arguments
      */
     abstract protected function execute(MessageDTO $message, array $arguments): bool;
 
@@ -60,7 +60,7 @@ abstract class AbstractCommandExecutor
      */
     public function run(MessageDTO $message): bool
     {
-        if (!($text = $message->getText())) {
+        if (! ($text = $message->getText())) {
             return false;
         }
 
@@ -74,6 +74,7 @@ abstract class AbstractCommandExecutor
                 'arguments' => [],
                 'message' => $message->toArray(),
             ]);
+
             return $this->execute($message, []);
         }
 
@@ -88,7 +89,7 @@ abstract class AbstractCommandExecutor
             $arguments[$partNumber]->setValue($part);
         }
         $arguments[count($arguments) - 1]->setValue(implode(' ', $lastArgumentValue));
-        Log::info("Parsed arguments from string", [
+        Log::info('Parsed arguments from string', [
             'arguments' => $arguments,
             'message' => $message->getText(),
         ]);
@@ -97,6 +98,7 @@ abstract class AbstractCommandExecutor
             'arguments' => $arguments,
             'message' => $message->toArray(),
         ]);
+
         return $this->execute($message, $arguments);
     }
 
@@ -113,5 +115,4 @@ abstract class AbstractCommandExecutor
             implode(', ', $this->getAliases())
         );
     }
-
 }

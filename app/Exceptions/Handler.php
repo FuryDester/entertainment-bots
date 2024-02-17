@@ -4,8 +4,8 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response as HttpResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response as HttpResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
@@ -37,7 +37,7 @@ class Handler extends ExceptionHandler
                 ],
             ];
 
-            if (!app()->isProduction()) {
+            if (! app()->isProduction()) {
                 $data['data'] = [
                     ...$data['data'],
                     'file' => $e->getFile(),
@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
     {
         return match (true) {
             property_exists($e, 'status') => $e->status, // Если у исключений определен статус ошибки,
-            method_exists($e, 'getStatusCode') => $e->getStatusCode(), // Если у исключения определен метод получения кода ошибки
+            method_exists($e, 'getStatusCode') => $e->getStatusCode(), // Определён метод получения кода ошибки
             default => Response::HTTP_INTERNAL_SERVER_ERROR
         };
     }

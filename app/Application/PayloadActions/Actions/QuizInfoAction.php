@@ -20,9 +20,9 @@ use Sally\VkKeyboard\Facade;
 
 final class QuizInfoAction extends AbstractPayloadAction
 {
-    use SendMessage;
     use QuizAvailability;
     use SecondsToHms;
+    use SendMessage;
 
     public function getActionName(): ActionStageEnum
     {
@@ -30,7 +30,7 @@ final class QuizInfoAction extends AbstractPayloadAction
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getPossibleActions(): array
     {
@@ -44,17 +44,18 @@ final class QuizInfoAction extends AbstractPayloadAction
         $quizService = app(QuizServiceContract::class);
 
         $quiz = $quizService->getQuizById($id);
-        if (!$quiz) {
+        if (! $quiz) {
             Log::warning('Quiz not found', [
                 'quiz_id' => $id,
                 'user' => $user->toArray(),
             ]);
 
             $this->sendMessage($message->getPeerId(), 'Указанный тест не найден');
+
             return true;
         }
 
-        if (!$this->canStartQuiz($message, $quiz, $user)) {
+        if (! $this->canStartQuiz($message, $quiz, $user)) {
             Log::warning('Quiz not available', [
                 'quiz_id' => $id,
                 'user' => $user->toArray(),
@@ -82,6 +83,7 @@ final class QuizInfoAction extends AbstractPayloadAction
             'quiz' => $quiz->toArray(),
             'user' => $user->toArray(),
         ]);
+
         return true;
     }
 
@@ -92,13 +94,15 @@ final class QuizInfoAction extends AbstractPayloadAction
     private function canStartQuiz(MessageDTO $message, QuizDTO $quiz, UserDTO $user): bool
     {
         $data = $this->checkQuizAvailability($quiz, $user);
-        if (!$data['by_time']) {
+        if (! $data['by_time']) {
             $this->sendMessage($message->getPeerId(), 'Тест еще не начался или уже закончился');
+
             return false;
         }
 
         if ($data['by_completed']) {
             $this->sendMessage($message->getPeerId(), 'Вы уже прошли этот тест');
+
             return false;
         }
 
@@ -117,7 +121,7 @@ final class QuizInfoAction extends AbstractPayloadAction
             $quiz->getStartsAt()->format('Y-m-d H:i:s'),
             $quiz->getEndsAt()->format('Y-m-d H:i:s'),
             $quiz->getQuestionCooldown() ?
-                "\nИнтервал между вопросами: " . $this->secondsToHms($quiz->getQuestionCooldown()) . ' сек.'
+                "\nИнтервал между вопросами: ".$this->secondsToHms($quiz->getQuestionCooldown()).' сек.'
                 : '',
         );
     }

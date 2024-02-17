@@ -8,7 +8,9 @@ use App\Infrastructure\VK\DataTransferObjects\Models\VkEventDTO;
 
 final class VkEventService implements VkEventServiceContract
 {
-    public function __construct(protected VkEventRepositoryContract $repository) {}
+    public function __construct(protected VkEventRepositoryContract $repository)
+    {
+    }
 
     /**
      * {@inheritDoc}

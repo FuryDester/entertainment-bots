@@ -21,6 +21,7 @@ final class PayloadDTO extends AbstractDTO
     public function setType(ActionStageEnum $type): PayloadDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -32,6 +33,7 @@ final class PayloadDTO extends AbstractDTO
     public function setId(?int $id): PayloadDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -43,6 +45,7 @@ final class PayloadDTO extends AbstractDTO
     public function setData(?array $data): PayloadDTO
     {
         $this->data = $data;
+
         return $this;
     }
 }

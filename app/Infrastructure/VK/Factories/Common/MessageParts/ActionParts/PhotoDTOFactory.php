@@ -9,7 +9,7 @@ final class PhotoDTOFactory implements PhotoDTOFactoryContract
 {
     public static function createFromParams(string $photo50, string $photo100, string $photo200): PhotoDTO
     {
-        return (new PhotoDTO())
+        return (new PhotoDTO)
             ->setPhoto50($photo50)
             ->setPhoto100($photo100)
             ->setPhoto200($photo200);

@@ -14,7 +14,7 @@ final class UserDTOFactory implements UserDTOFactoryContract
      */
     public static function createFromData(array $data): UserDTO
     {
-        return (new UserDTO())
+        return (new UserDTO)
             ->setId($data['id'] ?? null)
             ->setVkUserId($data['vk_user_id'])
             ->setVkPeerId($data['vk_peer_id'])

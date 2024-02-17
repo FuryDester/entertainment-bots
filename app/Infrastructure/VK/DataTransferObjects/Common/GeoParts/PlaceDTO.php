@@ -42,6 +42,7 @@ final class PlaceDTO extends AbstractDTO
     public function setId(int $id): PlaceDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ final class PlaceDTO extends AbstractDTO
     public function setTitle(?string $title): PlaceDTO
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -64,6 +66,7 @@ final class PlaceDTO extends AbstractDTO
     public function setLatitude(?float $latitude): PlaceDTO
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -75,6 +78,7 @@ final class PlaceDTO extends AbstractDTO
     public function setLongitude(?float $longitude): PlaceDTO
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 
@@ -86,6 +90,7 @@ final class PlaceDTO extends AbstractDTO
     public function setCreated(?int $created): PlaceDTO
     {
         $this->created = $created;
+
         return $this;
     }
 
@@ -97,6 +102,7 @@ final class PlaceDTO extends AbstractDTO
     public function setIcon(?string $icon): PlaceDTO
     {
         $this->icon = $icon;
+
         return $this;
     }
 
@@ -108,6 +114,7 @@ final class PlaceDTO extends AbstractDTO
     public function setCountry(int $country): PlaceDTO
     {
         $this->country = $country;
+
         return $this;
     }
 
@@ -119,6 +126,7 @@ final class PlaceDTO extends AbstractDTO
     public function setCity(string $city): PlaceDTO
     {
         $this->city = $city;
+
         return $this;
     }
 
@@ -130,6 +138,7 @@ final class PlaceDTO extends AbstractDTO
     public function setType(?int $type): PlaceDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -141,6 +150,7 @@ final class PlaceDTO extends AbstractDTO
     public function setGroupId(?int $groupId): PlaceDTO
     {
         $this->groupId = $groupId;
+
         return $this;
     }
 
@@ -152,6 +162,7 @@ final class PlaceDTO extends AbstractDTO
     public function setGroupPhoto(?string $groupPhoto): PlaceDTO
     {
         $this->groupPhoto = $groupPhoto;
+
         return $this;
     }
 
@@ -163,6 +174,7 @@ final class PlaceDTO extends AbstractDTO
     public function setCheckins(?int $checkins): PlaceDTO
     {
         $this->checkins = $checkins;
+
         return $this;
     }
 
@@ -174,6 +186,7 @@ final class PlaceDTO extends AbstractDTO
     public function setUpdated(?int $updated): PlaceDTO
     {
         $this->updated = $updated;
+
         return $this;
     }
 
@@ -185,6 +198,7 @@ final class PlaceDTO extends AbstractDTO
     public function setAddress(?int $address): PlaceDTO
     {
         $this->address = $address;
+
         return $this;
     }
 }

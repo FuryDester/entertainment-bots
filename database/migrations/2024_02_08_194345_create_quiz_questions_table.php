@@ -1,10 +1,10 @@
 <?php
 
+use App\Infrastructure\Quiz\Enums\QuestionTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Arr;
-use App\Infrastructure\Quiz\Enums\QuestionTypeEnum;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {

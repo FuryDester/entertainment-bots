@@ -7,7 +7,7 @@ use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\ForwardMessage
 interface ForwardMessageDTOFactoryContract
 {
     /**
-     * @param object[] $attachments
+     * @param  object[]  $attachments
      */
     public static function createFromParams(
         int $date,

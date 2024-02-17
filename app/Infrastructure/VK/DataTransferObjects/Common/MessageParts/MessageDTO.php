@@ -67,6 +67,7 @@ final class MessageDTO extends AbstractDTO
     public function setId(int $id): MessageDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -78,6 +79,7 @@ final class MessageDTO extends AbstractDTO
     public function setConversationMessageId(int $conversationMessageId): MessageDTO
     {
         $this->conversationMessageId = $conversationMessageId;
+
         return $this;
     }
 
@@ -89,6 +91,7 @@ final class MessageDTO extends AbstractDTO
     public function setOut(int $out): MessageDTO
     {
         $this->out = $out;
+
         return $this;
     }
 
@@ -100,6 +103,7 @@ final class MessageDTO extends AbstractDTO
     public function setPeerId(int $peerId): MessageDTO
     {
         $this->peerId = $peerId;
+
         return $this;
     }
 
@@ -111,6 +115,7 @@ final class MessageDTO extends AbstractDTO
     public function setFromId(int $fromId): MessageDTO
     {
         $this->fromId = $fromId;
+
         return $this;
     }
 
@@ -122,6 +127,7 @@ final class MessageDTO extends AbstractDTO
     public function setText(?string $text): MessageDTO
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -133,6 +139,7 @@ final class MessageDTO extends AbstractDTO
     public function setDate(int $date): MessageDTO
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -144,6 +151,7 @@ final class MessageDTO extends AbstractDTO
     public function setUpdateTime(?int $updateTime): MessageDTO
     {
         $this->updateTime = $updateTime;
+
         return $this;
     }
 
@@ -155,6 +163,7 @@ final class MessageDTO extends AbstractDTO
     public function setRandomId(int $randomId): MessageDTO
     {
         $this->randomId = $randomId;
+
         return $this;
     }
 
@@ -166,6 +175,7 @@ final class MessageDTO extends AbstractDTO
     public function setRef(?string $ref): MessageDTO
     {
         $this->ref = $ref;
+
         return $this;
     }
 
@@ -177,6 +187,7 @@ final class MessageDTO extends AbstractDTO
     public function setRefSource(?string $refSource): MessageDTO
     {
         $this->refSource = $refSource;
+
         return $this;
     }
 
@@ -189,11 +200,12 @@ final class MessageDTO extends AbstractDTO
     }
 
     /**
-     * @param object[] $attachments
+     * @param  object[]  $attachments
      */
     public function setAttachments(array $attachments): MessageDTO
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
@@ -205,6 +217,7 @@ final class MessageDTO extends AbstractDTO
     public function setImportant(bool $important): MessageDTO
     {
         $this->important = $important;
+
         return $this;
     }
 
@@ -216,6 +229,7 @@ final class MessageDTO extends AbstractDTO
     public function setPayload(?string $payload): MessageDTO
     {
         $this->payload = $payload;
+
         return $this;
     }
 
@@ -227,6 +241,7 @@ final class MessageDTO extends AbstractDTO
     public function setReplyMessage(?ForwardMessageDTO $replyMessage): MessageDTO
     {
         $this->replyMessage = $replyMessage;
+
         return $this;
     }
 
@@ -239,11 +254,12 @@ final class MessageDTO extends AbstractDTO
     }
 
     /**
-     * @param ForwardMessageDTO[]|null $fwdMessages
+     * @param  ForwardMessageDTO[]|null  $fwdMessages
      */
     public function setFwdMessages(?array $fwdMessages): MessageDTO
     {
         $this->fwdMessages = $fwdMessages;
+
         return $this;
     }
 
@@ -255,6 +271,7 @@ final class MessageDTO extends AbstractDTO
     public function setAction(?ActionDTO $action): MessageDTO
     {
         $this->action = $action;
+
         return $this;
     }
 
@@ -266,6 +283,7 @@ final class MessageDTO extends AbstractDTO
     public function setAdminAuthorId(?int $adminAuthorId): MessageDTO
     {
         $this->adminAuthorId = $adminAuthorId;
+
         return $this;
     }
 
@@ -277,6 +295,7 @@ final class MessageDTO extends AbstractDTO
     public function setIsCropped(?bool $isCropped): MessageDTO
     {
         $this->isCropped = $isCropped;
+
         return $this;
     }
 
@@ -288,6 +307,7 @@ final class MessageDTO extends AbstractDTO
     public function setMembersCount(?int $membersCount): MessageDTO
     {
         $this->membersCount = $membersCount;
+
         return $this;
     }
 
@@ -299,6 +319,7 @@ final class MessageDTO extends AbstractDTO
     public function setWasListened(?bool $wasListened): MessageDTO
     {
         $this->wasListened = $wasListened;
+
         return $this;
     }
 
@@ -310,6 +331,7 @@ final class MessageDTO extends AbstractDTO
     public function setPinnedAt(?int $pinnedAt): MessageDTO
     {
         $this->pinnedAt = $pinnedAt;
+
         return $this;
     }
 
@@ -321,6 +343,7 @@ final class MessageDTO extends AbstractDTO
     public function setMessageTag(?string $messageTag): MessageDTO
     {
         $this->messageTag = $messageTag;
+
         return $this;
     }
 
@@ -332,6 +355,7 @@ final class MessageDTO extends AbstractDTO
     public function setIsExpired(?bool $isExpired): MessageDTO
     {
         $this->isExpired = $isExpired;
+
         return $this;
     }
 
@@ -343,6 +367,7 @@ final class MessageDTO extends AbstractDTO
     public function setGeo(?GeoDTO $geo): MessageDTO
     {
         $this->geo = $geo;
+
         return $this;
     }
 }

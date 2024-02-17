@@ -22,6 +22,7 @@ final class CommandArgumentDTO extends AbstractDTO
     public function setAlias(string $alias): CommandArgumentDTO
     {
         $this->alias = $alias;
+
         return $this;
     }
 
@@ -33,6 +34,7 @@ final class CommandArgumentDTO extends AbstractDTO
     public function setDescription(string $description): CommandArgumentDTO
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -44,6 +46,7 @@ final class CommandArgumentDTO extends AbstractDTO
     public function setValue(?string $value): CommandArgumentDTO
     {
         $this->value = $value;
+
         return $this;
     }
 
@@ -55,6 +58,7 @@ final class CommandArgumentDTO extends AbstractDTO
     public function setRequired(bool $required): CommandArgumentDTO
     {
         $this->required = $required;
+
         return $this;
     }
 }

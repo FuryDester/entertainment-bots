@@ -12,7 +12,7 @@ final class PlaceDTOFactory implements PlaceDTOFactoryContract
      */
     public static function createFromData(array $data): PlaceDTO
     {
-        return (new PlaceDTO())
+        return (new PlaceDTO)
             ->setId($data['id'])
             ->setTitle($data['title'] ?? null)
             ->setLatitude($data['latitude'] ?? null)

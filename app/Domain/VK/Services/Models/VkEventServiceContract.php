@@ -21,20 +21,22 @@ interface VkEventServiceContract
      * Удаление событий, которые были созданы более $days дней назад.
      * Возвращает количество удаленных событий.
      *
-     * @param int $days Количество дней, после которых события будут удалены.
-     * @param bool $processed Если true, то будут удалены только обработанные события, иначе - только необработанные.
+     * @param  int  $days  Количество дней, после которых события будут удалены.
+     * @param  bool  $processed  Если true, то будут удалены только обработанные события, иначе - только необработанные.
      */
     public function removeOldEvents(int $days, bool $processed): int;
 
     /**
      * Получение необработанных событий, у которых количество попыток обработки меньше $maxAttempts.
-     * @param int $maxAttempts Максимальное количество попыток обработки.
+     *
+     * @param  int  $maxAttempts  Максимальное количество попыток обработки.
      * @return VkEventDTO[]
      */
     public function getUnprocessedWithAttempts(int $maxAttempts): array;
 
     /**
      * Удаление события по его ID.
+     *
      * @return bool Успешно ли удаление.
      */
     public function delete(int $id): bool;

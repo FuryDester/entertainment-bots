@@ -13,7 +13,7 @@ final class QuizDTOFactory implements QuizDTOFactoryContract
      */
     public static function createFromData(array $data): QuizDTO
     {
-        return (new QuizDTO())
+        return (new QuizDTO)
             ->setId($data['id'] ?? null)
             ->setTitle($data['title'])
             ->setDescription($data['description'] ?? '')

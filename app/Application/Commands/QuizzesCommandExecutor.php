@@ -63,6 +63,7 @@ final class QuizzesCommandExecutor extends AbstractCommandExecutor
                 $message->getPeerId(),
                 'На данный момент доступные для прохождения викторины отсутствуют.'
             );
+
             return true;
         }
 
@@ -77,10 +78,12 @@ final class QuizzesCommandExecutor extends AbstractCommandExecutor
                     $factory->text($quiz->getTitle(), $payload->toArray(), Text::COLOR_RED),
                 ];
             }
+
             return $keyboardData;
         });
 
         $this->sendMessage($message->getPeerId(), 'Доступные викторины', ['keyboard' => $keyboard]);
+
         return true;
     }
 

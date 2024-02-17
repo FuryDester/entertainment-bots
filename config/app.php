@@ -1,5 +1,6 @@
 <?php
 
+use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
@@ -210,7 +211,6 @@ return [
 
     // Payload workers, which will react on special payload messages
     'payload_workers' => [
-        \App\Infrastructure\PayloadActions\Enums\ActionStageEnum::QuizInfo->value
-        => \App\Application\PayloadActions\Actions\QuizInfoAction::class,
+        ActionStageEnum::QuizInfo->value => \App\Application\PayloadActions\Actions\QuizInfoAction::class,
     ],
 ];

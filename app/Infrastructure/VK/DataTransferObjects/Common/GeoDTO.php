@@ -22,6 +22,7 @@ final class GeoDTO extends AbstractDTO
     public function setType(int $type): GeoDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -33,6 +34,7 @@ final class GeoDTO extends AbstractDTO
     public function setCoordinates(CoordinatesDTO $coordinates): GeoDTO
     {
         $this->coordinates = $coordinates;
+
         return $this;
     }
 
@@ -44,6 +46,7 @@ final class GeoDTO extends AbstractDTO
     public function setPlace(?PlaceDTO $place): GeoDTO
     {
         $this->place = $place;
+
         return $this;
     }
 }

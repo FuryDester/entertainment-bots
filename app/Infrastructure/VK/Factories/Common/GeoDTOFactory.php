@@ -13,7 +13,7 @@ final class GeoDTOFactory implements GeoDTOFactoryContract
 {
     public static function createFromParams(int $type, CoordinatesDTO $coordinates, ?PlaceDTO $place): GeoDTO
     {
-        return (new GeoDTO())
+        return (new GeoDTO)
             ->setType($type)
             ->setCoordinates($coordinates)
             ->setPlace($place);
@@ -29,7 +29,7 @@ final class GeoDTOFactory implements GeoDTOFactoryContract
         /** @var PlaceDTOFactoryContract $placeFactory */
         $placeFactory = app(PlaceDTOFactoryContract::class);
 
-        return (new GeoDTO())
+        return (new GeoDTO)
             ->setType($data['type'])
             ->setCoordinates($coordinatesFactory::createFromApiData($data['coordinates']))
             ->setPlace(($data['place'] ?? null) ? $placeFactory::createFromData($data['place']) : null);

@@ -9,7 +9,7 @@ final class CoordinatesDTOFactory implements CoordinatesDTOFactoryContract
 {
     public static function createFromParams(float $latitude, float $longitude): CoordinatesDTO
     {
-        return (new CoordinatesDTO())
+        return (new CoordinatesDTO)
             ->setLatitude($latitude)
             ->setLongitude($longitude);
     }

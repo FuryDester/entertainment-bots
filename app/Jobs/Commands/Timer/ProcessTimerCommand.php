@@ -25,14 +25,15 @@ final class ProcessTimerCommand implements ShouldQueue
      */
     public function __construct(
         public TimerJobPayloadDTO $payload,
-    ) {}
+    ) {
+    }
 
     /**
      * Execute the job.
      */
     public function handle(): void
     {
-        $vkClient = new VKApiClient();
+        $vkClient = new VKApiClient;
 
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
@@ -48,7 +49,7 @@ final class ProcessTimerCommand implements ShouldQueue
             $mention,
             $this->payload->getMinutes(),
             $this->declension($this->payload->getMinutes(), ['минуту', 'минуты', 'минут']),
-            $this->payload->getMessage() ? (' Текст: ' . $this->payload->getMessage()) : '',
+            $this->payload->getMessage() ? (' Текст: '.$this->payload->getMessage()) : '',
         );
         try {
             $vkClient->messages()->send($accessToken->getAccessToken(), [

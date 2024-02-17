@@ -71,10 +71,10 @@ final class MessageNewAction implements Actionable
     /**
      * @throws Exception
      */
-    private static function processCommands(MessageDTO $message): bool|null
+    private static function processCommands(MessageDTO $message): ?bool
     {
         $commandPrefix = config('integrations.vk.command_prefix');
-        if (!str_starts_with($message->getText(), $commandPrefix)) {
+        if (! str_starts_with($message->getText(), $commandPrefix)) {
             return null;
         }
 
@@ -92,29 +92,29 @@ final class MessageNewAction implements Actionable
         return self::tryRunExecutor($commandInput, $message, $executors);
     }
 
-    private static function processPayloadMessages(MessageDTO $message): bool|null
+    private static function processPayloadMessages(MessageDTO $message): ?bool
     {
         $payload = $message->getPayload();
-        if (!$payload) {
+        if (! $payload) {
             return null;
         }
 
         $payloadData = json_decode($payload, true);
-        if (!$payloadData || !is_array($payloadData)) {
+        if (! $payloadData || ! is_array($payloadData)) {
             return null;
         }
 
         return self::processPreparedPayload($payloadData, $message);
     }
 
-    private static function tryRunExecutor(string $commandInput, MessageDTO $message, array $executors): bool|null
+    private static function tryRunExecutor(string $commandInput, MessageDTO $message, array $executors): ?bool
     {
         $isPersonal = config('integrations.vk.peer_id_delta') < $message->getPeerId();
 
         foreach ($executors as $executor) {
             /** @var AbstractCommandExecutor $executor */
             $executor = app($executor);
-            if (!in_array($commandInput, $executor->getAliases())) {
+            if (! in_array($commandInput, $executor->getAliases())) {
                 continue;
             }
 
@@ -140,10 +140,10 @@ final class MessageNewAction implements Actionable
         return null;
     }
 
-    private static function processPreparedPayload(array $payloadData, MessageDTO $message): bool|null
+    private static function processPreparedPayload(array $payloadData, MessageDTO $message): ?bool
     {
         $payloadValidator = Validator::make($payloadData, [
-            'type' => ['required', 'string', 'in:' . implode(',', Arr::pluck(ActionStageEnum::cases(), 'value'))],
+            'type' => ['required', 'string', 'in:'.implode(',', Arr::pluck(ActionStageEnum::cases(), 'value'))],
             'id' => ['nullable', 'integer'],
             'data' => ['nullable', 'array'],
         ]);
@@ -176,6 +176,7 @@ final class MessageNewAction implements Actionable
             }
 
             $user = self::getUserDto($message->getFromId(), $message->getPeerId());
+
             return self::tryHandleWorker($message, $worker, $user, $payloadDTO);
         }
 
@@ -183,6 +184,7 @@ final class MessageNewAction implements Actionable
             'payload' => $payloadDTO->toArray(),
             'message' => $message->toArray(),
         ]);
+
         return null;
     }
 
@@ -194,7 +196,7 @@ final class MessageNewAction implements Actionable
         /** @var UserServiceContract $userService */
         $userService = app(UserServiceContract::class);
         $user = $userService->findByVkIdAndPeerId($vkUserId, $peerId);
-        if (!$user) {
+        if (! $user) {
             /** @var UserDTOFactoryContract $userFactory */
             $userFactory = app(UserDTOFactoryContract::class);
 
@@ -215,10 +217,10 @@ final class MessageNewAction implements Actionable
         AbstractPayloadAction $worker,
         UserDTO $user,
         PayloadDTO $payload
-    ): bool|null {
+    ): ?bool {
         /** @var PayloadActionServiceContract $payloadService */
         $payloadService = app(PayloadActionServiceContract::class);
-        if (!$payloadService->canHandle($payload->getType()->value, $user)) {
+        if (! $payloadService->canHandle($payload->getType()->value, $user)) {
             Log::warning('Payload worker cannot handle', [
                 'worker' => $worker::class,
                 'payload' => $payload->toArray(),
@@ -235,6 +237,7 @@ final class MessageNewAction implements Actionable
             'message' => $message->toArray(),
             'user' => $user->toArray(),
         ]);
+
         return $worker->run($message, $payload, $user);
     }
 }

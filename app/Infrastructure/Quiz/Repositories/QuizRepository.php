@@ -67,6 +67,7 @@ final class QuizRepository implements QuizRepositoryContract
 
         /** @var QuizDTOFactoryContract $quizFactory */
         $quizFactory = app(QuizDTOFactoryContract::class);
+
         return $quizzes
             ->map(static fn (Quiz $quiz) => $quizFactory::createFromData($quiz->toArray()))
             // Поскольку результаты кэшируются, то нам необходимо отфильтровать по дате вручную

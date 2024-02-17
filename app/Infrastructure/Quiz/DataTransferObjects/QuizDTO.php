@@ -3,7 +3,6 @@
 namespace App\Infrastructure\Quiz\DataTransferObjects;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
-use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use Carbon\Carbon;
 
 final class QuizDTO extends AbstractDTO
@@ -36,6 +35,7 @@ final class QuizDTO extends AbstractDTO
     public function setId(?int $id): QuizDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -47,6 +47,7 @@ final class QuizDTO extends AbstractDTO
     public function setTitle(string $title): QuizDTO
     {
         $this->title = $title;
+
         return $this;
     }
 
@@ -58,6 +59,7 @@ final class QuizDTO extends AbstractDTO
     public function setDescription(string $description): QuizDTO
     {
         $this->description = $description;
+
         return $this;
     }
 
@@ -69,6 +71,7 @@ final class QuizDTO extends AbstractDTO
     public function setImage(string $image): QuizDTO
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -80,6 +83,7 @@ final class QuizDTO extends AbstractDTO
     public function setStartsAt(?Carbon $startsAt): QuizDTO
     {
         $this->startsAt = $startsAt;
+
         return $this;
     }
 
@@ -91,6 +95,7 @@ final class QuizDTO extends AbstractDTO
     public function setEndsAt(?Carbon $endsAt): QuizDTO
     {
         $this->endsAt = $endsAt;
+
         return $this;
     }
 
@@ -102,6 +107,7 @@ final class QuizDTO extends AbstractDTO
     public function setActionId(?int $actionId): QuizDTO
     {
         $this->actionId = $actionId;
+
         return $this;
     }
 
@@ -113,6 +119,7 @@ final class QuizDTO extends AbstractDTO
     public function setQuestionCooldown(int $questionCooldown): QuizDTO
     {
         $this->questionCooldown = $questionCooldown;
+
         return $this;
     }
 
@@ -124,6 +131,7 @@ final class QuizDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): QuizDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -135,6 +143,7 @@ final class QuizDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): QuizDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }

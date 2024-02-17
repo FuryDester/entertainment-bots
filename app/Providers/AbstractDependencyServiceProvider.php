@@ -13,9 +13,6 @@ abstract class AbstractDependencyServiceProvider extends ServiceProvider impleme
 
     protected array $manualBindings = [];
 
-    /**
-     * @return array
-     */
     public function provides(): array
     {
         return [

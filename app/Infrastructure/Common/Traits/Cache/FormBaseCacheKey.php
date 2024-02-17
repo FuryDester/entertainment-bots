@@ -9,21 +9,20 @@ trait FormBaseCacheKey
     /**
      * Функция для генерации базового ключа кэша по имени и параметрам функции
      *
-     * @param mixed ...$args Аргументы вызывающей функции, которые могут влиять на кэш
-     * @return string
+     * @param  mixed  ...$args  Аргументы вызывающей функции, которые могут влиять на кэш
      */
     protected function formBaseCacheKey(mixed ...$args): string
     {
-        list(, $caller) = debug_backtrace();
+        [, $caller] = debug_backtrace();
 
         $baseName = sprintf('%s::%s', $caller['class'], $caller['function']);
 
         foreach ($args as $arg) {
             // Можно ли преобразовать в строку без танцев с бубном
             if (
-                !is_array($arg)
+                ! is_array($arg)
                 && (
-                    (!is_object($arg) && settype($arg, 'string') !== false)
+                    (! is_object($arg) && settype($arg, 'string') !== false)
                     || (is_object($arg) && method_exists($arg, '__toString'))
                 )
             ) {
@@ -36,7 +35,7 @@ trait FormBaseCacheKey
                 sort($arg);
             }
 
-            $baseName .= '_' . serialize($arg);
+            $baseName .= '_'.serialize($arg);
         }
 
         return $baseName;

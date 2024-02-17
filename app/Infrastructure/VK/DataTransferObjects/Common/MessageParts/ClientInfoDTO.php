@@ -27,11 +27,12 @@ final class ClientInfoDTO extends AbstractDTO
     }
 
     /**
-     * @param ButtonActionEnum[] $buttonActions
+     * @param  ButtonActionEnum[]  $buttonActions
      */
     public function setButtonActions(array $buttonActions): ClientInfoDTO
     {
         $this->buttonActions = $buttonActions;
+
         return $this;
     }
 
@@ -43,6 +44,7 @@ final class ClientInfoDTO extends AbstractDTO
     public function setKeyboard(bool $keyboard): ClientInfoDTO
     {
         $this->keyboard = $keyboard;
+
         return $this;
     }
 
@@ -54,6 +56,7 @@ final class ClientInfoDTO extends AbstractDTO
     public function setInlineKeyboard(bool $inlineKeyboard): ClientInfoDTO
     {
         $this->inlineKeyboard = $inlineKeyboard;
+
         return $this;
     }
 
@@ -65,6 +68,7 @@ final class ClientInfoDTO extends AbstractDTO
     public function setCarousel(bool $carousel): ClientInfoDTO
     {
         $this->carousel = $carousel;
+
         return $this;
     }
 
@@ -76,6 +80,7 @@ final class ClientInfoDTO extends AbstractDTO
     public function setLangId(int $langId): ClientInfoDTO
     {
         $this->langId = $langId;
+
         return $this;
     }
 }

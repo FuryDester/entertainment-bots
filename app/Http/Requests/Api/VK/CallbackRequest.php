@@ -33,6 +33,7 @@ final class CallbackRequest extends FormRequest implements ShouldFormDTO
     {
         /** @var CallbackRequestDTOFactoryContract $factory */
         $factory = app(CallbackRequestDTOFactoryContract::class);
+
         return $factory::createFromRequest($this->safe()->toArray());
     }
 }

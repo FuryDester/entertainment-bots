@@ -10,7 +10,7 @@ final class CallbackRequestDTOFactory implements CallbackRequestDTOFactoryContra
 {
     public static function createFromRequest(array $data): CallbackRequestDTO
     {
-        return (new CallbackRequestDTO())
+        return (new CallbackRequestDTO)
             ->setType($data['type'])
             ->setEventId($data['event_id'])
             ->setVersion($data['v'])
@@ -21,7 +21,7 @@ final class CallbackRequestDTOFactory implements CallbackRequestDTOFactoryContra
 
     public static function createFromVkEvent(VkEventDTO $dto): CallbackRequestDTO
     {
-        return (new CallbackRequestDTO())
+        return (new CallbackRequestDTO)
             ->setType($dto->getType())
             ->setEventId($dto->getEventId())
             ->setVersion($dto->getVersion())

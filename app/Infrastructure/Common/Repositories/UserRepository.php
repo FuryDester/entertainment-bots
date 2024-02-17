@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Cache;
 
 final class UserRepository implements UserRepositoryContract
 {
-    use SaveDto;
-    use FormBaseCacheKey;
     use ArrayKeysToSneakCase;
+    use FormBaseCacheKey;
+    use SaveDto;
 
     /**
      * {@inheritDoc}
@@ -31,12 +31,13 @@ final class UserRepository implements UserRepositoryContract
                 CacheTimeEnum::HOUR->value,
                 static function () use ($vkId, $peerId) {
                     $model = User::where('vk_user_id', $vkId)->where('vk_peer_id', $peerId)->first();
-                    if (!$model) {
+                    if (! $model) {
                         return null;
                     }
 
                     /** @var UserDTOFactoryContract $userFactory */
                     $userFactory = app(UserDTOFactoryContract::class);
+
                     return $userFactory::createFromData($model->toArray());
                 },
             );
@@ -47,7 +48,7 @@ final class UserRepository implements UserRepositoryContract
      */
     public function save(UserDTO $user): bool
     {
-        $result = $this->saveDto(new User(), $user);
+        $result = $this->saveDto(new User, $user);
         if ($result) {
             UserUpdated::dispatch();
         }

@@ -16,7 +16,7 @@ trait SendMessage
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
 
-        $vkClient = new VKApiClient();
+        $vkClient = new VKApiClient;
         try {
             $vkClient->messages()->send($accessToken->getAccessToken(), [
                 'message' => $message,

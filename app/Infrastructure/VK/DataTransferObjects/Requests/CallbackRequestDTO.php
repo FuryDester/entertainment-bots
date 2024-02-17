@@ -26,6 +26,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setType(string $type): CallbackRequestDTO
     {
         $this->type = $type;
+
         return $this;
     }
 
@@ -37,6 +38,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setEventId(string $eventId): CallbackRequestDTO
     {
         $this->eventId = $eventId;
+
         return $this;
     }
 
@@ -48,6 +50,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setObject(array $object): CallbackRequestDTO
     {
         $this->object = $object;
+
         return $this;
     }
 
@@ -59,6 +62,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setGroupId(int $groupId): CallbackRequestDTO
     {
         $this->groupId = $groupId;
+
         return $this;
     }
 
@@ -70,6 +74,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setSecret(?string $secret): CallbackRequestDTO
     {
         $this->secret = $secret;
+
         return $this;
     }
 
@@ -81,6 +86,7 @@ final class CallbackRequestDTO extends AbstractDTO
     public function setVersion(string $version): CallbackRequestDTO
     {
         $this->version = $version;
+
         return $this;
     }
 }

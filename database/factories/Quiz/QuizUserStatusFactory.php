@@ -18,6 +18,7 @@ class QuizUserStatusFactory extends Factory
     public function definition(): array
     {
         $done = $this->faker->boolean();
+
         return [
             'quiz_id' => QuizFactory::class,
             'user_id' => UserFactory::class,

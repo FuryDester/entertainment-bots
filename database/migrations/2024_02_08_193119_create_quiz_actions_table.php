@@ -1,11 +1,11 @@
 <?php
 
+use App\Infrastructure\Quiz\Enums\ActionAliasTypeEnum;
+use App\Infrastructure\Quiz\Enums\ActionTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
-use App\Infrastructure\Quiz\Enums\ActionTypeEnum;
 use Illuminate\Support\Arr;
-use App\Infrastructure\Quiz\Enums\ActionAliasTypeEnum;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {

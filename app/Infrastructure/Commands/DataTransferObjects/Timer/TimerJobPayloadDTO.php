@@ -22,6 +22,7 @@ final class TimerJobPayloadDTO extends AbstractDTO
     public function setVkUserId(int $vkUserId): TimerJobPayloadDTO
     {
         $this->vkUserId = $vkUserId;
+
         return $this;
     }
 
@@ -33,6 +34,7 @@ final class TimerJobPayloadDTO extends AbstractDTO
     public function setVkPeerId(int $vkPeerId): TimerJobPayloadDTO
     {
         $this->vkPeerId = $vkPeerId;
+
         return $this;
     }
 
@@ -44,6 +46,7 @@ final class TimerJobPayloadDTO extends AbstractDTO
     public function setMinutes(int $minutes): TimerJobPayloadDTO
     {
         $this->minutes = $minutes;
+
         return $this;
     }
 
@@ -55,6 +58,7 @@ final class TimerJobPayloadDTO extends AbstractDTO
     public function setMessage(?string $message): TimerJobPayloadDTO
     {
         $this->message = $message;
+
         return $this;
     }
 }

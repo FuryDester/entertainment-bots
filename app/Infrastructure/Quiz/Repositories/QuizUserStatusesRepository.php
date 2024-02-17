@@ -25,7 +25,7 @@ final class QuizUserStatusesRepository implements QuizUserStatusesRepositoryCont
      */
     public function save(QuizUserStatusDTO $quizUserStatus): bool
     {
-        $result = $this->saveDto(new QuizUserStatus(), $quizUserStatus);
+        $result = $this->saveDto(new QuizUserStatus, $quizUserStatus);
         if ($result) {
             QuizUserStatusUpdated::dispatch();
         }
@@ -51,6 +51,7 @@ final class QuizUserStatusesRepository implements QuizUserStatusesRepositoryCont
 
                     /** @var QuizUserStatusDTOFactoryContract $factory */
                     $factory = app(QuizUserStatusDTOFactoryContract::class);
+
                     return $factory::createFromParams(
                         $data['id'] ?? null,
                         $data['user_id'] ?? $user->getId(),

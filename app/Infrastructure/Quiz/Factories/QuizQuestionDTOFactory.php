@@ -18,7 +18,7 @@ final class QuizQuestionDTOFactory implements QuizQuestionDTOFactoryContract
         ?Carbon $createdAt,
         ?Carbon $updatedAt,
     ): QuizQuestionDTO {
-        return (new QuizQuestionDTO())
+        return (new QuizQuestionDTO)
             ->setId($id)
             ->setQuestion($question)
             ->setType($type)

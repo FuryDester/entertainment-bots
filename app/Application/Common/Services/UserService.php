@@ -10,10 +10,11 @@ final class UserService implements UserServiceContract
 {
     public function __construct(
         protected UserRepositoryContract $repository,
-    ) {}
+    ) {
+    }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function findByVkIdAndPeerId(int $vkId, int $peerId): ?UserDTO
     {
@@ -21,7 +22,7 @@ final class UserService implements UserServiceContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function save(UserDTO $user): bool
     {

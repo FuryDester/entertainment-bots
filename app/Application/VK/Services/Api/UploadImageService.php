@@ -6,20 +6,20 @@ use App\Domain\VK\Services\Api\UploadImageServiceContract;
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
-use VK\Client\VKApiClient;
 use Throwable;
+use VK\Client\VKApiClient;
 
 final class UploadImageService implements UploadImageServiceContract
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function uploadImage(string $path): string
     {
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
 
-        $apiClient = new VKApiClient();
+        $apiClient = new VKApiClient;
         try {
             $uploadServer = $apiClient->photos()->getMessagesUploadServer($accessToken->getAccessToken());
         } catch (Throwable $exception) {
@@ -35,10 +35,10 @@ final class UploadImageService implements UploadImageServiceContract
         $uploadResult = Http::retry(3, 100)
             ->asMultipart()
             ->post($uploadUrl, [
-                'photo' => '@' . storage_path($path),
+                'photo' => '@'.storage_path($path),
             ]);
 
-        if (!$uploadResult->successful()) {
+        if (! $uploadResult->successful()) {
             Log::warning('Failed to upload image', [
                 'response' => $uploadResult->json(),
             ]);

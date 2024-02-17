@@ -14,7 +14,7 @@ final class VkEventDTOFactory implements VkEventDTOFactoryContract
      */
     public static function createFromData(array $data): VkEventDTO
     {
-        return (new VkEventDTO())
+        return (new VkEventDTO)
             ->setId($data['id'] ?? null)
             ->setEventId($data['event_id'])
             ->setType($data['type'])
@@ -32,7 +32,7 @@ final class VkEventDTOFactory implements VkEventDTOFactoryContract
      */
     public static function createFromCallback(CallbackRequestDTO $dto): VkEventDTO
     {
-        return (new VkEventDTO())
+        return (new VkEventDTO)
             ->setId(null)
             ->setEventId($dto->getEventId())
             ->setType($dto->getType())

@@ -31,6 +31,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setId(?int $id): QuizUserAnswerDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -42,6 +43,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setQuestionId(int $questionId): QuizUserAnswerDTO
     {
         $this->questionId = $questionId;
+
         return $this;
     }
 
@@ -53,6 +55,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setAnswerId(?int $answerId): QuizUserAnswerDTO
     {
         $this->answerId = $answerId;
+
         return $this;
     }
 
@@ -64,6 +67,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setAnswerText(?string $answerText): QuizUserAnswerDTO
     {
         $this->answerText = $answerText;
+
         return $this;
     }
 
@@ -75,6 +79,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setUserId(int $userId): QuizUserAnswerDTO
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -86,6 +91,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setAnsweredAt(Carbon $answeredAt): QuizUserAnswerDTO
     {
         $this->answeredAt = $answeredAt;
+
         return $this;
     }
 
@@ -97,6 +103,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): QuizUserAnswerDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -108,6 +115,7 @@ final class QuizUserAnswerDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): QuizUserAnswerDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }

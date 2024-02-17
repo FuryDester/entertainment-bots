@@ -11,7 +11,8 @@ final class QuizService implements QuizServiceContract
 {
     public function __construct(
         protected QuizRepositoryContract $repository,
-    ) {}
+    ) {
+    }
 
     public function getQuizById(int $id): ?QuizDTO
     {

@@ -53,7 +53,7 @@ trait SaveDto
         }
 
         $id = $model::query()->insertGetId($fields);
-        if (!$id) {
+        if (! $id) {
             return false;
         }
 

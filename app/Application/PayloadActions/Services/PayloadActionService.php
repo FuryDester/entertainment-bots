@@ -6,7 +6,6 @@ use App\Domain\PayloadActions\PayloadActionServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\PayloadActions\AbstractPayloadAction;
 use App\Infrastructure\PayloadActions\DataTransferObjects\PayloadDTO;
-use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use Illuminate\Support\Facades\Log;
 
 final class PayloadActionService implements PayloadActionServiceContract
@@ -15,7 +14,7 @@ final class PayloadActionService implements PayloadActionServiceContract
     {
         $actions = config('app.payload_workers');
         $action = $actions[$actionName] ?? null;
-        if (!$action) {
+        if (! $action) {
             Log::error('Action not found', [
                 'action' => $actionName,
                 'user' => $user->toArray(),
@@ -27,6 +26,7 @@ final class PayloadActionService implements PayloadActionServiceContract
         /** @var AbstractPayloadAction $actionClass */
         $actionClass = app($action);
         $state = $user->getState();
+
         return in_array($state, $actionClass->getPossibleActions(), true);
     }
 
@@ -36,7 +36,7 @@ final class PayloadActionService implements PayloadActionServiceContract
         $actionType = $payload->getType();
 
         $action = $actions[$actionType->value] ?? null;
-        if (!$action) {
+        if (! $action) {
             Log::warning('Invalid action in payload found', [
                 'action' => $actionType->value,
                 'payload' => $payload->toArray(),

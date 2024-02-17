@@ -1,9 +1,9 @@
 <?php
 
+use App\Infrastructure\Common\Logger\StatedTelegramBotHandler;
+use Monolog\Handler\FilterHandler;
 use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
-use Monolog\Handler\FilterHandler;
-use App\Infrastructure\Common\Logger\StatedTelegramBotHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
 
@@ -140,7 +140,7 @@ return [
                     env('LOG_LEVEL', 'warning'),
                 ),
             ],
-        ]
+        ],
     ],
 
 ];

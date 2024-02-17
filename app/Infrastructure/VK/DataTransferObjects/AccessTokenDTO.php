@@ -16,6 +16,7 @@ class AccessTokenDTO extends AbstractDTO
     public function setAccessToken(string $accessToken): AccessTokenDTO
     {
         $this->accessToken = $accessToken;
+
         return $this;
     }
 }

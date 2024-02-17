@@ -13,6 +13,7 @@ trait MentionUser
     protected function formMention(int $userId, string $name = ''): string
     {
         $finalName = $name ?: 'Пользователь';
+
         return "[id$userId|$finalName]";
     }
 
@@ -25,12 +26,12 @@ trait MentionUser
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
 
-        $client = new VKApiClient();
+        $client = new VKApiClient;
         $info = $client->users()->get($accessToken->getAccessToken(), [
             'user_ids' => $userId,
         ]);
 
-        if (!isset($info[0])) {
+        if (! isset($info[0])) {
             Log::warning('User not found', [
                 'user_id' => $userId,
                 'class' => __CLASS__,

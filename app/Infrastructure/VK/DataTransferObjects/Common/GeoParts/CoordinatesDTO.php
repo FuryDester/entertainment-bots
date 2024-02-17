@@ -18,6 +18,7 @@ final class CoordinatesDTO extends AbstractDTO
     public function setLatitude(float $latitude): CoordinatesDTO
     {
         $this->latitude = $latitude;
+
         return $this;
     }
 
@@ -29,6 +30,7 @@ final class CoordinatesDTO extends AbstractDTO
     public function setLongitude(float $longitude): CoordinatesDTO
     {
         $this->longitude = $longitude;
+
         return $this;
     }
 }

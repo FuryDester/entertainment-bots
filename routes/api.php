@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\Api\VkController;
+use App\Http\Middleware\ApiSecretAuthMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\ApiSecretAuthMiddleware;
-use App\Http\Controllers\Api\VkController;
 
 Route::name('api.')->group(function () {
     Route::get('/healthcheck', static function (Request $request) {

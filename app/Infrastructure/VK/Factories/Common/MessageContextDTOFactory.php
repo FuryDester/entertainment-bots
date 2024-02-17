@@ -13,7 +13,7 @@ final class MessageContextDTOFactory implements MessageContextDTOFactoryContract
 {
     public static function createFromParams(MessageDTO $message, ClientInfoDTO $clientInfo): MessageContextDTO
     {
-        return (new MessageContextDTO())
+        return (new MessageContextDTO)
             ->setMessage($message)
             ->setClientInfo($clientInfo);
     }
@@ -25,7 +25,7 @@ final class MessageContextDTOFactory implements MessageContextDTOFactoryContract
         /** @var MessageDTOFactoryContract $messageFactory */
         $messageFactory = app(MessageDTOFactoryContract::class);
 
-        return (new MessageContextDTO())
+        return (new MessageContextDTO)
             ->setClientInfo($clientInfoFactory::createFromApiData($data['client_info']))
             ->setMessage($messageFactory::createFromApiData($data['message']));
     }

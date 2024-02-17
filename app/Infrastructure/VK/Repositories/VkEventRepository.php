@@ -25,7 +25,7 @@ final class VkEventRepository implements VkEventRepositoryContract
      */
     public function save(VkEventDTO $event): bool
     {
-        $result = $this->saveDto((new VkEvent()), $event);
+        $result = $this->saveDto((new VkEvent), $event);
         if ($result) {
             VkEventUpdated::dispatch();
         }
@@ -46,12 +46,13 @@ final class VkEventRepository implements VkEventRepositoryContract
             },
         );
 
-        if (!$event) {
+        if (! $event) {
             return null;
         }
 
         /** @var VkEventDTOFactoryContract $factory */
         $factory = app(VkEventDTOFactoryContract::class);
+
         return $factory::createFromData($event->toArray());
     }
 
@@ -90,6 +91,7 @@ final class VkEventRepository implements VkEventRepositoryContract
 
         /** @var VkEventDTOFactoryContract $factory */
         $factory = app(VkEventDTOFactoryContract::class);
+
         return $events->map(
             static fn (VkEvent $event) => $factory::createFromData($event->toArray())
         )->all();

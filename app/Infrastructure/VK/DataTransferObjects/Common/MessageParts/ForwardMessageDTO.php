@@ -29,6 +29,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setDate(int $date): ForwardMessageDTO
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -40,6 +41,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setFromId(int $fromId): ForwardMessageDTO
     {
         $this->fromId = $fromId;
+
         return $this;
     }
 
@@ -51,6 +53,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setId(int $id): ForwardMessageDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -62,6 +65,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setPeerId(int $peerId): ForwardMessageDTO
     {
         $this->peerId = $peerId;
+
         return $this;
     }
 
@@ -73,6 +77,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setText(?string $text): ForwardMessageDTO
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -84,6 +89,7 @@ final class ForwardMessageDTO extends AbstractDTO
     public function setConversationMessageId(int $conversationMessageId): ForwardMessageDTO
     {
         $this->conversationMessageId = $conversationMessageId;
+
         return $this;
     }
 
@@ -96,11 +102,12 @@ final class ForwardMessageDTO extends AbstractDTO
     }
 
     /**
-     * @param object[] $attachments
+     * @param  object[]  $attachments
      */
     public function setAttachments(array $attachments): ForwardMessageDTO
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 }

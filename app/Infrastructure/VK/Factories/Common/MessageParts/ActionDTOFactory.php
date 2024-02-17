@@ -17,7 +17,7 @@ final class ActionDTOFactory implements ActionDTOFactoryContract
         ?string $email,
         ?PhotoDTO $photo,
     ): ActionDTO {
-        return (new ActionDTO())
+        return (new ActionDTO)
             ->setType($type)
             ->setMemberId($memberId)
             ->setText($text)
@@ -33,7 +33,7 @@ final class ActionDTOFactory implements ActionDTOFactoryContract
         /** @var PhotoDTOFactoryContract $photoFactory */
         $photoFactory = app(PhotoDTOFactoryContract::class);
 
-        return (new ActionDTO())
+        return (new ActionDTO)
             ->setType(MessageEventTypeEnum::from($data['type']))
             ->setMemberId($data['member_id'] ?? null)
             ->setText($data['text'] ?? null)
