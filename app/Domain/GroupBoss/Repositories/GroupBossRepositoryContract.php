@@ -2,7 +2,6 @@
 
 namespace App\Domain\GroupBoss\Repositories;
 
-use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\CommentDTO;
 

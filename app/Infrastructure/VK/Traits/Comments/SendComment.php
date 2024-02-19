@@ -4,8 +4,8 @@ namespace App\Infrastructure\VK\Traits\Comments;
 
 use App\Infrastructure\VK\DataTransferObjects\AccessTokenDTO;
 use Illuminate\Support\Facades\Log;
-use VK\Client\VKApiClient;
 use Throwable;
+use VK\Client\VKApiClient;
 
 trait SendComment
 {

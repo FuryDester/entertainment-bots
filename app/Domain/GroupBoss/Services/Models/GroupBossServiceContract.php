@@ -20,5 +20,5 @@ interface GroupBossServiceContract
      * Возвращает true, если здоровье было вычтено, иначе false.
      * Если босс убит этим ударом, то возвращает null.
      */
-    public function subtractHealth(GroupBossDTO $boss, UserDTO $user, int $health): bool|null;
+    public function subtractHealth(GroupBossDTO $boss, UserDTO $user, int $health): ?bool;
 }

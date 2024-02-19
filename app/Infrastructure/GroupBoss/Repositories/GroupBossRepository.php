@@ -27,12 +27,13 @@ final readonly class GroupBossRepository implements GroupBossRepositoryContract
                 CacheTimeEnum::HOUR->value * 3,
                 static function () use ($comment) {
                     $model = GroupBoss::where('post_id', $comment->getPostId())->first();
-                    if (!$model) {
+                    if (! $model) {
                         return null;
                     }
 
                     /** @var GroupBossDTOFactoryContract $factory */
                     $factory = app(GroupBossDTOFactoryContract::class);
+
                     return $factory::createFromModel($model);
                 }
             );
@@ -46,12 +47,13 @@ final readonly class GroupBossRepository implements GroupBossRepositoryContract
                 CacheTimeEnum::HOUR->value,
                 static function () use ($id) {
                     $model = GroupBoss::find($id);
-                    if (!$model) {
+                    if (! $model) {
                         return null;
                     }
 
                     /** @var GroupBossDTOFactoryContract $factory */
                     $factory = app(GroupBossDTOFactoryContract::class);
+
                     return $factory::createFromModel($model);
                 }
             );

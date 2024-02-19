@@ -35,6 +35,7 @@ final readonly class GroupBossWeaponRepository implements GroupBossWeaponReposit
 
                     /** @var GroupBossWeaponDTOFactoryContract $factory */
                     $factory = app(GroupBossWeaponDTOFactoryContract::class);
+
                     return $factory::createFromModel($model);
                 }
             );

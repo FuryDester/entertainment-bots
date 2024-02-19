@@ -8,7 +8,7 @@ use App\Listeners\AbstractCacheFlushListener;
 final class DropGroupBossCache extends AbstractCacheFlushListener
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     protected function getCacheTag(): string|array
     {

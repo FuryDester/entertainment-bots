@@ -42,6 +42,7 @@ final class WallReplyNewAction implements Actionable
 
     /**
      * Запускает обработку комментария, если это комментарий к посту с групповым боссом.
+     *
      * @return bool Успешность обработки. Если не групповой босс, то false.
      */
     private static function tryProcessGroupBoss(CommentDTO $comment, UserDTO $user): bool

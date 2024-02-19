@@ -10,6 +10,7 @@ trait CalculateNextHitTime
 {
     /**
      * Просчёт времени следующего удара.
+     *
      * @return Carbon Время следующего удара.
      */
     private function calculateNextHitTime(GroupBossDTO $boss, GroupBossUserActionDTO $userAction): Carbon

@@ -18,6 +18,7 @@ final class DonutDTO extends AbstractDTO
     public function setIsDon(bool $isDon): DonutDTO
     {
         $this->isDon = $isDon;
+
         return $this;
     }
 
@@ -29,6 +30,7 @@ final class DonutDTO extends AbstractDTO
     public function setPlaceholder(string $placeholder): DonutDTO
     {
         $this->placeholder = $placeholder;
+
         return $this;
     }
 }

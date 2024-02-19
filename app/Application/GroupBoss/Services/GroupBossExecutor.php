@@ -11,11 +11,11 @@ use App\Domain\GroupBoss\Services\Models\GroupBossWeaponServiceContract;
 use App\Events\GroupBoss\DamageTaken;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Traits\SecondsToHms;
+use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossUserActionDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossWeaponDTO;
 use App\Infrastructure\GroupBoss\Traits\CalculateNextHitTime;
 use App\Infrastructure\VK\DataTransferObjects\Common\CommentDTO;
-use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Infrastructure\VK\Traits\Comments\SendComment;
 use Illuminate\Support\Facades\Log;
 
@@ -39,12 +39,14 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
         }
 
         $this->processBossHit($boss, $user, $comment, $weapon);
+
         return true;
     }
 
     /**
      * Проверка статусов группового босса и пользователя.
      * Проверяет доступность босса, а также возможность удара пользователем.
+     *
      * @return bool true, если проверка пройдена, иначе false.
      */
     private function checkBossAndUserStatuses(CommentDTO $comment, GroupBossDTO $boss, UserDTO $user): bool
@@ -151,6 +153,7 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
 
     /**
      * Попытка ударить группового босса.
+     *
      * @return int|false количество урона, если не получилось ударить - false.
      */
     private function tryHitBoss(GroupBossDTO $boss, GroupBossWeaponDTO $weapon): int|false

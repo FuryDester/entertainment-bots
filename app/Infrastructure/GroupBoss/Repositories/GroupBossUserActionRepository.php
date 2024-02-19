@@ -32,12 +32,13 @@ final readonly class GroupBossUserActionRepository implements GroupBossUserActio
                         ->orderBy('created_at', 'desc')
                         ->first();
 
-                    if (!$model) {
+                    if (! $model) {
                         return null;
                     }
 
                     /** @var GroupBossUserActionDTOFactoryContract $factory */
                     $factory = app(GroupBossUserActionDTOFactoryContract::class);
+
                     return $factory::createFromModel($model);
                 }
             );

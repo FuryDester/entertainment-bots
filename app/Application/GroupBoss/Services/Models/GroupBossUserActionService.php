@@ -16,7 +16,7 @@ final readonly class GroupBossUserActionService implements GroupBossUserActionSe
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function findLastActionByUserAndBoss(UserDTO $user, GroupBossDTO $boss): ?GroupBossUserActionDTO
     {

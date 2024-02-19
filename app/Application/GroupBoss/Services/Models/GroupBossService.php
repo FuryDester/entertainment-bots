@@ -3,10 +3,10 @@
 namespace App\Application\GroupBoss\Services\Models;
 
 use App\Domain\GroupBoss\Repositories\GroupBossRepositoryContract;
+use App\Domain\GroupBoss\Services\Models\GroupBossServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\CommentDTO;
-use App\Domain\GroupBoss\Services\Models\GroupBossServiceContract;
 
 final readonly class GroupBossService implements GroupBossServiceContract
 {
@@ -33,14 +33,14 @@ final readonly class GroupBossService implements GroupBossServiceContract
     /**
      * {@inheritDoc}
      */
-    public function subtractHealth(GroupBossDTO $boss, UserDTO $user, int $health): bool|null
+    public function subtractHealth(GroupBossDTO $boss, UserDTO $user, int $health): ?bool
     {
         $newBoss = $this->repository->findById($boss->getId());
-        if (!$newBoss) {
+        if (! $newBoss) {
             return false;
         }
 
-        $newBoss->setCurrentHealth(max(0,$newBoss->getCurrentHealth() - $health));
+        $newBoss->setCurrentHealth(max(0, $newBoss->getCurrentHealth() - $health));
         $isDead = $newBoss->getCurrentHealth() <= 0;
         if ($isDead) {
             $newBoss
@@ -49,6 +49,7 @@ final readonly class GroupBossService implements GroupBossServiceContract
         }
 
         $result = $this->repository->save($newBoss);
+
         return $isDead ? null : $result;
     }
 }

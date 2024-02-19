@@ -9,8 +9,9 @@ interface GroupBossTemplatorContract
 {
     /**
      * Формирование сообщения о нанесении урона.
-     * @param int $damage Нанесенный урон.
-     * @param GroupBossWeaponDTO $weapon Оружие, которым был нанесен урон.
+     *
+     * @param  int  $damage  Нанесенный урон.
+     * @param  GroupBossWeaponDTO  $weapon  Оружие, которым был нанесен урон.
      * @return string Сообщение о нанесении урона.
      */
     public function finalizeDamageMessage(int $damage, GroupBossWeaponDTO $weapon, GroupBossDTO $boss): string;

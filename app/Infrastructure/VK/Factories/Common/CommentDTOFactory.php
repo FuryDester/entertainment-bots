@@ -10,9 +10,8 @@ use App\Infrastructure\VK\DataTransferObjects\Requests\CallbackRequestDTO;
 
 final readonly class CommentDTOFactory implements CommentDTOFactoryContract
 {
-
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function createFromData(array $data): CommentDTO
     {

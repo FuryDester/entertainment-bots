@@ -24,6 +24,7 @@ final class ThreadDTO extends AbstractDTO
     public function setCount(int $count): ThreadDTO
     {
         $this->count = $count;
+
         return $this;
     }
 
@@ -35,6 +36,7 @@ final class ThreadDTO extends AbstractDTO
     public function setItems(?array $items): ThreadDTO
     {
         $this->items = $items;
+
         return $this;
     }
 
@@ -46,6 +48,7 @@ final class ThreadDTO extends AbstractDTO
     public function setCanPost(?bool $canPost): ThreadDTO
     {
         $this->canPost = $canPost;
+
         return $this;
     }
 
@@ -57,6 +60,7 @@ final class ThreadDTO extends AbstractDTO
     public function setShowReplyButton(?bool $showReplyButton): ThreadDTO
     {
         $this->showReplyButton = $showReplyButton;
+
         return $this;
     }
 
@@ -68,6 +72,7 @@ final class ThreadDTO extends AbstractDTO
     public function setGroupsCanPost(?bool $groupsCanPost): ThreadDTO
     {
         $this->groupsCanPost = $groupsCanPost;
+
         return $this;
     }
 }

@@ -42,6 +42,7 @@ final class CommentDTO extends AbstractDTO
     public function setId(int $id): CommentDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -53,6 +54,7 @@ final class CommentDTO extends AbstractDTO
     public function setFromId(int $fromId): CommentDTO
     {
         $this->fromId = $fromId;
+
         return $this;
     }
 
@@ -64,6 +66,7 @@ final class CommentDTO extends AbstractDTO
     public function setDate(int $date): CommentDTO
     {
         $this->date = $date;
+
         return $this;
     }
 
@@ -75,6 +78,7 @@ final class CommentDTO extends AbstractDTO
     public function setText(string $text): CommentDTO
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -86,6 +90,7 @@ final class CommentDTO extends AbstractDTO
     public function setDonut(?DonutDTO $donut): CommentDTO
     {
         $this->donut = $donut;
+
         return $this;
     }
 
@@ -97,6 +102,7 @@ final class CommentDTO extends AbstractDTO
     public function setReplyToUser(?int $replyToUser): CommentDTO
     {
         $this->replyToUser = $replyToUser;
+
         return $this;
     }
 
@@ -108,6 +114,7 @@ final class CommentDTO extends AbstractDTO
     public function setReplyToComment(?int $replyToComment): CommentDTO
     {
         $this->replyToComment = $replyToComment;
+
         return $this;
     }
 
@@ -119,6 +126,7 @@ final class CommentDTO extends AbstractDTO
     public function setAttachments(array $attachments): CommentDTO
     {
         $this->attachments = $attachments;
+
         return $this;
     }
 
@@ -130,6 +138,7 @@ final class CommentDTO extends AbstractDTO
     public function setParentsStack(array $parentsStack): CommentDTO
     {
         $this->parentsStack = $parentsStack;
+
         return $this;
     }
 
@@ -141,6 +150,7 @@ final class CommentDTO extends AbstractDTO
     public function setThread(?ThreadDTO $thread): CommentDTO
     {
         $this->thread = $thread;
+
         return $this;
     }
 
@@ -152,6 +162,7 @@ final class CommentDTO extends AbstractDTO
     public function setPostId(int $postId): CommentDTO
     {
         $this->postId = $postId;
+
         return $this;
     }
 
@@ -163,6 +174,7 @@ final class CommentDTO extends AbstractDTO
     public function setOwnerId(int $ownerId): CommentDTO
     {
         $this->ownerId = $ownerId;
+
         return $this;
     }
 }
