@@ -22,7 +22,7 @@ final class GroupBossWeaponSeeder extends Seeder
                 static fn () => ['group_boss_id' => $groupBosses->random()],
             ))
             ->make()
-            ->unique(fn ($weapon) => $weapon->group_boss_id . $weapon->name)
+            ->unique(fn ($weapon) => $weapon->group_boss_id.$weapon->name)
             ->each(fn ($weapon) => $weapon->save());
     }
 }

@@ -10,7 +10,7 @@ use Illuminate\Support\Carbon;
 final class GroupBossWeaponDTOFactory implements GroupBossWeaponDTOFactoryContract
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public static function createFromData(array $data): GroupBossWeaponDTO
     {

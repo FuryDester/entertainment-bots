@@ -21,6 +21,7 @@ final class UserActionDTO extends AbstractDTO
     public function setUserId(int $userId): UserActionDTO
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -32,6 +33,7 @@ final class UserActionDTO extends AbstractDTO
     public function setQuizActionId(int $quizActionId): UserActionDTO
     {
         $this->quizActionId = $quizActionId;
+
         return $this;
     }
 
@@ -43,6 +45,7 @@ final class UserActionDTO extends AbstractDTO
     public function setEndsAt(?Carbon $endsAt): UserActionDTO
     {
         $this->endsAt = $endsAt;
+
         return $this;
     }
 }

@@ -182,7 +182,6 @@ final readonly class MessageNewAction implements Actionable
 
             $user = self::getUserDto($message->getFromId(), $message->getPeerId());
 
-
             return self::tryHandleWorker($message, $worker, $user, $payloadDTO);
         }
 

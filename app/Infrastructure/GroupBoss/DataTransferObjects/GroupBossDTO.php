@@ -45,6 +45,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setId(?int $id): GroupBossDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -56,6 +57,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setUserId(int $userId): GroupBossDTO
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -67,6 +69,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setName(string $name): GroupBossDTO
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -78,6 +81,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setPostContent(string $postContent): GroupBossDTO
     {
         $this->postContent = $postContent;
+
         return $this;
     }
 
@@ -89,6 +93,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setImage(?string $image): GroupBossDTO
     {
         $this->image = $image;
+
         return $this;
     }
 
@@ -100,6 +105,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setMaxHealth(int $maxHealth): GroupBossDTO
     {
         $this->maxHealth = $maxHealth;
+
         return $this;
     }
 
@@ -111,6 +117,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setCurrentHealth(int $currentHealth): GroupBossDTO
     {
         $this->currentHealth = $currentHealth;
+
         return $this;
     }
 
@@ -122,6 +129,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setBaseHitChance(int $baseHitChance): GroupBossDTO
     {
         $this->baseHitChance = $baseHitChance;
+
         return $this;
     }
 
@@ -133,6 +141,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setHitCooldown(int $hitCooldown): GroupBossDTO
     {
         $this->hitCooldown = $hitCooldown;
+
         return $this;
     }
 
@@ -144,6 +153,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setMissCooldown(int $missCooldown): GroupBossDTO
     {
         $this->missCooldown = $missCooldown;
+
         return $this;
     }
 
@@ -155,6 +165,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setKilledBy(?int $killedBy): GroupBossDTO
     {
         $this->killedBy = $killedBy;
+
         return $this;
     }
 
@@ -166,6 +177,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setKilledAt(?Carbon $killedAt): GroupBossDTO
     {
         $this->killedAt = $killedAt;
+
         return $this;
     }
 
@@ -177,6 +189,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): GroupBossDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -188,6 +201,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): GroupBossDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 
@@ -199,6 +213,7 @@ final class GroupBossDTO extends AbstractDTO
     public function setPostId(int $postId): GroupBossDTO
     {
         $this->postId = $postId;
+
         return $this;
     }
 }

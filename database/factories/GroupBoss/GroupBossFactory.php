@@ -18,6 +18,7 @@ final class GroupBossFactory extends Factory
     public function definition(): array
     {
         $maxHealth = $this->faker->numberBetween(10000, 1000000);
+
         return [
             'user_id' => UserFactory::class,
             'name' => $this->faker->name(),

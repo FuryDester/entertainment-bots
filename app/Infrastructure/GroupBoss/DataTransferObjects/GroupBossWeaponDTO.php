@@ -33,6 +33,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setId(?int $id): GroupBossWeaponDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -44,6 +45,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setGroupBossId(int $groupBossId): GroupBossWeaponDTO
     {
         $this->groupBossId = $groupBossId;
+
         return $this;
     }
 
@@ -55,6 +57,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setName(string $name): GroupBossWeaponDTO
     {
         $this->name = $name;
+
         return $this;
     }
 
@@ -66,6 +69,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setHitDamageTemplate(?string $hitDamageTemplate): GroupBossWeaponDTO
     {
         $this->hitDamageTemplate = $hitDamageTemplate;
+
         return $this;
     }
 
@@ -77,6 +81,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setMinDamage(int $minDamage): GroupBossWeaponDTO
     {
         $this->minDamage = $minDamage;
+
         return $this;
     }
 
@@ -88,6 +93,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setMaxDamage(int $maxDamage): GroupBossWeaponDTO
     {
         $this->maxDamage = $maxDamage;
+
         return $this;
     }
 
@@ -99,6 +105,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setHitChance(int $hitChance): GroupBossWeaponDTO
     {
         $this->hitChance = $hitChance;
+
         return $this;
     }
 
@@ -110,6 +117,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): GroupBossWeaponDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -121,6 +129,7 @@ final class GroupBossWeaponDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): GroupBossWeaponDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }

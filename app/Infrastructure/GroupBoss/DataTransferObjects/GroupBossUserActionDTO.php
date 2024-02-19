@@ -31,6 +31,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setId(?int $id): GroupBossUserActionDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -42,6 +43,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setUserId(int $userId): GroupBossUserActionDTO
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -53,6 +55,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setGroupBossId(int $groupBossId): GroupBossUserActionDTO
     {
         $this->groupBossId = $groupBossId;
+
         return $this;
     }
 
@@ -64,6 +67,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setGroupBossWeaponId(int $groupBossWeaponId): GroupBossUserActionDTO
     {
         $this->groupBossWeaponId = $groupBossWeaponId;
+
         return $this;
     }
 
@@ -75,6 +79,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setDamage(int $damage): GroupBossUserActionDTO
     {
         $this->damage = $damage;
+
         return $this;
     }
 
@@ -86,6 +91,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setIsMiss(bool $isMiss): GroupBossUserActionDTO
     {
         $this->isMiss = $isMiss;
+
         return $this;
     }
 
@@ -97,6 +103,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): GroupBossUserActionDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -108,6 +115,7 @@ final class GroupBossUserActionDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): GroupBossUserActionDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }
