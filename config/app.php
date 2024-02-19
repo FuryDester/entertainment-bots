@@ -192,10 +192,16 @@ return [
 
         // Common
         App\Providers\Common\UserDependencyServiceProvider::class,
+        App\Providers\Common\UserActionDependencyServiceProvider::class,
 
         // Payload actions
         App\Providers\PayloadActions\PayloadDataTransferObjectsServiceProvider::class,
         App\Providers\PayloadActions\PayloadServiceProvider::class,
+
+        // Group boss
+        App\Providers\GroupBoss\Models\GroupBossUserActionModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\Models\GroupBossModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\Models\GroupBossWeaponModelsDependencyServiceProvider::class,
     ])->toArray(),
 
     /*

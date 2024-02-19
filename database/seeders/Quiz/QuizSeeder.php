@@ -14,6 +14,10 @@ class QuizSeeder extends Seeder
      */
     public function run(): void
     {
+        if (! is_dir(storage_path('app/public/images/quiz'))) {
+            mkdir(storage_path('app/public/images/quiz'), recursive: true);
+        }
+
         $actions = QuizAction::get();
 
         Quiz::factory()

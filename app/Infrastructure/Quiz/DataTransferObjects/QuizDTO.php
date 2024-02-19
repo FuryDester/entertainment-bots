@@ -3,7 +3,7 @@
 namespace App\Infrastructure\Quiz\DataTransferObjects;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 final class QuizDTO extends AbstractDTO
 {
