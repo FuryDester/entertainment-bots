@@ -7,7 +7,7 @@ use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Models\GroupBoss\GroupBoss;
 use Illuminate\Support\Carbon;
 
-final class GroupBossDTOFactory implements GroupBossDTOFactoryContract
+final readonly class GroupBossDTOFactory implements GroupBossDTOFactoryContract
 {
     /**
      * {@inheritDoc}

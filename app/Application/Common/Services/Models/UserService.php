@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Application\Common\Services;
+namespace App\Application\Common\Services\Models;
 
 use App\Domain\Common\Repositories\UserRepositoryContract;
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 
 final readonly class UserService implements UserServiceContract

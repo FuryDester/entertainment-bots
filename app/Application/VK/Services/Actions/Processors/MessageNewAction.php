@@ -2,14 +2,14 @@
 
 namespace App\Application\VK\Services\Actions\Processors;
 
-use App\Domain\Common\Factories\Models\UserDTOFactoryContract;
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
 use App\Domain\PayloadActions\PayloadActionServiceContract;
 use App\Domain\VK\Factories\Common\MessageContextDTOFactoryContract;
 use App\Domain\VK\Services\Actions\Processors\Actionable;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
+use App\Infrastructure\Common\Traits\Users\GetUserDTO;
 use App\Infrastructure\PayloadActions\AbstractPayloadAction;
 use App\Infrastructure\PayloadActions\DataTransferObjects\PayloadDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Validator;
 
 final readonly class MessageNewAction implements Actionable
 {
+    use GetUserDTO;
+
     public static function getActionName(): ActionEnum
     {
         return ActionEnum::MessageNew;
@@ -191,30 +193,6 @@ final readonly class MessageNewAction implements Actionable
         ]);
 
         return null;
-    }
-
-    /**
-     * Создание или получение пользователя по данным сообщения
-     */
-    private static function getUserDto(int $vkUserId, int $peerId): UserDTO
-    {
-        /** @var UserServiceContract $userService */
-        $userService = app(UserServiceContract::class);
-        $user = $userService->findByVkIdAndPeerId($vkUserId, $peerId);
-        if (! $user) {
-            /** @var UserDTOFactoryContract $userFactory */
-            $userFactory = app(UserDTOFactoryContract::class);
-
-            $user = $userFactory::createFromData([
-                'vk_user_id' => $vkUserId,
-                'vk_peer_id' => $peerId,
-                'is_admin' => false,
-                'state' => ActionStageEnum::Index->value,
-            ]);
-            $userService->save($user);
-        }
-
-        return $user;
     }
 
     private static function tryHandleWorker(

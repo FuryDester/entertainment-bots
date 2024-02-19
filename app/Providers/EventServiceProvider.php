@@ -3,12 +3,17 @@
 namespace App\Providers;
 
 use App\Events\Common\UserUpdated;
+use App\Events\GroupBoss\DamageTaken;
+use App\Events\GroupBoss\Models\GroupBossUpdated;
+use App\Events\GroupBoss\Models\GroupBossUserActionUpdated;
 use App\Events\Quiz\QuizCompleted;
 use App\Events\Quiz\QuizQuestionAnswered;
 use App\Events\Quiz\QuizUserAnswerUpdated;
 use App\Events\Quiz\QuizUserStatusUpdated;
 use App\Events\Vk\VkEventUpdated;
 use App\Listeners\Common\DropUserCache;
+use App\Listeners\GroupBoss\DropGroupBossCache;
+use App\Listeners\GroupBoss\DropGroupBossUserActionCache;
 use App\Listeners\Quiz\CheckForQuestionAction;
 use App\Listeners\Quiz\CheckForQuizAction;
 use App\Listeners\Quiz\DropQuizUserAnswerCache;
@@ -30,6 +35,9 @@ class EventServiceProvider extends ServiceProvider
         QuizQuestionAnswered::class => [CheckForQuestionAction::class],
         QuizCompleted::class => [CheckForQuizAction::class],
         QuizUserAnswerUpdated::class => [DropQuizUserAnswerCache::class],
+        GroupBossUpdated::class => [DropGroupBossCache::class],
+        GroupBossUserActionUpdated::class => [DropGroupBossUserActionCache::class],
+        DamageTaken::class => [],
     ];
 
     /**

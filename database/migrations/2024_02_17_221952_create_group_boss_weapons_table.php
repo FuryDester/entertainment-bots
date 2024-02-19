@@ -24,6 +24,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique(['group_boss_id', 'name']);
+            $table->index('name');
             $table->foreign('group_boss_id')->references('id')->on('group_bosses')->restrictOnDelete();
         });
     }

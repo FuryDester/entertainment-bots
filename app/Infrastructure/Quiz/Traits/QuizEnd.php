@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Quiz\Traits;
 
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
 use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Domain\Quiz\Services\QuizStatisticsServiceContract;

@@ -171,7 +171,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // VK providers
-        App\Providers\VK\VkDataTransferObjectsServiceProvider::class,
+        App\Providers\VK\VkMessageDTODependencyServiceProvider::class,
+        App\Providers\VK\VkCommentDTODependencyServiceProvider::class,
         App\Providers\VK\VkEventModelServiceProvider::class,
         App\Providers\VK\VkActionServiceProvider::class,
         App\Providers\VK\VkRequestsDataTransferObjectsServiceProvider::class,
@@ -191,8 +192,9 @@ return [
         App\Providers\Quiz\QuizStatisticsDependencyServiceProvider::class,
 
         // Common
-        App\Providers\Common\UserDependencyServiceProvider::class,
-        App\Providers\Common\UserActionDependencyServiceProvider::class,
+        App\Providers\Common\Models\UserDependencyServiceProvider::class,
+        App\Providers\Common\Templator\BaseTemplatorDependencyServiceProvider::class,
+        App\Providers\Common\Models\UserActionDependencyServiceProvider::class,
 
         // Payload actions
         App\Providers\PayloadActions\PayloadDataTransferObjectsServiceProvider::class,
@@ -202,6 +204,8 @@ return [
         App\Providers\GroupBoss\Models\GroupBossUserActionModelsDependencyServiceProvider::class,
         App\Providers\GroupBoss\Models\GroupBossModelsDependencyServiceProvider::class,
         App\Providers\GroupBoss\Models\GroupBossWeaponModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossExecutorDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossTemplatorDependencyServiceProvider::class,
     ])->toArray(),
 
     /*

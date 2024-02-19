@@ -7,7 +7,7 @@ use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossUserActionDTO;
 use App\Models\GroupBoss\GroupBossUserAction;
 use Illuminate\Support\Carbon;
 
-final class GroupBossUserActionDTOFactory implements GroupBossUserActionDTOFactoryContract
+final readonly class GroupBossUserActionDTOFactory implements GroupBossUserActionDTOFactoryContract
 {
     public static function createFromData(array $data): GroupBossUserActionDTO
     {

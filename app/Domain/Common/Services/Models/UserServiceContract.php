@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Common\Services;
+namespace App\Domain\Common\Services\Models;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 

@@ -23,7 +23,7 @@ use App\Infrastructure\VK\Factories\Common\MessageParts\ForwardMessageDTOFactory
 use App\Infrastructure\VK\Factories\Common\MessageParts\MessageDTOFactory;
 use App\Providers\AbstractDependencyServiceProvider;
 
-final class VkDataTransferObjectsServiceProvider extends AbstractDependencyServiceProvider
+final class VkMessageDTODependencyServiceProvider extends AbstractDependencyServiceProvider
 {
     public array $singletons = [
         PhotoDTOFactoryContract::class => PhotoDTOFactory::class,

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Providers\Common;
+namespace App\Providers\Common\Models;
 
-use App\Application\Common\Services\UserService;
+use App\Application\Common\Services\Models\UserService;
 use App\Domain\Common\Factories\Models\UserDTOFactoryContract;
 use App\Domain\Common\Repositories\UserRepositoryContract;
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Infrastructure\Common\Factories\Models\UserDTOFactory;
 use App\Infrastructure\Common\Repositories\UserRepository;
 use App\Providers\AbstractDependencyServiceProvider;
