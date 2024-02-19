@@ -63,6 +63,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Stop containers
         run: docker compose down --remove-orphans
+      - name: Remove old containers
+        run: docker system prune -a -f
       - name: Run git pull on master branch
         run: git pull origin master
       - name: Build docker images
