@@ -183,13 +183,14 @@ return [
         App\Providers\Commands\Common\CommandBaseServiceProvider::class,
 
         // Quiz
-        App\Providers\Quiz\QuizFactoriesServiceProvider::class,
         App\Providers\Quiz\Models\QuizDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizUserStatusDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizQuestionDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizAnswerDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizUserAnswerDependenciesServiceProvider::class,
         App\Providers\Quiz\QuizStatisticsDependencyServiceProvider::class,
+        App\Providers\Quiz\Models\QuizActionDependenciesServiceProvider::class,
+        App\Providers\Quiz\QuizActionProcessorDependencyServiceProvider::class,
 
         // Common
         App\Providers\Common\Models\UserDependencyServiceProvider::class,

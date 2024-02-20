@@ -2,7 +2,7 @@
 
 namespace App\Application\Quiz\Services\Models;
 
-use App\Domain\Quiz\Repositories\Models\QuizUserStatusesRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizUserStatusesRepositoryContract;
 use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;

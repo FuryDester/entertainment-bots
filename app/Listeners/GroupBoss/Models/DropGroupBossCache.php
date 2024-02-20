@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Listeners\GroupBoss;
+namespace App\Listeners\GroupBoss\Models;
 
 use App\Infrastructure\GroupBoss\Enums\GroupBossTagsEnum;
 use App\Listeners\AbstractCacheFlushListener;
 
-final class DropGroupBossUserActionCache extends AbstractCacheFlushListener
+final class DropGroupBossCache extends AbstractCacheFlushListener
 {
     /**
      * {@inheritDoc}
      */
     protected function getCacheTag(): string|array
     {
-        return GroupBossTagsEnum::GroupBossUserActionRepository->value;
+        return GroupBossTagsEnum::GroupBossRepository->value;
     }
 }

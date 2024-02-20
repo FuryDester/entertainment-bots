@@ -15,7 +15,9 @@ final class QuizActionDTO extends AbstractDTO
 
     protected ActionTypeEnum $type;
 
-    protected ?string $value;
+    protected ?array $data;
+
+    protected ?int $duration;
 
     protected ?Carbon $createdAt;
 
@@ -29,7 +31,6 @@ final class QuizActionDTO extends AbstractDTO
     public function setId(?int $id): QuizActionDTO
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -41,7 +42,6 @@ final class QuizActionDTO extends AbstractDTO
     public function setAlias(ActionAliasTypeEnum $alias): QuizActionDTO
     {
         $this->alias = $alias;
-
         return $this;
     }
 
@@ -53,19 +53,28 @@ final class QuizActionDTO extends AbstractDTO
     public function setType(ActionTypeEnum $type): QuizActionDTO
     {
         $this->type = $type;
-
         return $this;
     }
 
-    public function getValue(): ?string
+    public function getData(): ?array
     {
-        return $this->value;
+        return $this->data;
     }
 
-    public function setValue(?string $value): QuizActionDTO
+    public function setData(?array $data): QuizActionDTO
     {
-        $this->value = $value;
+        $this->data = $data;
+        return $this;
+    }
 
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): QuizActionDTO
+    {
+        $this->duration = $duration;
         return $this;
     }
 
@@ -77,7 +86,6 @@ final class QuizActionDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): QuizActionDTO
     {
         $this->createdAt = $createdAt;
-
         return $this;
     }
 
@@ -89,7 +97,6 @@ final class QuizActionDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): QuizActionDTO
     {
         $this->updatedAt = $updatedAt;
-
         return $this;
     }
 }

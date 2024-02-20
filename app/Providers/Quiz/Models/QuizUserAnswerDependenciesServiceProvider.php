@@ -4,10 +4,10 @@ namespace App\Providers\Quiz\Models;
 
 use App\Application\Quiz\Services\Models\QuizUserAnswerService;
 use App\Domain\Quiz\Factories\QuizUserAnswerDTOFactoryContract;
-use App\Domain\Quiz\Repositories\Models\QuizUserAnswerRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizUserAnswerRepositoryContract;
 use App\Domain\Quiz\Services\Models\QuizUserAnswerServiceContract;
 use App\Infrastructure\Quiz\Factories\QuizUserAnswerDTOFactory;
-use App\Infrastructure\Quiz\Repositories\Models\QuizUserAnswerRepository;
+use App\Infrastructure\Quiz\Repositories\QuizUserAnswerRepository;
 use App\Providers\AbstractDependencyServiceProvider;
 
 final class QuizUserAnswerDependenciesServiceProvider extends AbstractDependencyServiceProvider

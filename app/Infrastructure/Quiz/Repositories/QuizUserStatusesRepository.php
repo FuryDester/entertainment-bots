@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories\Models;
+namespace App\Infrastructure\Quiz\Repositories;
 
 use App\Domain\Quiz\Factories\QuizUserStatusDTOFactoryContract;
-use App\Domain\Quiz\Repositories\Models\QuizUserStatusesRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizUserStatusesRepositoryContract;
 use App\Events\Quiz\QuizUserStatusUpdated;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
@@ -11,7 +11,7 @@ use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
 use App\Infrastructure\Common\Traits\Repositories\SaveDto;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizUserStatusDTO;
-use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
+use App\Infrastructure\Quiz\Enums\Cache\QuizTagsEnum;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Support\Facades\Cache;
 
@@ -38,7 +38,7 @@ final readonly class QuizUserStatusesRepository implements QuizUserStatusesRepos
      */
     public function getUserQuizStatus(UserDTO $user, QuizDTO $quiz): QuizUserStatusDTO
     {
-        return Cache::tags(QuizEnum::QuizUserStatusesRepository->value)
+        return Cache::tags(QuizTagsEnum::QuizUserStatusesRepository->value)
             ->remember(
                 $this->formBaseCacheKey($user->getId(), $quiz->getId()),
                 CacheTimeEnum::HOUR->value * 6,

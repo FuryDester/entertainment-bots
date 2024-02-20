@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories\Models;
+namespace App\Infrastructure\Quiz\Repositories;
 
 use App\Domain\Quiz\Factories\QuizUserAnswerDTOFactoryContract;
-use App\Domain\Quiz\Repositories\Models\QuizUserAnswerRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizUserAnswerRepositoryContract;
 use App\Events\Quiz\QuizUserAnswerUpdated;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
@@ -12,7 +12,7 @@ use App\Infrastructure\Common\Traits\Repositories\SaveDto;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizQuestionDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizUserAnswerDTO;
-use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
+use App\Infrastructure\Quiz\Enums\Cache\QuizTagsEnum;
 use App\Models\Quiz\QuizQuestion;
 use App\Models\Quiz\QuizUserAnswer;
 use Illuminate\Support\Facades\Cache;
@@ -37,7 +37,7 @@ final readonly class QuizUserAnswerRepository implements QuizUserAnswerRepositor
      */
     public function getByUserAndQuestion(UserDTO $user, QuizQuestionDTO $question): ?QuizUserAnswerDTO
     {
-        return Cache::tags(QuizEnum::QuizUserAnswerRepository->value)
+        return Cache::tags(QuizTagsEnum::QuizUserAnswerRepository->value)
             ->remember(
                 $this->formBaseCacheKey($user->getId(), $question->getId()),
                 CacheTimeEnum::WEEK->value,
@@ -56,7 +56,7 @@ final readonly class QuizUserAnswerRepository implements QuizUserAnswerRepositor
 
     public function getAnswersByQuiz(UserDTO $user, QuizDTO $quiz): array
     {
-        return Cache::tags(QuizEnum::QuizUserAnswerRepository->value)
+        return Cache::tags(QuizTagsEnum::QuizUserAnswerRepository->value)
             ->remember(
                 $this->formBaseCacheKey($user->getId(), $quiz->getId()),
                 CacheTimeEnum::WEEK->value,

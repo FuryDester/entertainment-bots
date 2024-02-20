@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Events\Vk;
+namespace App\Events\Common;
 
 use Illuminate\Foundation\Events\Dispatchable;
 
-final class VkEventUpdated
+final class UserActionUpdated
 {
     use Dispatchable;
 }

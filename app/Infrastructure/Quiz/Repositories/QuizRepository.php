@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Infrastructure\Quiz\Repositories\Models;
+namespace App\Infrastructure\Quiz\Repositories;
 
 use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
-use App\Domain\Quiz\Repositories\Models\QuizRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizRepositoryContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Common\Enums\Cache\CacheTimeEnum;
 use App\Infrastructure\Common\Traits\Cache\FormBaseCacheKey;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
-use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
+use App\Infrastructure\Quiz\Enums\Cache\QuizTagsEnum;
 use App\Models\Quiz\Quiz;
 use Illuminate\Support\Facades\Cache;
 
@@ -18,7 +18,7 @@ final readonly class QuizRepository implements QuizRepositoryContract
 
     public function getQuizById(int $id): ?QuizDTO
     {
-        return Cache::tags(QuizEnum::QuizRepository->value)
+        return Cache::tags(QuizTagsEnum::QuizRepository->value)
             ->remember(
                 $this->formBaseCacheKey($id),
                 CacheTimeEnum::DAY->value,
@@ -42,7 +42,7 @@ final readonly class QuizRepository implements QuizRepositoryContract
     public function getAvailableQuizzes(?UserDTO $user = null): array
     {
         $now = now();
-        $quizzes = Cache::tags([QuizEnum::QuizRepository->value, QuizEnum::QuizUserStatusRepository->value])
+        $quizzes = Cache::tags([QuizTagsEnum::QuizRepository->value, QuizTagsEnum::QuizUserStatusRepository->value])
             ->remember(
                 $this->formBaseCacheKey($user?->getId()),
                 CacheTimeEnum::HOUR->value * 6,

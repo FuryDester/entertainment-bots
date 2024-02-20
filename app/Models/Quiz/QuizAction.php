@@ -14,7 +14,8 @@ final class QuizAction extends Model
     protected $fillable = [
         'alias',
         'type',
-        'value',
+        'data',
+        'duration',
     ];
 
     public function quiz(): HasMany

@@ -7,6 +7,8 @@ use Illuminate\Support\Carbon;
 
 final class UserActionDTO extends AbstractDTO
 {
+    protected ?int $id;
+
     protected int $userId;
 
     protected int $quizActionId;
@@ -46,6 +48,17 @@ final class UserActionDTO extends AbstractDTO
     {
         $this->endsAt = $endsAt;
 
+        return $this;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): UserActionDTO
+    {
+        $this->id = $id;
         return $this;
     }
 }

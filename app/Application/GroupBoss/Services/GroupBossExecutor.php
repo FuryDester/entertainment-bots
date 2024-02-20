@@ -245,7 +245,7 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
             'action' => $action->toArray(),
         ]);
 
-        DamageTaken::dispatch($action);
+        DamageTaken::dispatch($action, $comment, $user);
     }
 
     /**

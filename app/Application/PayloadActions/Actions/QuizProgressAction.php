@@ -57,15 +57,16 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
 
         /** @var QuizUserAnswerDTOFactoryContract $userAnswerFactory */
         $userAnswerFactory = app(QuizUserAnswerDTOFactoryContract::class);
+        $now = now();
         $userAnswer = $userAnswerFactory::createFromParams(
             null,
             $questionId,
             $answerId,
             null,
             $user->getId(),
-            now(),
-            now(),
-            now(),
+            $now,
+            $now,
+            $now,
         );
 
         /** @var QuizUserAnswerServiceContract $userAnswerService */

@@ -2,7 +2,7 @@
 
 namespace App\Infrastructure\Quiz\Enums\Cache;
 
-enum QuizEnum: string
+enum QuizTagsEnum: string
 {
     case QuizRepository = 'quiz_repository';
     case QuizUserStatusesRepository = 'quiz_user_statuses_repository';
@@ -10,4 +10,5 @@ enum QuizEnum: string
     case QuizUserStatusRepository = 'quiz_user_status_repository';
     case QuizUserAnswerRepository = 'quiz_user_answer_repository';
     case QuizAnswerRepository = 'quiz_answer_repository';
+    case QuizActionRepository = 'quiz_action_repository';
 }

@@ -8,7 +8,12 @@ use Illuminate\Support\Carbon;
 
 interface UserActionDTOFactoryContract
 {
-    public static function createFromParams(int $userId, int $quizActionId, string|Carbon $endsAt): UserActionDTO;
+    public static function createFromParams(
+        ?int $id,
+        int $userId,
+        int $quizActionId,
+        string|Carbon|null $endsAt,
+    ): UserActionDTO;
 
     public static function createFromModel(UserAction $userAction): UserActionDTO;
 }
