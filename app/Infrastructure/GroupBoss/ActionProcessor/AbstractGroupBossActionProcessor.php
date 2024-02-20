@@ -17,8 +17,9 @@ abstract readonly class AbstractGroupBossActionProcessor
         return $action->getAlias() === $this->getActionAlias();
     }
 
-    public function run(): void {
-       //
+    public function run(): void
+    {
+        //
     }
 
     abstract public function processAction(): void;

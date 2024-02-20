@@ -31,7 +31,7 @@ final readonly class UserActionRepository implements UserActionRepositoryContrac
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getActiveActionsByUser(UserDTO $user, ?array $aliases = []): array
     {
@@ -53,6 +53,7 @@ final readonly class UserActionRepository implements UserActionRepositoryContrac
 
                     /** @var UserActionDTOFactoryContract $factory */
                     $factory = app(UserActionDTOFactoryContract::class);
+
                     return $query
                         ->get()
                         ->map(static fn (UserAction $action) => $factory::createFromModel($action))

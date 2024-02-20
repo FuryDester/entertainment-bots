@@ -59,6 +59,7 @@ final class UserActionDTO extends AbstractDTO
     public function setId(?int $id): UserActionDTO
     {
         $this->id = $id;
+
         return $this;
     }
 }

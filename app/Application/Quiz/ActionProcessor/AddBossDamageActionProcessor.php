@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Validator;
 
 final readonly class AddBossDamageActionProcessor extends AbstractQuizActionProcessor
 {
-    use SendMessage;
     use SecondsToHms;
+    use SendMessage;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getActionAlias(): ActionAliasTypeEnum|array
     {
@@ -31,7 +31,7 @@ final readonly class AddBossDamageActionProcessor extends AbstractQuizActionProc
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getActionType(): ActionTypeEnum|array
     {

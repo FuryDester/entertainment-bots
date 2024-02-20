@@ -17,7 +17,7 @@ final readonly class QuizActionRepository implements QuizActionRepositoryContrac
     use FormBaseCacheKey;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getByType(ActionTypeEnum $type): array
     {

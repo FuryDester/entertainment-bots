@@ -3,7 +3,6 @@
 namespace App\Events\Quiz;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
-use App\Infrastructure\Quiz\DataTransferObjects\QuizAnswerDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizUserAnswerDTO;
 use Illuminate\Foundation\Events\Dispatchable;

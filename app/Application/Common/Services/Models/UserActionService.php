@@ -20,7 +20,7 @@ final readonly class UserActionService implements UserActionServiceContract
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getActiveActionsByUser(UserDTO $user, ?array $aliases = []): array
     {

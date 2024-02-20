@@ -27,7 +27,7 @@ final class CheckForQuestionAction
         if ($processor === null) {
             Log::error('QuizActionProcessor not found', [
                 'quiz_id' => $event->quiz->getId(),
-                'action_id' => $actionDetail->getId()
+                'action_id' => $actionDetail->getId(),
             ]);
 
             return;

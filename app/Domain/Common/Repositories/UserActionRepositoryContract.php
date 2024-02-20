@@ -12,7 +12,8 @@ interface UserActionRepositoryContract
 
     /**
      * Получение активных действий пользователя
-     * @param ActionAliasTypeEnum[]|null $aliases фильтр по алиасам
+     *
+     * @param  ActionAliasTypeEnum[]|null  $aliases  фильтр по алиасам
      * @return UserActionDTO[]
      */
     public function getActiveActionsByUser(UserDTO $user, ?array $aliases = []): array;
