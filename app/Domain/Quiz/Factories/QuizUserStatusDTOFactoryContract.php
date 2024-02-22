@@ -12,8 +12,8 @@ interface QuizUserStatusDTOFactoryContract
         int $userId,
         int $quizId,
         bool $isDone = false,
-        ?Carbon $doneAt = null,
-        ?Carbon $createdAt = null,
-        ?Carbon $updatedAt = null,
+        Carbon|string|null $doneAt = null,
+        Carbon|string|null $createdAt = null,
+        Carbon|string|null $updatedAt = null,
     ): QuizUserStatusDTO;
 }

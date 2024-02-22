@@ -13,17 +13,17 @@ final readonly class QuizUserStatusDTOFactory implements QuizUserStatusDTOFactor
         int $userId,
         int $quizId,
         bool $isDone = false,
-        ?Carbon $doneAt = null,
-        ?Carbon $createdAt = null,
-        ?Carbon $updatedAt = null,
+        Carbon|string|null $doneAt = null,
+        Carbon|string|null $createdAt = null,
+        Carbon|string|null $updatedAt = null,
     ): QuizUserStatusDTO {
         return (new QuizUserStatusDTO)
             ->setId($id)
             ->setUserId($userId)
             ->setQuizId($quizId)
             ->setIsDone($isDone)
-            ->setDoneAt($doneAt)
-            ->setCreatedAt($createdAt)
-            ->setUpdatedAt($updatedAt);
+            ->setDoneAt($doneAt ? new Carbon($doneAt) : null)
+            ->setCreatedAt($createdAt ? new Carbon($createdAt) : null)
+            ->setUpdatedAt($updatedAt ? new Carbon($updatedAt) : null);
     }
 }
