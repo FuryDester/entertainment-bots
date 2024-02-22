@@ -41,7 +41,7 @@ final readonly class AdditionalDamageProcessor extends AbstractGroupBossActionPr
             return;
         }
 
-        $finalAdditionalDamage = floor($bossAction->getDamage() * (1 + ($damagePercent / 100)));
+        $finalAdditionalDamage = floor($bossAction->getDamage() * ($damagePercent / 100));
 
         /** @var GroupBossUserActionDTOFactoryContract $bossActionFactory */
         $bossActionFactory = app(GroupBossUserActionDTOFactoryContract::class);
