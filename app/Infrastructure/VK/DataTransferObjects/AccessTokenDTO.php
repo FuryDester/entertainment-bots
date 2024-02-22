@@ -4,7 +4,7 @@ namespace App\Infrastructure\VK\DataTransferObjects;
 
 use App\Infrastructure\Common\DataTransferObjects\AbstractDTO;
 
-class AccessTokenDTO extends AbstractDTO
+final class AccessTokenDTO extends AbstractDTO
 {
     protected string $accessToken;
 
