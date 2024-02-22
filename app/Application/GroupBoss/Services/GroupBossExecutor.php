@@ -158,7 +158,7 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
      */
     private function tryHitBoss(GroupBossDTO $boss, GroupBossWeaponDTO $weapon): int|false
     {
-        $chance = ($boss->getBaseHitChance() / 100) * ($weapon->getHitChance() / 100);
+        $chance = ($boss->getBaseHitChance() / 100) * ($weapon->getHitChance() / 100) * 100;
         if (mt_rand(0, 100) > $chance) {
             return false;
         }
