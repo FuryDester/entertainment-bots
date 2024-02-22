@@ -22,9 +22,6 @@ trait QuizAvailability
     private function checkQuizAvailability(QuizDTO $quiz, UserDTO $user): array
     {
         $now = now();
-        Log::error('Test quiz', [
-            'quiz' => $quiz->toArray(),
-        ]);
         $availableByTime = (! $quiz->getStartsAt() || $quiz->getStartsAt() >= $now)
             && (! $quiz->getEndsAt() || $quiz->getEndsAt() <= $now);
 
