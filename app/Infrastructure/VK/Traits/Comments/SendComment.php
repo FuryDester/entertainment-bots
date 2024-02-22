@@ -15,7 +15,7 @@ trait SendComment
         $accessToken = app(AccessTokenDTO::class);
         Log::error('accessToken', [
             'accessToken' => AccessTokenDTO::class,
-            'app' => app($accessToken)->toArray(),
+            'app' => app(AccessTokenDTO::class),
         ]);
 
         $vkClient = new VKApiClient;
