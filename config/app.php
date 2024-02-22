@@ -207,6 +207,7 @@ return [
         App\Providers\GroupBoss\Models\GroupBossWeaponModelsDependencyServiceProvider::class,
         App\Providers\GroupBoss\GroupBossExecutorDependencyServiceProvider::class,
         App\Providers\GroupBoss\GroupBossTemplatorDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossActionProcessorDependencyServiceProvider::class,
     ])->toArray(),
 
     /*
