@@ -29,7 +29,7 @@ final readonly class QuizActionDTOFactory implements QuizActionDTOFactoryContrac
             ->setId($model->id)
             ->setAlias(ActionAliasTypeEnum::from($model->alias))
             ->setType(ActionTypeEnum::from($model->type))
-            ->setData($model->data)
+            ->setData($model->data ? json_decode($model->data, true) : null)
             ->setDuration($model->duration)
             ->setCreatedAt($model->created_at ? new Carbon($model->created_at) : null)
             ->setUpdatedAt($model->updated_at ? new Carbon($model->updated_at) : null);
