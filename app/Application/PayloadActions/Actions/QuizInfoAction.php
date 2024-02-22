@@ -61,6 +61,7 @@ final readonly class QuizInfoAction extends AbstractPayloadAction
                 'quiz_id' => $id,
                 'quiz' => $quiz->toArray(),
                 'user' => $user->toArray(),
+                'now' => now(),
             ]);
 
             return true;
