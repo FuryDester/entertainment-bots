@@ -23,7 +23,7 @@ final readonly class GroupBossActionProcessorService implements GroupBossActionP
         $quizActionService = app(QuizActionServiceContract::class);
         foreach ($processors as $processor) {
             $processor = new $processor();
-            if (!$processor instanceof AbstractGroupBossActionProcessor) {
+            if (! $processor instanceof AbstractGroupBossActionProcessor) {
                 Log::warning("Class $processor is not an instance of AbstractGroupBossActionProcessor");
 
                 continue;

@@ -4,8 +4,6 @@ namespace App\Domain\GroupBoss\Services;
 
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
-use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossUserActionDTO;
-use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossWeaponDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\CommentDTO;
 
 interface GroupBossExecutorContract

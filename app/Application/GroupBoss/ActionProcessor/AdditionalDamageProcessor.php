@@ -21,7 +21,7 @@ final readonly class AdditionalDamageProcessor extends AbstractGroupBossActionPr
     use SendComment;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getActionAlias(): ActionAliasTypeEnum|array
     {
@@ -76,7 +76,7 @@ final readonly class AdditionalDamageProcessor extends AbstractGroupBossActionPr
     {
         $replyTo = ['reply_to_comment' => $comment->getId()];
 
-        if (null === $damageResult) {
+        if ($damageResult === null) {
             $this->sendComment(
                 $comment->getOwnerId(),
                 $comment->getPostId(),
@@ -91,7 +91,7 @@ final readonly class AdditionalDamageProcessor extends AbstractGroupBossActionPr
             $this->sendComment(
                 $comment->getOwnerId(),
                 $comment->getPostId(),
-                "Произошла неизвестная ошибка при нанесении дополнительного урона.",
+                'Произошла неизвестная ошибка при нанесении дополнительного урона.',
                 $replyTo,
             );
 
