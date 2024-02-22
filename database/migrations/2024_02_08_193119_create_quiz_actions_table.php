@@ -20,8 +20,6 @@ return new class extends Migration
             $table->unsignedInteger('duration')->default(0)->nullable();
 
             $table->timestamps();
-
-            $table->unique(['alias', 'type', 'data', 'duration']);
         });
     }
 
