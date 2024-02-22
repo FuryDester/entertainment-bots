@@ -39,6 +39,7 @@ final class QuizStatisticsService implements QuizStatisticsServiceContract
         $answerService = app(QuizAnswerServiceContract::class);
 
         $answer = $answerService->getById($userAnswer->getAnswerId());
+
         return $answer ? $answer->isCorrect() : false;
     }
 }

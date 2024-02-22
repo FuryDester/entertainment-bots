@@ -23,7 +23,8 @@ final readonly class QuizActionDTOFactory implements QuizActionDTOFactoryContrac
             ->setUpdatedAt(($data['updated_at'] ?? null) ? new Carbon($data['updated_at']) : null);
     }
 
-    public static function createFromModel(QuizAction $model): QuizActionDTO {
+    public static function createFromModel(QuizAction $model): QuizActionDTO
+    {
         return (new QuizActionDTO)
             ->setId($model->id)
             ->setAlias(ActionAliasTypeEnum::from($model->alias))

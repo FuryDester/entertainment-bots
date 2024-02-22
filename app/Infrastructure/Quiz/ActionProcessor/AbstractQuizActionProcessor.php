@@ -37,7 +37,7 @@ abstract readonly class AbstractQuizActionProcessor
         QuizActionDTO $action,
         QuizUserAnswerDTO $userAnswer,
     ): void {
-        if (!$this->isProcessable($action)) {
+        if (! $this->isProcessable($action)) {
             Log::warning('Action is not processable', [
                 'quiz_id' => $quiz->getId(),
                 'user_id' => $user->getId(),

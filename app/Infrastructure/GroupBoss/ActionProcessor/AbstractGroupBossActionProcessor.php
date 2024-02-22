@@ -7,7 +7,6 @@ use App\Infrastructure\Common\DataTransferObjects\Models\UserActionDTO;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossDTO;
 use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossUserActionDTO;
-use App\Infrastructure\GroupBoss\DataTransferObjects\GroupBossWeaponDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizActionDTO;
 use App\Infrastructure\Quiz\Enums\ActionAliasTypeEnum;
 use App\Infrastructure\VK\DataTransferObjects\Common\CommentDTO;

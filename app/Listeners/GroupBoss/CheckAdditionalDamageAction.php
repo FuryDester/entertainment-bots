@@ -40,6 +40,7 @@ final class CheckAdditionalDamageAction
 
     /**
      * Получение списка действий, которые могут добавить урон
+     *
      * @return ActionAliasTypeEnum[]
      */
     private function getValidAliases(): array

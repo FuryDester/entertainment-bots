@@ -9,6 +9,7 @@ interface QuizActionRepositoryContract
 {
     /**
      * Получение действий по типу действия.
+     *
      * @return QuizActionDTO[]
      */
     public function getByType(ActionTypeEnum $type): array;

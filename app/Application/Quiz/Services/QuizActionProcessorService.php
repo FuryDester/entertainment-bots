@@ -5,8 +5,8 @@ namespace App\Application\Quiz\Services;
 use App\Domain\Quiz\Services\QuizActionProcessorServiceContract;
 use App\Infrastructure\Quiz\ActionProcessor\AbstractQuizActionProcessor;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizActionDTO;
-use HaydenPierce\ClassFinder\ClassFinder;
 use Exception;
+use HaydenPierce\ClassFinder\ClassFinder;
 use Illuminate\Support\Facades\Log;
 
 final readonly class QuizActionProcessorService implements QuizActionProcessorServiceContract
@@ -19,7 +19,7 @@ final readonly class QuizActionProcessorService implements QuizActionProcessorSe
         $processorClasses = ClassFinder::getClassesInNamespace('App\Application\Quiz\ActionProcessor');
         foreach ($processorClasses as $processorClass) {
             $processor = new $processorClass();
-            if (!$processor instanceof AbstractQuizActionProcessor) {
+            if (! $processor instanceof AbstractQuizActionProcessor) {
                 Log::warning("Class $processorClass is not an instance of AbstractQuizActionProcessor");
 
                 continue;
