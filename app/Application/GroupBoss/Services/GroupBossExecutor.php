@@ -138,7 +138,7 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
             $this->sendComment(
                 $comment->getOwnerId(),
                 $comment->getPostId(),
-                "Вы промахнулись. Попробуйте ещё раз через {$this->secondsToHms($boss->getMissCooldown() * 60)}",
+                "Вы промахнулись. Попробуйте ещё раз через {$this->secondsToHms($boss->getMissCooldown())}",
                 ['reply_to_comment' => $comment->getId()],
             );
 

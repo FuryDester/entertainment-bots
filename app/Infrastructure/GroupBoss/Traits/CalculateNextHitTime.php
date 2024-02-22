@@ -18,6 +18,6 @@ trait CalculateNextHitTime
         return $userAction
             ->getCreatedAt()
             ->copy()
-            ->add('minutes', $userAction->isMiss() ? $boss->getMissCooldown() : $boss->getHitCooldown());
+            ->add('seconds', $userAction->isMiss() ? $boss->getMissCooldown() : $boss->getHitCooldown());
     }
 }
