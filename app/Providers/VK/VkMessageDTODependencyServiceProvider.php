@@ -37,12 +37,16 @@ final class VkMessageDTODependencyServiceProvider extends AbstractDependencyServ
         ForwardMessageDTOFactoryContract::class => ForwardMessageDTOFactory::class,
     ];
 
+    protected array $manualBindings = [
+        AccessTokenDTO::class,
+    ];
+
     /**
      * Register services.
      */
     public function register(): void
     {
-        $this->manualBind(
+        $this->app->singleton(
             AccessTokenDTO::class,
             static fn () => AccessTokenDTO::getInstance()->setAccessToken(config('integrations.vk.access_token')),
         );

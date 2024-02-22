@@ -18,13 +18,7 @@ abstract class AbstractDependencyServiceProvider extends ServiceProvider impleme
         return [
             ...array_keys($this->singletons),
             ...array_keys($this->bindings),
-            ...array_keys($this->manualBindings),
+            ...array_unique($this->manualBindings),
         ];
-    }
-
-    protected function manualBind(string $abstract, string|callable $concrete, bool $singleton = true): void
-    {
-        $this->app->bind($abstract, $concrete, $singleton);
-        $this->manualBindings[$abstract] = $concrete;
     }
 }
