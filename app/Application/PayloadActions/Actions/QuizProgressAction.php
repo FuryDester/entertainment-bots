@@ -84,7 +84,7 @@ final readonly class QuizProgressAction extends AbstractPayloadAction
         /** @var QuizServiceContract $quizService */
         $quizService = app(QuizServiceContract::class);
         $quiz = $quizService->getQuizById($quizId);
-        QuizQuestionAnswered::dispatch($quiz, $user);
+        QuizQuestionAnswered::dispatch($quiz, $userAnswer, $user);
 
         $this->sendOrEndQuiz($user, $quizId);
 
