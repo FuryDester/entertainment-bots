@@ -229,6 +229,7 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
             return;
         }
 
+        $boss->setCurrentHealth($boss->getCurrentHealth() - $action->getDamage());
         /** @var GroupBossTemplatorContract $templator */
         $templator = app(GroupBossTemplatorContract::class);
         $this->sendComment(
