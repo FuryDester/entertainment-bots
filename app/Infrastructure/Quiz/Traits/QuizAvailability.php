@@ -5,6 +5,7 @@ namespace App\Infrastructure\Quiz\Traits;
 use App\Domain\Quiz\Services\Models\QuizUserStatusesServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
+use Illuminate\Support\Facades\Log;
 
 trait QuizAvailability
 {
@@ -21,6 +22,9 @@ trait QuizAvailability
     private function checkQuizAvailability(QuizDTO $quiz, UserDTO $user): array
     {
         $now = now();
+        Log::error('Test quiz', [
+            'quiz' => $quiz->toArray(),
+        ]);
         $availableByTime = (! $quiz->getStartsAt() || $quiz->getStartsAt() >= $now)
             && (! $quiz->getEndsAt() || $quiz->getEndsAt() <= $now);
 

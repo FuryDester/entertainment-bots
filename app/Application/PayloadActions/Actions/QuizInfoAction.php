@@ -58,7 +58,6 @@ final readonly class QuizInfoAction extends AbstractPayloadAction
 
         if (! $this->canStartQuiz($message, $quiz, $user)) {
             Log::warning('Quiz not available', [
-                'quiz_id' => $id,
                 'quiz' => $quiz->toArray(),
                 'user' => $user->toArray(),
                 'now' => now(),
