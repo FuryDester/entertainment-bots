@@ -24,11 +24,13 @@ abstract readonly class AbstractQuizActionProcessor
 
     public function isProcessable(QuizActionDTO $action): bool
     {
-        if ($action->getAlias() !== $this->getActionAlias()) {
+        $aliases = is_array($this->getActionAlias()) ? $this->getActionAlias() : [$this->getActionAlias()];
+        if (! in_array($action->getAlias(), $aliases, true)){
             return false;
         }
 
-        return $action->getType() === $this->getActionType();
+        $types = is_array($this->getActionType()) ? $this->getActionType() : [$this->getActionType()];
+        return in_array($action->getType(), $types, true);
     }
 
     public function run(

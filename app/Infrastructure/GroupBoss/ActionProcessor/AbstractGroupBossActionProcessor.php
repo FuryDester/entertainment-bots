@@ -21,7 +21,8 @@ abstract readonly class AbstractGroupBossActionProcessor
 
     public function isProcessable(QuizActionDTO $action): bool
     {
-        return $action->getAlias() === $this->getActionAlias();
+        $aliases = is_array($this->getActionAlias()) ? $this->getActionAlias() : [$this->getActionAlias()];
+        return in_array($action->getAlias(), $aliases, true);
     }
 
     public function run(
