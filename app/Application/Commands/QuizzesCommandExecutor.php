@@ -2,7 +2,7 @@
 
 namespace App\Application\Commands;
 
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
 use App\Domain\Quiz\Services\Models\QuizServiceContract;
 use App\Infrastructure\Commands\AbstractCommandExecutor;

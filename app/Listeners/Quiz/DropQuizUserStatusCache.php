@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Quiz;
 
-use App\Infrastructure\Quiz\Enums\Cache\QuizEnum;
+use App\Infrastructure\Quiz\Enums\Cache\QuizTagsEnum;
 use App\Listeners\AbstractCacheFlushListener;
 
 final class DropQuizUserStatusCache extends AbstractCacheFlushListener
@@ -12,6 +12,6 @@ final class DropQuizUserStatusCache extends AbstractCacheFlushListener
      */
     protected function getCacheTag(): string|array
     {
-        return QuizEnum::QuizUserStatusesRepository->value;
+        return QuizTagsEnum::QuizUserStatusesRepository->value;
     }
 }

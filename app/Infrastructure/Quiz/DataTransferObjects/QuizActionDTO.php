@@ -15,7 +15,9 @@ final class QuizActionDTO extends AbstractDTO
 
     protected ActionTypeEnum $type;
 
-    protected ?string $value;
+    protected ?array $data;
+
+    protected ?int $duration;
 
     protected ?Carbon $createdAt;
 
@@ -57,14 +59,26 @@ final class QuizActionDTO extends AbstractDTO
         return $this;
     }
 
-    public function getValue(): ?string
+    public function getData(): ?array
     {
-        return $this->value;
+        return $this->data;
     }
 
-    public function setValue(?string $value): QuizActionDTO
+    public function setData(?array $data): QuizActionDTO
     {
-        $this->value = $value;
+        $this->data = $data;
+
+        return $this;
+    }
+
+    public function getDuration(): ?int
+    {
+        return $this->duration;
+    }
+
+    public function setDuration(?int $duration): QuizActionDTO
+    {
+        $this->duration = $duration;
 
         return $this;
     }

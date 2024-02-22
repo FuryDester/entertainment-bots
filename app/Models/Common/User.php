@@ -2,6 +2,8 @@
 
 namespace App\Models\Common;
 
+use App\Models\GroupBoss\GroupBoss;
+use App\Models\GroupBoss\GroupBossUserAction;
 use App\Models\Quiz\QuizUserAnswer;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -29,5 +31,15 @@ final class User extends Model
     public function quizStatuses(): HasMany
     {
         return $this->hasMany(QuizUserStatus::class);
+    }
+
+    public function groupBosses(): HasMany
+    {
+        return $this->hasMany(GroupBoss::class);
+    }
+
+    public function groupBossUserAction(): HasMany
+    {
+        return $this->hasMany(GroupBossUserAction::class);
     }
 }

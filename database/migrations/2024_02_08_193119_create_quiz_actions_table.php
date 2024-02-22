@@ -1,10 +1,7 @@
 <?php
 
-use App\Infrastructure\Quiz\Enums\ActionAliasTypeEnum;
-use App\Infrastructure\Quiz\Enums\ActionTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -17,13 +14,14 @@ return new class extends Migration
         Schema::create('quiz_actions', function (Blueprint $table) {
             $table->id();
 
-            $table->enum('alias', Arr::pluck(ActionAliasTypeEnum::cases(), 'value'));
-            $table->enum('type', Arr::pluck(ActionTypeEnum::cases(), 'value'));
-            $table->string('value')->nullable();
+            $table->string('alias');
+            $table->string('type');
+            $table->json('data')->nullable();
+            $table->unsignedInteger('duration')->default(0)->nullable();
 
             $table->timestamps();
 
-            $table->unique(['alias', 'type', 'value']);
+            $table->unique(['alias', 'type', 'data', 'duration']);
         });
     }
 

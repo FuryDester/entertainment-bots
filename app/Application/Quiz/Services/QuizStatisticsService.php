@@ -2,7 +2,7 @@
 
 namespace App\Application\Quiz\Services;
 
-use App\Domain\Quiz\Repositories\Models\QuizUserAnswerRepositoryContract;
+use App\Domain\Quiz\Repositories\QuizUserAnswerRepositoryContract;
 use App\Domain\Quiz\Services\Models\QuizAnswerServiceContract;
 use App\Domain\Quiz\Services\QuizStatisticsServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
@@ -28,5 +28,18 @@ final class QuizStatisticsService implements QuizStatisticsServiceContract
         $answers = $answerService->getByIds($answerIds);
 
         return count(array_filter($answers, static fn (QuizAnswerDTO $answer) => $answer->isCorrect()));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function isAnswerCorrect(QuizUserAnswerDTO $userAnswer): bool
+    {
+        /** @var QuizAnswerServiceContract $answerService */
+        $answerService = app(QuizAnswerServiceContract::class);
+
+        $answer = $answerService->getById($userAnswer->getAnswerId());
+
+        return $answer ? $answer->isCorrect() : false;
     }
 }

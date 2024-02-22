@@ -4,7 +4,7 @@ namespace App\Infrastructure\Quiz\Factories;
 
 use App\Domain\Quiz\Factories\QuizDTOFactoryContract;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
-use Carbon\Carbon;
+use Illuminate\Support\Carbon;
 
 final readonly class QuizDTOFactory implements QuizDTOFactoryContract
 {

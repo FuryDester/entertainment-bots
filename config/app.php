@@ -171,7 +171,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         // VK providers
-        App\Providers\VK\VkDataTransferObjectsServiceProvider::class,
+        App\Providers\VK\VkMessageDTODependencyServiceProvider::class,
+        App\Providers\VK\VkCommentDTODependencyServiceProvider::class,
         App\Providers\VK\VkEventModelServiceProvider::class,
         App\Providers\VK\VkActionServiceProvider::class,
         App\Providers\VK\VkRequestsDataTransferObjectsServiceProvider::class,
@@ -182,20 +183,31 @@ return [
         App\Providers\Commands\Common\CommandBaseServiceProvider::class,
 
         // Quiz
-        App\Providers\Quiz\QuizFactoriesServiceProvider::class,
         App\Providers\Quiz\Models\QuizDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizUserStatusDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizQuestionDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizAnswerDependenciesServiceProvider::class,
         App\Providers\Quiz\Models\QuizUserAnswerDependenciesServiceProvider::class,
         App\Providers\Quiz\QuizStatisticsDependencyServiceProvider::class,
+        App\Providers\Quiz\Models\QuizActionDependenciesServiceProvider::class,
+        App\Providers\Quiz\QuizActionProcessorDependencyServiceProvider::class,
 
         // Common
-        App\Providers\Common\UserDependencyServiceProvider::class,
+        App\Providers\Common\Models\UserDependencyServiceProvider::class,
+        App\Providers\Common\Templator\BaseTemplatorDependencyServiceProvider::class,
+        App\Providers\Common\Models\UserActionDependencyServiceProvider::class,
 
         // Payload actions
         App\Providers\PayloadActions\PayloadDataTransferObjectsServiceProvider::class,
         App\Providers\PayloadActions\PayloadServiceProvider::class,
+
+        // Group boss
+        App\Providers\GroupBoss\Models\GroupBossUserActionModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\Models\GroupBossModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\Models\GroupBossWeaponModelsDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossExecutorDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossTemplatorDependencyServiceProvider::class,
+        App\Providers\GroupBoss\GroupBossActionProcessorDependencyServiceProvider::class,
     ])->toArray(),
 
     /*

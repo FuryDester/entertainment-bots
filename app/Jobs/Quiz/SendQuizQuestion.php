@@ -2,7 +2,7 @@
 
 namespace App\Jobs\Quiz;
 
-use App\Domain\Common\Services\UserServiceContract;
+use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;

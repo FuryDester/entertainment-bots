@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\GroupBoss\EditPosts;
 use App\Console\Commands\Vk\ProcessUnprocessedEvents;
 use App\Console\Commands\Vk\RemoveOldEventsCommand;
 use Illuminate\Console\Scheduling\Schedule;
@@ -16,6 +17,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command((new RemoveOldEventsCommand)->getName())->everySixHours();
         $schedule->command((new ProcessUnprocessedEvents)->getName())->everyTwoMinutes();
+        $schedule->command((new EditPosts())->getName())->everyTenMinutes();
     }
 
     /**
