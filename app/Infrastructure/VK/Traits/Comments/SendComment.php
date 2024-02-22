@@ -13,6 +13,10 @@ trait SendComment
     {
         /** @var AccessTokenDTO $accessToken */
         $accessToken = app(AccessTokenDTO::class);
+        Log::error('accessToken', [
+            'accessToken' => AccessTokenDTO::class,
+            'app' => app($accessToken)->toArray(),
+        ]);
 
         $vkClient = new VKApiClient;
         try {
