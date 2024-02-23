@@ -47,7 +47,10 @@ final class WallReplyNewAction implements Actionable
      */
     private static function tryProcessGroupBoss(CommentDTO $comment, UserDTO $user): bool
     {
-        if (! $comment->getText()) {
+        if (
+            ! $comment->getText()
+            || $comment->getFromId() <= 0
+        ) {
             return false;
         }
 

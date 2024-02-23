@@ -30,11 +30,11 @@ final readonly class GroupBossExecutor implements GroupBossExecutorContract
      */
     public function execute(CommentDTO $comment, UserDTO $user, GroupBossDTO $boss): bool
     {
-        if (! $this->checkBossAndUserStatuses($comment, $boss, $user)) {
+        if (! $weapon = $this->getWeaponByMessage($comment, $boss)) {
             return false;
         }
 
-        if (! $weapon = $this->getWeaponByMessage($comment, $boss)) {
+        if (! $this->checkBossAndUserStatuses($comment, $boss, $user)) {
             return false;
         }
 
