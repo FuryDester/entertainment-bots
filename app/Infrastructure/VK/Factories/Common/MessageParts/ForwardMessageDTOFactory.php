@@ -14,7 +14,7 @@ final readonly class ForwardMessageDTOFactory implements ForwardMessageDTOFactor
     public static function createFromParams(
         int $date,
         int $fromId,
-        int $id,
+        ?int $id,
         int $peerId,
         ?string $text,
         int $conversationMessageId,
@@ -38,7 +38,7 @@ final readonly class ForwardMessageDTOFactory implements ForwardMessageDTOFactor
         return self::createFromParams(
             $data['date'],
             $data['from_id'],
-            $data['id'],
+            $data['id'] ?? null,
             $data['peer_id'],
             $data['text'] ?? null,
             $data['conversation_message_id'],
