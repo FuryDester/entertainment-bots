@@ -35,7 +35,7 @@ final readonly class TimerCommandExecutor extends AbstractCommandExecutor
      */
     public function getAliases(): array
     {
-        return ['таймер', 'timer', 'время', 'уведомление', 'уведомить', 'напомнить', 'напоминание', 'напомни'];
+        return ['таймер', 'timer', 'время', 'уведомление', 'уведомить', 'напомнить', 'напоминание', 'напомни', 'н', 'т'];
     }
 
     public function onlyForPersonalMessages(): bool
