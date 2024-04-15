@@ -4,6 +4,7 @@ namespace App\Jobs\Quiz;
 
 use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\Quiz\Services\Models\QuizQuestionServiceContract;
+use App\Domain\Quiz\Services\Models\QuizServiceContract;
 use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\PayloadActions\Enums\ActionStageEnum;
 use App\Infrastructure\Quiz\DataTransferObjects\QuizDTO;
@@ -40,6 +41,15 @@ final class SendQuizQuestion implements ShouldQueue
      */
     public function handle(): void
     {
+        /** @var QuizServiceContract $quizService */
+        $quizService = app(QuizServiceContract::class);
+        $quiz = $quizService->getQuizById($this->quiz->getId());
+        if ($quiz->getEndsAt() && $quiz->getEndsAt()->isPast()) {
+            $this->quizEnd($this->user, $this->quiz, true);
+
+            return;
+        }
+
         /** @var QuizQuestionServiceContract $questionService */
         $questionService = app(QuizQuestionServiceContract::class);
         $question = $questionService->getRandomQuestion($this->quiz, $this->user);

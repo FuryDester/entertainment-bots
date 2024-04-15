@@ -12,7 +12,7 @@ interface ForwardMessageDTOFactoryContract
     public static function createFromParams(
         int $date,
         int $fromId,
-        int $id,
+        ?int $id,
         int $peerId,
         ?string $text,
         int $conversationMessageId,
@@ -23,7 +23,7 @@ interface ForwardMessageDTOFactoryContract
      * @param array{
      *     date: int,
      *     from_id: int,
-     *     id: int,
+     *     id?: int,
      *     peer_id: int,
      *     text: string|null,
      *     conversation_message_id: int,

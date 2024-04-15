@@ -20,11 +20,12 @@ trait QuizEnd
     /**
      * Обработка завершения теста пользователем.
      */
-    private function quizEnd(UserDTO $user, QuizDTO $quiz): void
+    private function quizEnd(UserDTO $user, QuizDTO $quiz, bool $timeout = false): void
     {
         Log::info('Quiz finished', [
             'quiz_id' => $quiz->getId(),
             'user' => $user->toArray(),
+            'timeout' => $timeout,
         ]);
 
         /** @var UserServiceContract $userService */
@@ -51,7 +52,8 @@ trait QuizEnd
         $this->sendMessage(
             $user->getVkPeerId(),
             sprintf(
-                'Тест завершён! Правильных ответов: %d из %d (%d%%)',
+                'Тест завершён%s! Правильных ответов: %d из %d (%d%%)',
+                $timeout ? ' в связи с истечением времени' : '',
                 $correctAnswers,
                 $questionCount,
                 (int) ($correctAnswers * 100 / $questionCount)
