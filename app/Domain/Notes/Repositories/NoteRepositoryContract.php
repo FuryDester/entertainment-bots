@@ -11,7 +11,6 @@ interface NoteRepositoryContract
     public function getByNameAndPeerId(string $name, int $peerId): ?NoteDTO;
 
     /**
-     * @param string $peerId
      * @return NoteDTO[]
      */
     public function getByPeerId(string $peerId): array;

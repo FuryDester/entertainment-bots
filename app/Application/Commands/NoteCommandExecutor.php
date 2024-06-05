@@ -19,7 +19,7 @@ final readonly class NoteCommandExecutor extends AbstractCommandExecutor
     use SendMessage;
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getDescription(): string
     {
@@ -27,7 +27,7 @@ final readonly class NoteCommandExecutor extends AbstractCommandExecutor
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getUsage(): string
     {
@@ -37,7 +37,7 @@ TEXT;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getAliases(): array
     {
@@ -45,7 +45,7 @@ TEXT;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function getArguments(CommandArgumentDTOFactoryContract $factory): array
     {
@@ -55,7 +55,7 @@ TEXT;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     protected function execute(MessageDTO $message, array $arguments): bool
     {
@@ -87,7 +87,7 @@ TEXT;
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function onlyForPersonalMessages(): bool
     {
@@ -101,8 +101,9 @@ TEXT;
         if (count($notes)) {
             $text =
                 "Доступные заметки:\n"
-                . implode("\n", Arr::map($notes, static function (NoteDTO $note) {
+                .implode("\n", Arr::map($notes, static function (NoteDTO $note) {
                     $dateTime = $note->getUpdatedAt()->format('Y-m-d H:i:s');
+
                     return "🗂 {$note->getName()} - добавлена в $dateTime";
                 }));
         }
