@@ -37,17 +37,10 @@ trait SendMessage
                 return;
             }
 
-            $result = Http::asForm()->post(self::API_HOST . '/messages.send', [
+            Http::asForm()->post(self::API_HOST . '/messages.send', [
                 ...$params,
                 'access_token' => $accessToken->getAccessToken(),
                 'v' => self::API_VERSION,
-            ]);
-
-            Log::warning('Own sent API response', [
-                'status' => $result->status(),
-                'json' => $result->json(),
-                'body' => $result->body(),
-                'failed' => $result->failed(),
             ]);
         } catch (\Throwable $exception) {
             Log::warning('Failed to send message', [
