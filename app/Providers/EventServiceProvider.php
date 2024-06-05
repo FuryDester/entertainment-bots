@@ -7,6 +7,7 @@ use App\Events\Common\UserUpdated;
 use App\Events\GroupBoss\DamageTaken;
 use App\Events\GroupBoss\Models\GroupBossUpdated;
 use App\Events\GroupBoss\Models\GroupBossUserActionUpdated;
+use App\Events\Notes\Models\NoteUpdated;
 use App\Events\Quiz\QuizCompleted;
 use App\Events\Quiz\QuizQuestionAnswered;
 use App\Events\Quiz\QuizUserAnswerUpdated;
@@ -17,6 +18,7 @@ use App\Listeners\Common\DropUserCache;
 use App\Listeners\GroupBoss\CheckAdditionalDamageAction;
 use App\Listeners\GroupBoss\Models\DropGroupBossCache;
 use App\Listeners\GroupBoss\Models\DropGroupBossUserActionCache;
+use App\Listeners\Notes\DropNotesCache;
 use App\Listeners\Quiz\CheckForQuestionAction;
 use App\Listeners\Quiz\CheckForQuizAction;
 use App\Listeners\Quiz\DropQuizUserAnswerCache;
@@ -42,6 +44,7 @@ class EventServiceProvider extends ServiceProvider
         GroupBossUserActionUpdated::class => [DropGroupBossUserActionCache::class],
         DamageTaken::class => [CheckAdditionalDamageAction::class],
         UserActionUpdated::class => [DropUserActionCache::class],
+        NoteUpdated::class => [DropNotesCache::class],
     ];
 
     /**

@@ -3,7 +3,7 @@
 namespace Database\Seeders\Notes;
 
 use App\Models\Common\User;
-use App\Models\Notes\Notes;
+use App\Models\Notes\Note;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
@@ -16,7 +16,7 @@ class NotesSeeder extends Seeder
     {
         $users = User::get();
 
-        Notes::factory()
+        Note::factory()
             ->count(mt_rand(2, 10))
             ->state(new Sequence(
                 static function () use ($users) {
