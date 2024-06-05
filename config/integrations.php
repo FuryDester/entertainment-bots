@@ -12,5 +12,7 @@ return [
         'command_prefix' => env('COMMAND_PREFIX', '!'),
 
         'peer_id_delta' => 2000000000,
+
+        'max_message_size' => 4096,
     ],
 ];

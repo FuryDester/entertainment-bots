@@ -124,8 +124,14 @@ TEXT;
             return false;
         }
 
-        $text = "Заметка \"{$nameArgument->getValue()}\":\n{$note->getText()}";
-        $this->sendMessage($message->getPeerId(), $text);
+        $noteHeaderText = "Заметка \"{$nameArgument->getValue()}\":";
+        $text = "$noteHeaderText\n{$note->getText()}";
+        if (mb_strlen($text) > config('integrations.vk.max_message_size')) {
+            $this->sendMessage($message->getPeerId(), $noteHeaderText);
+            $this->sendMessage($message->getPeerId(), $note->getText());
+        } else {
+            $this->sendMessage($message->getPeerId(), $text);
+        }
 
         return true;
     }
@@ -136,7 +142,7 @@ TEXT;
         UserDTO $user,
         NoteServiceContract $service
     ): void {
-        $replyMessage = $message->getReplyMessage() ?: current($message->getFwdMessages());
+        $replyMessage = $message->getReplyMessage() ?? current($message->getFwdMessages());
         if (! $replyMessage || ! $replyMessage->getText()) {
             Log::error('NoteCommand::editNote no replyMessage found!', [
                 'message' => $message->toArray(),
