@@ -28,7 +28,7 @@ final readonly class NoteDTOFactory implements NoteDTOFactoryContract
     {
         return (new NoteDTO)
             ->setName($data['name'])
-            ->setId($data['id'])
+            ->setId($data['id'] ?? null)
             ->setText($data['text'])
             ->setPeerId($data['peer_id'])
             ->setUserId($data['user_id'])
