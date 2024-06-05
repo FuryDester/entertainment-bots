@@ -69,7 +69,7 @@ abstract readonly class AbstractCommandExecutor
         $parts = explode(' ', $text);
         array_shift($parts);
 
-        $arguments = $this->getArguments();
+        $arguments = $this->getArguments(app(CommandArgumentDTOFactoryContract::class));
         if (empty($arguments)) {
             Log::info("Executing command {$this->getName()} without arguments", [
                 'arguments' => [],
