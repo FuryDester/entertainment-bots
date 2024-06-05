@@ -8,6 +8,7 @@ use App\Domain\Notes\Factories\NoteDTOFactoryContract;
 use App\Domain\Notes\Services\Models\NoteServiceContract;
 use App\Infrastructure\Commands\AbstractCommandExecutor;
 use App\Infrastructure\Commands\DataTransferObjects\Common\CommandArgumentDTO;
+use App\Infrastructure\Common\DataTransferObjects\Models\UserDTO;
 use App\Infrastructure\Notes\DataTransferObjects\NoteDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\Traits\Messages\SendMessage;
@@ -81,7 +82,7 @@ TEXT;
             return $this->tryShowNote($message, $nameArgument, $noteService);
         }
 
-        $this->editNote($message, $nameArgument, $noteService);
+        $this->editNote($message, $nameArgument, $user, $noteService);
 
         return true;
     }
@@ -111,8 +112,11 @@ TEXT;
         $this->sendMessage($message->getPeerId(), $text);
     }
 
-    private function tryShowNote(MessageDTO $message, CommandArgumentDTO $nameArgument, NoteServiceContract $service): bool
-    {
+    private function tryShowNote(
+        MessageDTO $message,
+        CommandArgumentDTO $nameArgument,
+        NoteServiceContract $service
+    ): bool {
         $note = $service->getByNameAndPeerId($nameArgument->getValue(), $message->getPeerId());
         if (! $note) {
             $this->sendMessage($message->getPeerId(), "Заметки \"{$nameArgument->getValue()}\" не существует.");
@@ -126,8 +130,12 @@ TEXT;
         return true;
     }
 
-    private function editNote(MessageDTO $message, CommandArgumentDTO $nameArgument, NoteServiceContract $service): void
-    {
+    private function editNote(
+        MessageDTO $message,
+        CommandArgumentDTO $nameArgument,
+        UserDTO $user,
+        NoteServiceContract $service
+    ): void {
         $replyMessage = $message->getReplyMessage() ?: current($message->getFwdMessages());
         if (! $replyMessage || ! $replyMessage->getText()) {
             Log::error('NoteCommand::editNote no replyMessage found!', [
@@ -144,7 +152,7 @@ TEXT;
             $note = $noteFactory::createFromData([
                 'name' => $nameArgument->getValue(),
                 'peer_id' => $message->getPeerId(),
-                'user_id' => $message->getFromId(),
+                'user_id' => $user->getId(),
                 'text' => $replyMessage->getText(),
             ]);
 
