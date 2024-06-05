@@ -20,7 +20,8 @@ final class GroupBossUserActionSeeder extends Seeder
         $groupBosses = GroupBoss::get();
         $groupBossWeapons = GroupBossWeapon::get();
 
-        GroupBossUserAction::factory()->count(mt_rand($users->count(), $users->count() * 5))
+        GroupBossUserAction::factory()
+            ->count(mt_rand($users->count(), $users->count() * 5))
             ->state(new Sequence(
                 static function () use ($users, $groupBosses, $groupBossWeapons) {
                     $groupBoss = $groupBosses->random();
