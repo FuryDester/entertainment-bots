@@ -126,7 +126,8 @@ TEXT;
 
         $noteHeaderText = "Заметка \"{$nameArgument->getValue()}\":";
         $text = "$noteHeaderText\n{$note->getText()}";
-        if (mb_strlen($text) > config('integrations.vk.max_message_size')) {
+        // strlen left on purpose
+        if (strlen($text) > config('integrations.vk.max_message_size')) {
             $this->sendMessage($message->getPeerId(), $noteHeaderText);
             $this->sendMessage($message->getPeerId(), $note->getText());
         } else {
