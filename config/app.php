@@ -208,6 +208,10 @@ return [
         App\Providers\GroupBoss\GroupBossExecutorDependencyServiceProvider::class,
         App\Providers\GroupBoss\GroupBossTemplatorDependencyServiceProvider::class,
         App\Providers\GroupBoss\GroupBossActionProcessorDependencyServiceProvider::class,
+
+        // Notes
+        App\Providers\Notes\NotesDataTransferObjectsServiceProvider::class,
+        App\Providers\Notes\NotesServiceProvider::class,
     ])->toArray(),
 
     /*

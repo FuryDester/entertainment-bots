@@ -7,6 +7,7 @@ use Database\Seeders\Common\UsersSeeder;
 use Database\Seeders\GroupBoss\GroupBossSeeder;
 use Database\Seeders\GroupBoss\GroupBossUserActionSeeder;
 use Database\Seeders\GroupBoss\GroupBossWeaponSeeder;
+use Database\Seeders\Notes\NotesSeeder;
 use Database\Seeders\Quiz\QuizActionSeeder;
 use Database\Seeders\Quiz\QuizAnswerSeeder;
 use Database\Seeders\Quiz\QuizQuestionSeeder;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
             GroupBossWeaponSeeder::class,
             GroupBossUserActionSeeder::class,
             UserActionSeeder::class,
+            NotesSeeder::class,
         ]);
     }
 }

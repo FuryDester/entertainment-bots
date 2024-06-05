@@ -4,6 +4,7 @@ namespace App\Models\Common;
 
 use App\Models\GroupBoss\GroupBoss;
 use App\Models\GroupBoss\GroupBossUserAction;
+use App\Models\Notes\Note;
 use App\Models\Quiz\QuizUserAnswer;
 use App\Models\Quiz\QuizUserStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -41,5 +42,10 @@ final class User extends Model
     public function groupBossUserAction(): HasMany
     {
         return $this->hasMany(GroupBossUserAction::class);
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(Note::class);
     }
 }
