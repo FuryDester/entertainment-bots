@@ -9,4 +9,9 @@ interface NoteServiceContract
     public function save(NoteDTO $dto): bool;
 
     public function getByNameAndPeerId(string $name, int $peerId): ?NoteDTO;
+
+    /**
+     * @return NoteDTO[]
+     */
+    public function getByPeerId(int $peerId): array;
 }

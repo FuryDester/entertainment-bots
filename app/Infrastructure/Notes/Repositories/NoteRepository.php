@@ -35,7 +35,7 @@ class NoteRepository implements NoteRepositoryContract
             CacheTimeEnum::WEEK->value,
             static function () use ($name, $peerId) {
                 $result = Note::query()
-                    ->where('name', mb_strtolower($name))
+                    ->where('name', mb_strtolower(trim($name)))
                     ->where('peer_id', $peerId)
                     ->first();
 
@@ -46,6 +46,23 @@ class NoteRepository implements NoteRepositoryContract
                 /** @var NoteDTOFactoryContract $factory */
                 $factory = app(NoteDTOFactoryContract::class);
                 return $factory::createFromModel($result);
+            }
+        );
+    }
+
+    public function getByPeerId(string $peerId): array
+    {
+        return Cache::tags(NotesTagsEnum::NotesRepository->value)->remember(
+            $this->formBaseCacheKey($peerId),
+            CacheTimeEnum::WEEK,
+            static function () use ($peerId) {
+                /** @var NoteDTOFactoryContract $factory */
+                $factory = app(NoteDTOFactoryContract::class);
+
+                return Note::where('peer_id', $peerId)
+                    ->get()
+                    ->map(fn ($item) => $factory::createFromModel($item))
+                    ->all();
             }
         );
     }

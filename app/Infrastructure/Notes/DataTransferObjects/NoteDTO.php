@@ -40,7 +40,7 @@ class NoteDTO extends AbstractDTO
 
     public function setText(string $text): NoteDTO
     {
-        $this->text = $text;
+        $this->text = trim($text);
 
         return $this;
     }
@@ -64,7 +64,7 @@ class NoteDTO extends AbstractDTO
 
     public function setName(string $name): NoteDTO
     {
-        $this->name = mb_strtolower($name);
+        $this->name = mb_strtolower(trim($name));
 
         return $this;
     }

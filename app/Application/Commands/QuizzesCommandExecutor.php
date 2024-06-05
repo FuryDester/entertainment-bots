@@ -2,6 +2,7 @@
 
 namespace App\Application\Commands;
 
+use App\Domain\Commands\Factories\Common\CommandArgumentDTOFactoryContract;
 use App\Domain\Common\Services\Models\UserServiceContract;
 use App\Domain\PayloadActions\Factories\PayloadDTOFactoryContract;
 use App\Domain\Quiz\Services\Models\QuizServiceContract;
@@ -41,7 +42,7 @@ final readonly class QuizzesCommandExecutor extends AbstractCommandExecutor
     /**
      * {@inheritDoc}
      */
-    public function getArguments(): array
+    public function getArguments(CommandArgumentDTOFactoryContract $factory): array
     {
         return [];
     }

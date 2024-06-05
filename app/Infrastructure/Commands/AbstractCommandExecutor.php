@@ -2,6 +2,7 @@
 
 namespace App\Infrastructure\Commands;
 
+use App\Domain\Commands\Factories\Common\CommandArgumentDTOFactoryContract;
 use App\Infrastructure\Commands\DataTransferObjects\Common\CommandArgumentDTO;
 use App\Infrastructure\VK\DataTransferObjects\Common\MessageParts\MessageDTO;
 use App\Infrastructure\VK\Traits\Messages\SendMessage;
@@ -31,7 +32,7 @@ abstract readonly class AbstractCommandExecutor
      *
      * @return CommandArgumentDTO[]
      */
-    abstract public function getArguments(): array;
+    abstract public function getArguments(CommandArgumentDTOFactoryContract $factory): array;
 
     /**
      * Выполнение команды

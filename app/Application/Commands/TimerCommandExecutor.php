@@ -46,11 +46,8 @@ final readonly class TimerCommandExecutor extends AbstractCommandExecutor
     /**
      * {@inheritDoc}
      */
-    public function getArguments(): array
+    public function getArguments(CommandArgumentDTOFactoryContract $factory): array
     {
-        /** @var CommandArgumentDTOFactoryContract $factory */
-        $factory = app(CommandArgumentDTOFactoryContract::class);
-
         return [
             $factory::createFromParams('время', 'Время, через которое нужно уведомить. Например: 30', true),
             $factory::createFromParams('сообщение', 'Сообщение, которое нужно отправить. Например: Пора вставать!'),

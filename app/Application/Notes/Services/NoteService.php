@@ -23,4 +23,9 @@ final readonly class NoteService implements NoteServiceContract
     {
         return $this->repository->getByNameAndPeerId($name, $peerId);
     }
+
+    public function getByPeerId(int $peerId): array
+    {
+        return $this->repository->getByPeerId($peerId);
+    }
 }
