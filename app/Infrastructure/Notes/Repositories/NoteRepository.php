@@ -45,6 +45,7 @@ class NoteRepository implements NoteRepositoryContract
 
                 /** @var NoteDTOFactoryContract $factory */
                 $factory = app(NoteDTOFactoryContract::class);
+
                 return $factory::createFromModel($result);
             }
         );

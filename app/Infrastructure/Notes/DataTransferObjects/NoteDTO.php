@@ -77,6 +77,7 @@ class NoteDTO extends AbstractDTO
     public function setId(?int $id): NoteDTO
     {
         $this->id = $id;
+
         return $this;
     }
 
@@ -88,6 +89,7 @@ class NoteDTO extends AbstractDTO
     public function setCreatedAt(?Carbon $createdAt): NoteDTO
     {
         $this->createdAt = $createdAt;
+
         return $this;
     }
 
@@ -99,6 +101,7 @@ class NoteDTO extends AbstractDTO
     public function setUpdatedAt(?Carbon $updatedAt): NoteDTO
     {
         $this->updatedAt = $updatedAt;
+
         return $this;
     }
 }

@@ -10,8 +10,7 @@ final readonly class NoteService implements NoteServiceContract
 {
     public function __construct(
         private NoteRepositoryContract $repository,
-    )
-    {
+    ) {
     }
 
     public function save(NoteDTO $dto): bool
