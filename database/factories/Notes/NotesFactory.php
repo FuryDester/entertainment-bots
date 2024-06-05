@@ -1,6 +1,7 @@
 <?php
 
 namespace Database\Factories\Notes;
+
 use Database\Factories\Common\UserFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 

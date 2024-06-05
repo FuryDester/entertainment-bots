@@ -20,6 +20,7 @@ class NoteDTO extends AbstractDTO
     public function setUserId(int $userId): NoteDTO
     {
         $this->userId = $userId;
+
         return $this;
     }
 
@@ -31,6 +32,7 @@ class NoteDTO extends AbstractDTO
     public function setText(string $text): NoteDTO
     {
         $this->text = $text;
+
         return $this;
     }
 
@@ -42,6 +44,7 @@ class NoteDTO extends AbstractDTO
     public function setPeerId(int $peerId): NoteDTO
     {
         $this->peerId = $peerId;
+
         return $this;
     }
 }
