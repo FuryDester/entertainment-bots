@@ -12,7 +12,7 @@ final class ForwardMessageDTO extends AbstractDTO
 
     protected ?int $id;
 
-    protected int $peerId;
+    protected ?int $peerId;
 
     protected ?string $text;
 
@@ -57,12 +57,12 @@ final class ForwardMessageDTO extends AbstractDTO
         return $this;
     }
 
-    public function getPeerId(): int
+    public function getPeerId(): ?int
     {
         return $this->peerId;
     }
 
-    public function setPeerId(int $peerId): ForwardMessageDTO
+    public function setPeerId(?int $peerId): ForwardMessageDTO
     {
         $this->peerId = $peerId;
 
