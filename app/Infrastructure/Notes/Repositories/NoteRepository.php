@@ -55,7 +55,7 @@ class NoteRepository implements NoteRepositoryContract
     {
         return Cache::tags(NotesTagsEnum::NotesRepository->value)->remember(
             $this->formBaseCacheKey($peerId),
-            CacheTimeEnum::WEEK,
+            CacheTimeEnum::WEEK->value,
             static function () use ($peerId) {
                 /** @var NoteDTOFactoryContract $factory */
                 $factory = app(NoteDTOFactoryContract::class);
