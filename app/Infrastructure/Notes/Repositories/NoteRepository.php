@@ -30,6 +30,21 @@ class NoteRepository implements NoteRepositoryContract
 
     public function getByNameAndPeerId(string $name, int $peerId): ?NoteDTO
     {
+        $result = Note::query()
+            ->where('name', mb_strtolower(trim($name)))
+            ->where('peer_id', $peerId)
+            ->first();
+
+        if (! $result) {
+            return null;
+        }
+
+        /** @var NoteDTOFactoryContract $factory */
+        $factory = app(NoteDTOFactoryContract::class);
+
+        return $factory::createFromModel($result);
+
+        // TODO: Fix me
         return Cache::tags(NotesTagsEnum::NotesRepository->value)->remember(
             $this->formBaseCacheKey($name, $peerId),
             CacheTimeEnum::WEEK->value,
