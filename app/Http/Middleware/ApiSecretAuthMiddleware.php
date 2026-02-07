@@ -16,7 +16,7 @@ class ApiSecretAuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $validToken = config('integrations.vk.secret');
-        if ($validToken && $request->get('secret') !== config('integrations.vk.secret')) {
+        if ($validToken && $request->get('secret') !== config('integrations.vk.secret') && $request->get('type') !== 'confirmation') {
             return response('Unauthorized', Response::HTTP_UNAUTHORIZED);
         }
 
